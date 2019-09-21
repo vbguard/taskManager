@@ -12,9 +12,9 @@ const setToken = token => ({
   }
 });
 
-export const requestUserLogin = credendials => dispatch => {
+export const requestUserLogin = credentials => dispatch => {
   dispatch(authRequest());
 
-  const res = axios.post(api.url.loginUser(), credendials);
+  const res = axios.post(api.url.loginUser(), credentials);
   return res;
 };
