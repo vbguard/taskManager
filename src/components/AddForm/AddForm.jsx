@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ArrowRight, Delete } from '../../assets/icons/index';
+import { ArrowRight, Delete, Calendar } from '../../assets/icons/index';
 import { formSuccess } from '../../redux/actions/formAction';
+import style from './AddForm.module.css';
 
 class AddForm extends Component {
   state = {
@@ -26,32 +27,46 @@ class AddForm extends Component {
   render() {
     const { title, description } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className={style.bodybg}>
+        <form onSubmit={this.handleSubmit} className={style.formBg}>
           <input
             name="title"
             type="text"
             value={title}
             onChange={this.handleChange}
             placeholder="#1 Введите название задачи"
-            maxLength="50"
+            className={style.title}
           ></input>
-          {title.length > 50 && <span>Описание не должно быть больше 50-ти символов</span>}
+          {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
 
-          <div>
-            <a href="true">
+          <div className={style.linkContainer}>
+            <a href="true" className={style.linkStyle}>
+              <Calendar className={style.formIcon} />
               Выберете дату
-              <ArrowRight />
+              <ArrowRight className={style.formIcon} />
             </a>
           </div>
-          <label htmlFor="description">Краткое описание:</label>
-          <input name="description" type="textarea" onChange={this.handleChange} value={description}></input>
+          <label htmlFor="description" className={style.labelDescription}>
+            Краткое описание:
+          </label>
+          <input
+            name="description"
+            type="textarea"
+            className={style.textArea}
+            onChange={this.handleChange}
+            value={description}
+            placeholder="Введите описание задачи"
+          ></input>
           {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
-          <button type="button">
-            <Delete />
+          <button type="button" className={style.deleteBtn}>
+            <Delete className={style.formIconDelete} />
           </button>
-          <button type="submit"> Сохранить</button>
-          <button type="reset">Отмена</button>
+          <button type="submit" className={style.saveBtn}>
+            Сохранить
+          </button>
+          <button type="reset" className={style.resetBtn}>
+            Отмена
+          </button>
         </form>
       </div>
     );
