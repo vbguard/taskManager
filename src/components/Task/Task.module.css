@@ -1,0 +1,81 @@
+.task{
+    width: 296px;
+    margin: 0 auto;
+    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
+    border-radius: 5px;
+}
+.taskHeader{
+    background-color: var(--primaryBackgroundColor);
+    color: var(--primaryTextColor);
+    border-radius: 5px 5px 0 0;
+    padding: 1px 1em 1px;
+}
+.taskHeader p{
+    font-family: var(--primaryFontFamily), sans-serif;
+    font-size: var(--mobileFontSize);
+    letter-spacing: 0.04em;
+}
+.headerText{
+    /* display:inline-block;
+    text-indent: 1em; */
+}
+
+
+/* ***************************************************************************************** */
+
+.task_bg {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
+    position: absolute;
+    left: 13px;
+    top: 171px;
+    width: 295px;
+    height: 110px;
+    z-index: 21;
+  }
+  .Прямоугольник__скругл__углы_4 {
+  background-color: rgb(40, 64, 96);
+  position: absolute;
+  left: 78px;
+  top: 131px;
+  width: 580px;
+  height: 32px;
+  z-index: 20;
+}
+.task_bg {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
+    position: absolute;
+    left: 78px;
+    top: 159px;
+    width: 580px;
+    height: 126px;
+    z-index: 18;
+  }
+  .task_bg {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
+    position: absolute;
+    left: 102px;
+    top: 181px;
+    width: 580px;
+    height: 126px;
+    z-index: 18;
+  }
+
+
+  .Подготовка_документации {
+    font-size: 12px;
+    font-family: "GothamPro";
+    color: rgb(255, 255, 255);
+    line-height: 5.083;
+    text-align: left;
+    position: absolute;
+    left: 46px;
+    top: 127.002px;
+    z-index: 25;
+  }
+  

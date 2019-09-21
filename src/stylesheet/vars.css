@@ -1,1 +1,7 @@
-:root {}
+:root {
+    --primaryBackgroundColor: #284060;
+    --primaryTextColor: #FFFFFF;
+
+    --mobileFontSize: 12px;
+    --primaryFontFamily: 'Gotham Pro Light';
+}
