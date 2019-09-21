@@ -8,7 +8,7 @@ import { authTypes } from '../actions/auth';
 const basicInitState = {
   user: 'test@test.com',
   token:
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDg2NDA1ODQyZDczYzdjZGIzMGM1NDEiLCJpYXQiOjE1NjkwNzkzODR9.WqYuVstYYyOORvymb5zX-SctGgWvn5tcddDA9kSKmyY'
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDg2MWQxYzQyZDczYzdjZGIzMGM1NDAiLCJpYXQiOjE1NjkwNzAzNjR9.V0EmcgYbniPEp8XaT4q970Zfm1pXMMun5a05avNPNgA'
 };
 
 export const sessionReducer = (state = basicInitState, { type, payload }) => {

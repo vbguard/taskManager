@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import windowSize from 'react-window-size';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 // import styles from './Dashboard.module.css';
 import { loginSuccess } from '../../redux/actions/auth';
 import { Switch, Route } from 'react-router-dom';
-import { fetchPosts } from '../../utils/requests.js';
-
+import { getUserTasks } from '../../redux/actions/tasksActions';
+import { getToken, getLoader } from './selectors';
 export const DashboardContext = React.createContext({});
 
 const Header = () => (
@@ -33,47 +35,46 @@ const Tasks = () => (
 );
 
 class Dashboard extends Component {
-  state = { desktop: false };
+  state = {};
 
   componentDidMount() {
-    const authorization = localStorage.getItem('authorization');
-
-    console.log(
-      this.props.getPosts({
-        headers: {
-          Authorization: authorization
-        }
-      })()
-    );
-    // this.props.getPosts({
-    //   headers: {
-    //     Authorization: authorization
-    //   }
-    // });
+    const { token, getUserTasks } = this.props;
+    getUserTasks(token);
   }
 
   render() {
-    const { windowWidth } = this.props;
-    const desktop = 1024;
+    const { windowWidth, loader } = this.props;
 
     return (
       <>
         <Header />
-        {windowWidth < desktop && (
+        {(loader && (
+          <Loader
+            type="CradleLoader"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
+        )) || (
           <>
-            <Switch>
-              <Route path="/dashboard" exact component={Tasks} />
-              <Route path="/dashboard/calendar" component={Calendar} />
-              <Route path="/dashboard/add" component={AddForm} />
-            </Switch>
-            <button>+</button>
-          </>
-        )}
-        {windowWidth >= desktop && (
-          <>
-            <Tasks />
-            <Calendar />
-            <button>+</button>
+            {windowWidth < 1024 && (
+              <>
+                <Switch>
+                  <Route path="/dashboard" exact component={Tasks} />
+                  <Route path="/dashboard/calendar" component={Calendar} />
+                  <Route path="/dashboard/add" component={AddForm} />
+                </Switch>
+                <button>+</button>
+              </>
+            )}
+            {windowWidth >= 1024 && (
+              <>
+                <Tasks />
+                <Calendar />
+                <button>+</button>
+              </>
+            )}
           </>
         )}
       </>
@@ -81,14 +82,30 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  token: getToken(state),
+  loader: getLoader(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   loginSuccess: session => dispatch(loginSuccess(session)),
-  getPosts: () => fetchPosts(dispatch)
+  getUserTasks: token => dispatch(getUserTasks(token))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(windowSize(Dashboard));
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  windowSize
+)(Dashboard);
+
+{
+  /* <Loader
+  type="CradleLoader"
+  color="#00BFFF"
+  height={100}
+  width={100}
+  timeout={3000} //3 secs
+/>; */
+}

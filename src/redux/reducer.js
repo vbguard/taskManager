@@ -4,7 +4,7 @@ import { tasksReducer } from './reducers/tasksReducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  tasks: tasksReducer
+  userTasks: tasksReducer
 });
 
 export default rootReducer;
