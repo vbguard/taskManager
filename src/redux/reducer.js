@@ -5,13 +5,8 @@ import { sessionReducer } from './reducers/sessionReducer';
 
 const sessionPersistConfig = {
   key: 'session',
-  storage,
-  whitelist: ['token']
+  storage
 };
-
-// const rootReducer = combineReducers({
-//   session: sessionReducer
-// });
 
 const rootReducer = combineReducers({
   session: persistReducer(sessionPersistConfig, sessionReducer)

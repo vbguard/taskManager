@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../../redux/actions/authOperations';
-import { getError } from './authSelector';
 
 const INITIAL_STATE = {
   nickname: '',
