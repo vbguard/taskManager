@@ -59,7 +59,7 @@ class AuthForm extends Component {
             <input
               className={styles.input}
               type="password"
-              autocomplete="current-password"
+              autoComplete="current-password"
               size="12"
               onChange={this.handleChange}
               value={password}
