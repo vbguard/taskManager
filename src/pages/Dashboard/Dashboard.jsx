@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 // import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/auth';
+import { loginSuccess } from '../../redux/actions/authActions';
 import { Switch, Route } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from '../../redux/selectors/selectors';
