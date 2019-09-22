@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/auth';
+import Task from '../../components/Task/Task';
 
 export const DashboardContext = React.createContext({});
 
@@ -12,15 +12,11 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <h1>Header</h1>
-        </div>
-        <div></div>
-        <div>
-          <h1>Calendar</h1>
-        </div>
-      </div>
+      <>
+        <h1>Header</h1>
+        <h1>Task</h1>
+        <h1>Calendar</h1>
+      </>
     );
   }
 }
@@ -28,7 +24,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  loginSuccess: session => dispatch(loginSuccess(session))
+
 });
 
 export default connect(

@@ -18,3 +18,10 @@ export const requestUserLogin = credendials => dispatch => {
   const res = axios.post(api.url.loginUser(), credendials);
   return res;
 };
+
+export const requestGetUserTasks = credendials => dispatch => {
+  dispatch(authRequest());
+
+  const res = axios.post(api.url.getUserTasks(), setToken(credendials.token));
+  return res;
+};
