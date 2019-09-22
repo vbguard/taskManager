@@ -1,23 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import * as requests from '../../utils/requests.js';
+import { Redirect } from 'react-router-dom';
+import AuthForm from '../../components/AuthForm/AuthForm';
+import { getToken } from '../../redux/selectors/selectors';
 
-const INITIAL_STATE = {
-  nickname: '',
-  password: ''
-};
+const Login = ({ token }) => (
+  <>
+    <h1>Login/Register</h1>
+    {token ? <Redirect to="/dashboard" /> : <AuthForm />}
+  </>
+);
 
-class Login extends Component {
-  state = { ...INITIAL_STATE };
+const mapStateToProps = state => ({
+  token: getToken(state)
+});
 
-  render() {
-    return <h1>Login/Register</h1>;
-  }
-}
-
-const mapDispatchToProps = {};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+export default connect(mapStateToProps)(Login);

@@ -1,8 +1,20 @@
 import { combineReducers } from 'redux';
-import { sessionReducer } from './reducers/session';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { sessionReducer } from './reducers/sessionReducer';
+
+const sessionPersistConfig = {
+  key: 'session',
+  storage,
+  whitelist: ['token']
+};
+
+// const rootReducer = combineReducers({
+//   session: sessionReducer
+// });
 
 const rootReducer = combineReducers({
-  session: sessionReducer
+  session: persistReducer(sessionPersistConfig, sessionReducer)
 });
 
 export default rootReducer;

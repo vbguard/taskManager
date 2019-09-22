@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/auth';
+import { loginSuccess } from '../../redux/actions/authActions';
 
 export const DashboardContext = React.createContext({});
 
