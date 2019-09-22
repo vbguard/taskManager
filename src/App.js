@@ -8,8 +8,8 @@ function App() {
   return (
     <Switch>
       <Redirect exact path="/" to="/dashboard" />
-      <ProtectedComponent active={true} path="/login" component={Login} />
-      <ProtectedComponent active={false} path="/dashboard" component={Dashboard} />
+      <ProtectedComponent active={false} path="/login" component={Login} />
+      <ProtectedComponent active={true} path="/dashboard" component={Dashboard} />
     </Switch>
   );
 }
