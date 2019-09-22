@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../../redux/actions/authOperations';
-// import { getError } from './authSelector';
+import { getError } from './authSelector';
 
 const INITIAL_STATE = {
   nickname: '',
@@ -15,7 +15,7 @@ class AuthForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     const { nickname, password } = this.state;
@@ -31,15 +31,6 @@ class AuthForm extends Component {
     }
 
     this.props.onSubmit({ ...this.state });
-
-    // TODO: show message if the password is wrong
-
-    // if (this.props.error) {
-    //   alert('Wrong password');
-    //   this.setState({ password: '' });
-    //   this.props.error = null;
-    //   return;
-    // }
 
     this.setState({ ...INITIAL_STATE });
   };
@@ -63,9 +54,6 @@ class AuthForm extends Component {
     );
   }
 }
-// const mapStateToProps = state => ({
-//   error: getError(state)
-// });
 
 const mapDispatchToProps = {
   onSubmit: auth

@@ -11,7 +11,10 @@ export const auth = credentials => dispatch => {
       setAuthToken(data.token);
       dispatch(loginSuccess(data));
     })
-    .catch(err => dispatch(loginError(err)));
+    .catch(err => {
+      alert('Wrong password');
+      dispatch(loginError(err));
+    });
 };
 
 export const logout = () => dispatch => {

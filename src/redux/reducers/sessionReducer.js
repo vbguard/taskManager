@@ -2,8 +2,7 @@ import { authTypes } from '../actions/authActions';
 
 const initailState = {
   nickname: '',
-  token: null,
-  error: ''
+  token: null
 };
 
 export const sessionReducer = (state = initailState, { type, payload }) => {
@@ -12,7 +11,7 @@ export const sessionReducer = (state = initailState, { type, payload }) => {
       return payload;
 
     case authTypes.LOGIN_ERROR:
-      return { ...initailState, error: payload };
+      return { error: payload };
 
     case authTypes.LOGOUT:
       return initailState;
