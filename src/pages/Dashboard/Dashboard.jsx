@@ -8,7 +8,7 @@ import { compose } from 'redux';
 import { loginSuccess } from '../../redux/actions/auth';
 import { Switch, Route } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader } from './selectors';
+import { getToken, getLoader } from '../../redux/selectors/selectors';
 
 export const DashboardContext = React.createContext({});
 
