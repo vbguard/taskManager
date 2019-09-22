@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as requests from '../../utils/requests.js';
+import Header from '../../components/Header/Header';
 
 const INITIAL_STATE = {
   nickname: '',
@@ -11,7 +12,12 @@ class Login extends Component {
   state = { ...INITIAL_STATE };
 
   render() {
-    return <h1>Login/Register</h1>;
+    return (
+      <div>
+        <Header pathname={this.props.location.pathname} />
+        <h1>Login/Register</h1>
+      </div>
+    );
   }
 }
 

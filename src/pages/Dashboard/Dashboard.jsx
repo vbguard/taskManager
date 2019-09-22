@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Dashboard.module.css';
 import { loginSuccess } from '../../redux/actions/auth';
+import Header from '../../components/Header/Header';
 
 export const DashboardContext = React.createContext({});
 
@@ -14,7 +15,7 @@ class Dashboard extends Component {
     return (
       <div>
         <div>
-          <h1>Header</h1>
+          <Header pathname={this.props.location.pathname} />
         </div>
         <div></div>
         <div>
