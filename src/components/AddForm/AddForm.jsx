@@ -23,6 +23,9 @@ class AddForm extends Component {
     this.props.addForm({ ...this.state });
     this.setState({ title: '', description: '' });
   };
+  handleReset = () => {
+    this.setState({ title: '', description: '' });
+  };
 
   render() {
     const { title, description } = this.state;
@@ -49,14 +52,14 @@ class AddForm extends Component {
           <label htmlFor="description" className={style.labelDescription}>
             Краткое описание:
           </label>
-          <input
+          <textarea
             name="description"
-            type="textarea"
+            wrap="virtual"
             className={style.textArea}
             onChange={this.handleChange}
             value={description}
             placeholder="Введите описание задачи"
-          ></input>
+          ></textarea>
           {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
           <button type="button" className={style.deleteBtn}>
             <Delete className={style.formIconDelete} />
@@ -64,7 +67,7 @@ class AddForm extends Component {
           <button type="submit" className={style.saveBtn}>
             Сохранить
           </button>
-          <button type="reset" className={style.resetBtn}>
+          <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
             Отмена
           </button>
         </form>
