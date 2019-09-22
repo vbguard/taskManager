@@ -1,7 +1,19 @@
 :root {
-    --primaryBackgroundColor: #284060;
-    --primaryTextColor: #FFFFFF;
+    --pale-grey: #f5f7fc;
+    --black: #000000;
+    --greyish-brown: #595858;
+    --light-periwinkle: #dce0e9;
+    --midnight: #010002;
+    --dusty-orange: #fc842c;
+    --dusty-orange-33: rgba(252, 132, 44, 0.33);
+    --white: #ffffff;
+    --dark-grey-blue: #284060;
+    --black-15: rgba(0, 0, 0, 0.15);
+    --light-blue-grey: #cccdd3;
+    --dark-navy-blue: #000001;
 
     --mobileFontSize: 12px;
     --primaryFontFamily: 'Gotham Pro Light';
+    --secondaryFontFamily: 'Verdana';
 }
+  
