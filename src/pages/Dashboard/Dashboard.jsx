@@ -42,6 +42,7 @@ class Dashboard extends Component {
   static propTypes = {
     loader: PropTypes.bool.isRequired,
     token: PropTypes.string.isRequired,
+    windowWidth: PropTypes.number.isRequired,
     loginSuccess: PropTypes.func.isRequired,
     getUserTasks: PropTypes.func.isRequired
   };
