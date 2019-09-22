@@ -1,21 +1,20 @@
-import { authTypes } from '../actions/auth';
+import { authTypes } from '../actions/authActions';
 
 const initailState = {
-  user: {},
-  token: ''
+  nickname: null,
+  token: null,
+  error: null
 };
 
 export const sessionReducer = (state = initailState, { type, payload }) => {
   switch (type) {
     case authTypes.LOGIN_SUCCESS:
-      return payload;
+      return { ...payload, error: null };
 
     case authTypes.LOGIN_ERROR:
-      return { error: payload };
+      return { ...initailState, error: payload };
 
     case authTypes.LOGOUT:
-      localStorage.removeItem('userToken');
-      localStorage.removeItem('name');
       return initailState;
 
     default:
