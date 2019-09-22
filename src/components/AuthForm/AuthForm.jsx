@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../../redux/actions/authOperations';
+import styles from './AuthForm.module.css';
 
 const INITIAL_STATE = {
   nickname: '',
@@ -14,7 +15,7 @@ class AuthForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = e => {
     e.preventDefault();
 
     const { nickname, password } = this.state;
@@ -38,18 +39,24 @@ class AuthForm extends Component {
     const { nickname, password } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Уникальный ник:
-          <input value={nickname} name="nickname" onChange={this.handleChange} required></input>
-        </label>
+      <div className={styles.wrapper}>
+        <h2 className={styles.title}>Введите данные для регистрации или логинизации</h2>
 
-        <label>
-          Пароль:
-          <input type="password" onChange={this.handleChange} value={password} name="password" required id=""></input>
-        </label>
-        <button type="submit">Вперед!</button>
-      </form>
+        <form className={styles.registrationForm} onSubmit={this.handleSubmit}>
+          <label className={styles.label}>
+            <span className={styles.labelText}>Уникальный ник:</span>
+            <input value={nickname} name="nickname" onChange={this.handleChange} required></input>
+          </label>
+
+          <label className={styles.label}>
+            <span className={styles.labelText}> Пароль: </span>
+            <input type="password" onChange={this.handleChange} value={password} name="password" required id=""></input>
+          </label>
+          <button className={styles.button} type="submit">
+            <span className={styles.buttonText}> Вперед! </span>
+          </button>
+        </form>
+      </div>
     );
   }
 }
