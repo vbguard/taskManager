@@ -12,8 +12,12 @@
     --light-blue-grey: #cccdd3;
     --dark-navy-blue: #000001;
 
+    --green: #00C853;
+    --grey: #D0D1D7;
+
     --mobileFontSize: 12px;
+    --tabletFontSize: 13px;
+    --secondarymobileFontSize: 11px;
     --primaryFontFamily: 'Gotham Pro Light';
     --secondaryFontFamily: 'Verdana';
 }
-  

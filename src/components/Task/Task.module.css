@@ -4,7 +4,9 @@ p{
 }
 
 .task{
+    /* set fixed width to test */
     width: 296px;
+    /* min-width: 296px; */
     margin: 0 auto;
     box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
     border-radius: 5px;
@@ -13,7 +15,6 @@ p{
 .taskHeader{
   display: flex;
   flex-direction: row;
-
   background-color: var(--dark-grey-blue);
   color: var(--white);
   font-family: var(--primaryFontFamily), sans-serif;
@@ -24,9 +25,13 @@ p{
   line-height: 1.25;
   letter-spacing: 0.48px;
   text-align: left;
-
   border-radius: 5px 5px 0 0;
   padding: 6px 1.3em 6px;
+}
+
+.taskHeaderInactive{
+  composes: taskHeader;
+  background-color: var(--grey);
 }
 
 .numberContainer{
@@ -42,6 +47,7 @@ p{
   line-height: 1.41666666667;
   letter-spacing: 0.48px;
   text-align: left;
+  color: var(--greyish-brown);
 
   padding: 16px 1.3em 6px;
 }
@@ -50,7 +56,6 @@ p{
   display:flex;
   justify-content: space-between;
   padding: 0px 1.3em 16px;
-
 }
 
 .taskControls button{
@@ -69,13 +74,17 @@ p{
   align-items: center;
 }
 
-.taskControls p{
+.taskControlsDates{
   display: inline-block;
   font-family: var(--secondaryFontFamily), sans-serif;
-  font-size: var(--mobileFontSize);
+  font-size: var(--secondarymobileFontSize);
   color: var(--dark-grey-blue);
   font-weight: bold;
   margin-left: 1em;
+}
+.taskControlsRepeatInactive p{
+  
+ color: var(--grey);
 }
 
 .taskControls button>svg{
@@ -101,91 +110,82 @@ p{
   margin-left: 16px;
 }
 
-
-/* ***************************************************************************************** */
-
-._17__19__24 {
-  font-size: 11px;
-  font-family: "Verdana";
-  color: rgb(40, 64, 96);
-  font-weight: bold;
-  line-height: 1.818;
-  position: absolute;
-  left: 61px;
-  top: 269.501px;
-  width: 67px;
-  height: 10px;
-  z-index: 29;
+.taskControlsDone svg{
+  width: 14px;
+  height: 14px;
+  fill: var(--green);
 }
 
-.Эллипс_1_kопировать {
-  border-width: 1px;
-  border-color: rgb(204, 205, 211);
-  border-style: solid;
-  border-radius: 50%;
-  position: absolute;
-  left: 29px;
-  top: 245px;
-  width: 21px;
-  height: 21px;
-  z-index: 30;
+.taskControlsEdit svg{
+  width: 14px;
+  height: 14px;
+  fill: var(--dusty-orange);
 }
 
-
-
-.task_bg {
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
-    position: absolute;
-    left: 13px;
-    top: 171px;
-    width: 295px;
-    height: 110px;
-    z-index: 21;
-  }
-  .Прямоугольник__скругл__углы_4 {
-  background-color: rgb(40, 64, 96);
-  position: absolute;
-  left: 78px;
-  top: 131px;
-  width: 580px;
-  height: 32px;
-  z-index: 20;
-}
-.task_bg {
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
-    position: absolute;
-    left: 78px;
-    top: 159px;
+@media (min-width: 768px) {
+  .task {
+    /* set fixed width to test */
     width: 580px;
-    height: 126px;
-    z-index: 18;
+    /* min-width: 296px; */
   }
-  .task_bg {
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
-    position: absolute;
-    left: 102px;
-    top: 181px;
+  .taskHeader{
+    font-size: var(--tabletFontSize);
+    padding-top: 10px;
+    padding-bottom: 8px;
+    padding-left: 2.5em;
+  }
+  .taskBody{
+    font-family: var(--primaryFontFamily), sans-serif;
+    font-size: var(--tabletFontSize);
+    padding-top: 22px;
+    padding-bottom: 12px;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+  }
+  .taskControls{
+    padding: 0px 2.5em 16px;
+  }
+  .taskControls button{
+    width: 34px;
+    height: 34px;
+  }
+  .taskControlsEdit+p{
+    color: var(--dusty-orange);
+  }
+  .taskControlsDone+p{
+    color: var(--green);
+  }
+}
+@media (min-width: 768px) {
+  .task {
     width: 580px;
-    height: 126px;
-    z-index: 18;
+    /* min-width: 296px; */
   }
-
-
-  .Подготовка_документации {
-    font-size: 12px;
-    font-family: "GothamPro";
-    color: rgb(255, 255, 255);
-    line-height: 5.083;
-    text-align: left;
-    position: absolute;
-    left: 46px;
-    top: 127.002px;
-    z-index: 25;
+  .taskHeader{
+    font-size: var(--tabletFontSize);
+    padding-top: 10px;
+    padding-bottom: 8px;
+    padding-left: 2.5em;
   }
-  
+  .taskBody{
+    font-family: var(--primaryFontFamily), sans-serif;
+    font-size: var(--tabletFontSize);
+    padding-top: 22px;
+    padding-bottom: 12px;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+  }
+  .taskControls{
+    padding: 0px 2.5em 16px;
+  }
+  .taskControls button{
+    width: 34px;
+    height: 34px;
+  }
+  .taskControlsEdit+p{
+    color: var(--dusty-orange);
+  }
+  .taskControlsDone+p{
+    color: var(--green);
+  }
+}
