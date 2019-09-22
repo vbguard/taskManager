@@ -10,9 +10,8 @@ class Task extends Component {
     render() {
         const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, isComplete, onEdit, onCompltete}=this.props.task;
         const windowWidth =this.props.windowWidth;
-        // const refactoringDates=loopDates.split(',');
-        console.log('loopDates=', loopDates);
-        // console.log(this.props);
+        const refactoringDates=loopDates.join(',');
+
         return (
             <>
             {/* added fixed html to test */}
@@ -29,23 +28,35 @@ class Task extends Component {
                     <p>{taskDescription}</p>
                 </div>
                 <div className={styles.taskControls}>
-                    {isLoop &&(
                     <div className={styles.taskControlsRepeat}>
-                        <button type="button">
-                            <Icon icon='Loop'/>
-                        </button>
-                        <p className={styles.taskControlsDates}>{loopDates}</p>
+                        {isLoop &&(<>
+                            <button
+                                type="button"
+                                disabled={isComplete ? true : false}
+                                className={isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
+                                    <Icon icon='Loop'/>
+                            </button>
+                            <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                                {refactoringDates}
+                            </p>
+                        </>)}
                     </div>
-                    )}
+                    
                     <div className={styles.taskControlsCompleteContainer}>
-                        <button className={styles.taskControlsEdit} type="button" onClick={onEdit}>
-                            <Icon icon='Edit'/>
+                        <button
+                            className={styles.taskControlsEdit}
+                            type="button"
+                            onClick={onEdit}>
+                                <Icon icon='Edit'/>
                         </button>
-                        {windowWidth>768? <p>Редактировать</p>:null}
-                        <button type="button" className={styles.taskControlsDone} onClick={onCompltete}>
-                            <Icon icon='Done'/>
+                        {windowWidth>768 ? <p>Редактировать</p>:null}
+                        <button type="button"
+                            disabled={isComplete ? true : false}
+                            className={isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                            onClick={onCompltete}>
+                                <Icon icon='Done'/>
                         </button>
-                        {windowWidth>768? <p>Выполнить</p>:null}
+                        {windowWidth>768 ? (isComplete ? <p>Выполнено</p> : <p>Выполнить</p>) : null}
                     </div>
                 </div>
             </div>

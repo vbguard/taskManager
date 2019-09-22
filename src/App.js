@@ -8,9 +8,18 @@ import Task from './components/Task/Task.jsx';
 const task = {
   taskNumber: 1, taskHeader:'Подготовка документации',
   taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
-  isLoop: true,
+  isLoop: false,
   loopDates:[10,17,21], 
   isComplete: true, 
+  onEdit: ()=> {}, 
+  onCompltete: ()=> {}
+}
+const task22 = {
+  taskNumber: 1, taskHeader:'Подготовка документации',
+  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  isLoop: true,
+  loopDates:[10,17,21], 
+  isComplete: false, 
   onEdit: ()=> {}, 
   onCompltete: ()=> {}
 }
@@ -18,7 +27,7 @@ const task = {
 function App() {
   return (
     <Switch>
-      <Task task={task}/>
+      <Task task={task22}/>
       <Redirect exact path="/" to="/dashboard" />
       <ProtectedComponent active={false} path="/login" component={Login} />
       <ProtectedComponent active={false} path="/dashboard" component={Dashboard} />

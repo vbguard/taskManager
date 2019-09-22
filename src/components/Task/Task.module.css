@@ -67,9 +67,19 @@ p{
   border-radius: 50%;
   cursor: pointer;
   background-color:var(--white);
+  margin-right: 0.5em;
+}
+
+.taskControlsRepeatBtnInactive svg{
+  fill: var(--grey);
+}
+
+.taskControlsRepeatBtnInactive:hover{
+  cursor: default;
 }
 
 .taskControlsRepeat{
+  width:30%;
   display:flex;
   align-items: center;
 }
@@ -82,9 +92,10 @@ p{
   font-weight: bold;
   margin-left: 1em;
 }
-.taskControlsRepeatInactive p{
-  
- color: var(--grey);
+
+.taskControlsDatesInactive{
+  composes: taskControlsDates;
+  color: var(--grey);
 }
 
 .taskControls button>svg{
@@ -101,19 +112,39 @@ p{
   height: 18px;
 }
 
+.taskControlsRepeatInactive svg{
+  fill: var(--grey);
+ }
+
 .taskControlsCompleteContainer{
   display:flex;
   align-items: center;
 }
 
 .taskControlsDone{
-  margin-left: 16px;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .taskControlsDone svg{
   width: 14px;
   height: 14px;
   fill: var(--green);
+}
+.taskControlsDoneInactive{
+  composes: taskControlsDone;
+}
+
+.taskControlsDoneInactive svg{
+  fill: var(--grey);
+}
+
+.taskControlsDoneInactive:hover{
+  cursor: default;
+}
+
+.taskControlsEdit {
+  margin-right: 1em;
 }
 
 .taskControlsEdit svg{
@@ -155,6 +186,9 @@ p{
   .taskControlsDone+p{
     color: var(--green);
   }
+  .taskControlsDoneInactive+p{
+    color: var(--grey);
+  }
 }
 @media (min-width: 768px) {
   .task {
@@ -181,11 +215,5 @@ p{
   .taskControls button{
     width: 34px;
     height: 34px;
-  }
-  .taskControlsEdit+p{
-    color: var(--dusty-orange);
-  }
-  .taskControlsDone+p{
-    color: var(--green);
   }
 }
