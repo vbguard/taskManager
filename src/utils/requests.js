@@ -8,13 +8,16 @@ axios.defaults.headers.put['Content-Type'] = 'application/json';
 
 const setToken = token => ({
   headers: {
-    Authorization: `Bearer ${token}`
+    Authorization: token
   }
 });
 
-export const requestUserLogin = credentials => dispatch => {
-  dispatch(authRequest());
-
+export const requestUserLogin = credentials => {
   const res = axios.post(api.url.loginUser(), credentials);
+  return res;
+};
+
+export const fetchPosts = async credentials => {
+  const res = await axios.get(api.url.getTasks(), setToken(credentials));
   return res;
 };
