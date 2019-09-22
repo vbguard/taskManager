@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import windowSize from 'react-window-size';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
@@ -8,6 +9,7 @@ import { loginSuccess } from '../../redux/actions/auth';
 import { Switch, Route } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from './selectors';
+
 export const DashboardContext = React.createContext({});
 
 const Header = () => (
@@ -36,6 +38,13 @@ const Tasks = () => (
 
 class Dashboard extends Component {
   state = {};
+
+  static propTypes = {
+    loader: PropTypes.bool.isRequired,
+    token: PropTypes.string.isRequired,
+    loginSuccess: PropTypes.func.isRequired,
+    getUserTasks: PropTypes.func.isRequired
+  };
 
   componentDidMount() {
     const { token, getUserTasks } = this.props;
@@ -99,13 +108,3 @@ export default compose(
   ),
   windowSize
 )(Dashboard);
-
-{
-  /* <Loader
-  type="CradleLoader"
-  color="#00BFFF"
-  height={100}
-  width={100}
-  timeout={3000} //3 secs
-/>; */
-}
