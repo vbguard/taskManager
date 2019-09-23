@@ -96,7 +96,7 @@ class Dashboard extends Component {
       <>
         {modalInfo && <InfoPop onClose={this.onCloseModalInfo} />}
         <Header />
-        <Svg icon="Calendar" onClick={this.onOpenModalInfo} />
+        <Svg icon="Info" onClick={this.onOpenModalInfo} />
         {(loader && (
           <Loader
             type="Oval"
