@@ -55,12 +55,6 @@
     box-shadow: 0 0 3px -1px var(--dark-grey-blue);
 }
 
-/* .input::placeholder {
-  font-family: GothamPro;
-  font-size: 13px;
-  color: var(--greyish-brown);
-} */
-
 .button {
     display: block;
     margin: 45px auto 0;
@@ -79,3 +73,39 @@
   font-weight: bold;
   color: var(--white);
 }
+
+@media (min-width: 758px) {
+
+    .registrationForm {
+    width: 645px;
+    height: 421px;
+        margin-top: 50px;
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+
+    .title {
+        margin: 60px 0 50px;
+    }
+
+    .label {
+    margin-bottom: 50px
+    }
+
+    .input {
+        width: 402px;
+        height: 40px;
+    }
+
+    .button {
+        margin: 60px auto 0;
+    width: 158px;
+    height: 35px;
+
+    }
+}
+
+    @media (min-width: 1024) {
+
+    }
+    
