@@ -79,6 +79,7 @@ class AddForm extends Component {
   }
 }
 
+// const mapStateToProps =state=>({})
 const mapDispatchToProps = dispatch => ({
   addForm: ({ title, description }) => dispatch(addTask(title, description))
 });

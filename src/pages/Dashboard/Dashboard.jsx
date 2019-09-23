@@ -5,11 +5,33 @@ import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 // import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/auth';
+import { loginSuccess } from '../../redux/actions/authActions';
 import { Switch, Route, Link } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from '../../redux/selectors/selectors';
 import AddForm from '../../components/AddForm/AddForm';
+
+import Task from '../../components/Task/Task.jsx';
+
+const task = {
+  taskNumber: 1, taskHeader:'Подготовка документации',
+  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  isLoop: false,
+  loopDates:[10,17,21], 
+  isComplete: true, 
+  onEdit: ()=> {}, 
+  onCompltete: ()=> {}
+}
+const task22 = {
+  taskNumber: 1, 
+  taskHeader:'Подготовка документации',
+  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  isLoop: true,
+  loopDates:[10,17,21], 
+  isComplete: false, 
+  onEdit: ()=> {}, 
+  onCompltete: ()=> {}
+}
 
 export const DashboardContext = React.createContext({});
 
@@ -34,6 +56,7 @@ const Calendar = () => (
 const Tasks = () => (
   <div>
     <h1>Tasks</h1>
+    <Task task={task}/>
   </div>
 );
 

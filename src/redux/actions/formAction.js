@@ -27,9 +27,11 @@ export const postTaskError = error => ({
 });
 
 export const addTask = () => dispatch => {
+const data = JSON.parse( localStorage.getItem("persist:session"))
+console.log(data.token)
   dispatch(postTaskLoader(true));
   axios
-    .post('https://task-manager.goit.co.ua/api/task/create')
+    .post('https://task-manager.goit.co.ua/api/task/create',{headers:{Authorization:localStorage.getItem("persist:session")}})
     .then(response => {
       console.log(response);
       dispatch(postTaskLoader(false));
