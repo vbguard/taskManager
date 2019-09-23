@@ -6,6 +6,8 @@ import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
 
 class Task extends Component {
+
+    // refactoringDates = this.props.task.loopDates.join(',');
     
     render() {
         const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, isComplete, onEdit, onCompltete}=this.props.task;

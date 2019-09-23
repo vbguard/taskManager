@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 
 import styles from './TaskList.module.css';
 
@@ -19,6 +20,8 @@ export default class TaskList extends Component {
         )
     }
 }
+
+
 
 TaskList.propTypes = {
     tasks: PropTypes.arrayOf(
