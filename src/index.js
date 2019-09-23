@@ -5,7 +5,6 @@ import * as serviceWorker from "./utils/serviceWorker";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
-import { ToastProvider } from "react-toast-notifications";
 import { BrowserRouter } from "react-router-dom";
 import "./stylesheet/main.css";
 
@@ -14,9 +13,7 @@ const render = Component => {
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<BrowserRouter>
-					<ToastProvider>
-						<Component />
-					</ToastProvider>
+					<Component />
 				</BrowserRouter>
 			</PersistGate>
 		</Provider>,
