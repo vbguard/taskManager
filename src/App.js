@@ -11,6 +11,7 @@ function App() {
       <Redirect exact path="/" to="/dashboard" />
       <ProtectedComponent path="/dashboard" component={Dashboard} />
     </Switch>
+    
   );
 }
 
