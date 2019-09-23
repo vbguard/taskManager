@@ -79,7 +79,7 @@ p{
 }
 
 .taskControlsRepeat{
-  width:30%;
+  /* width:25%; */
   display:flex;
   align-items: center;
 }
