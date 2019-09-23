@@ -25,7 +25,7 @@ class AddForm extends Component {
       alert('Все поля должны быть заполнены');
       return;
     }
-    this.props.addForm({ ...this.state });
+    this.props.addForm(this.state);
     this.setState({ title: '', description: '' });
   };
 
@@ -46,7 +46,11 @@ class AddForm extends Component {
             placeholder="#1 Введите название задачи"
             className={style.title}
           ></input>
-          {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
+          {title.length > 50 && (
+            <span className={style.errorSpan}>
+              Описание не должно быть больше 50-ти символов
+            </span>
+          )}
           <div className={style.linkContainer}>
             <Icon icon="Calendar" className={style.formIcon} />
             Выберете дату
@@ -63,14 +67,20 @@ class AddForm extends Component {
             value={description}
             placeholder="Введите описание задачи"
           ></textarea>
-          {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
+          {description.length > 200 && (
+            <span>Описание не должно быть больше 200-ти символов</span>
+          )}
           <button type="button" className={style.deleteBtn}>
             <Icon icon="Delete" className={style.formIconDelete} />
           </button>
           <button type="submit" className={style.saveBtn}>
             Сохранить
           </button>
-          <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
+          <button
+            type="reset"
+            className={style.resetBtn}
+            onClick={this.handleReset}
+          >
             Отмена
           </button>
         </form>
@@ -79,7 +89,6 @@ class AddForm extends Component {
   }
 }
 
-// const mapStateToProps =state=>({})
 const mapDispatchToProps = dispatch => ({
   addForm: ({ title, description }) => dispatch(addTask(title, description))
 });

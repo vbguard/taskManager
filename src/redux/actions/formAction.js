@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const formTypes = {
   ADD_TASK_FORM_SUCCESS: 'ADD_TASK_FORM_SUCCESS',
   POST_TASK_LOADER: 'POST_TASK_LOADER',
@@ -27,24 +26,19 @@ export const postTaskError = error => ({
   payload: error
 });
 
-export const addTask = () => dispatch => {
+export const addTask = task => dispatch => {
   const data = JSON.parse(localStorage.getItem('persist:session'));
   dispatch(postTaskLoader(true));
   axios
-    .post(
-      'https://task-manager.goit.co.ua/api/task/create',
-      {headers: {
-        Authorization: JSON.stringify (`Bearer ${data.token}`)
-      }}
-    )
+    .post('https://task-manager.goit.co.ua/api/task/create', {
+      headers: {
+        Authorization: data.token
+      },
+      data: { task }
+    })
     .then(response => {
-      console.log(response);
       dispatch(postTaskLoader(false));
       dispatch(postTaskSuccsess(response));
     })
     .catch(error => dispatch(postTaskError(error)));
 };
-
-// {
-//   headers: { Authorization: JSON.stringify(data.token) }
-// }
