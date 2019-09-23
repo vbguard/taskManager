@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { auth } from '../../redux/actions/authOperations';
 import styles from './AuthForm.module.css';
 
@@ -40,18 +41,35 @@ class AuthForm extends Component {
 
     return (
       <div className={styles.wrapper}>
-        <h2 className={styles.title}>Введите данные для регистрации или логинизации</h2>
-
         <form className={styles.registrationForm} onSubmit={this.handleSubmit}>
+          <h2 className={styles.title}>Введите данные для регистрации или логинизации</h2>
+
           <label className={styles.label}>
             <span className={styles.labelText}>Уникальный ник:</span>
-            <input value={nickname} name="nickname" onChange={this.handleChange} required></input>
+            <input
+              className={styles.input}
+              value={nickname}
+              name="nickname"
+              onChange={this.handleChange}
+              required
+            ></input>
           </label>
 
           <label className={styles.label}>
             <span className={styles.labelText}> Пароль: </span>
-            <input type="password" onChange={this.handleChange} value={password} name="password" required id=""></input>
+            <input
+              className={styles.input}
+              type="password"
+              autoComplete="current-password"
+              size="12"
+              onChange={this.handleChange}
+              value={password}
+              name="password"
+              required
+              id=""
+            ></input>
           </label>
+
           <button className={styles.button} type="submit">
             <span className={styles.buttonText}> Вперед! </span>
           </button>
@@ -60,6 +78,20 @@ class AuthForm extends Component {
     );
   }
 }
+
+AuthForm.propTypes = {
+  nickname: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
+
+AuthForm.defaulProps = {
+  nickname: '',
+  password: '',
+  onSubmit: () => {},
+  handleChange: () => {}
+};
 
 const mapDispatchToProps = {
   onSubmit: auth

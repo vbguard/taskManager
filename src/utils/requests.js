@@ -8,10 +8,9 @@ axios.defaults.headers.put['Content-Type'] = 'application/json';
 
 const setToken = token => ({
   headers: {
-    Authorization: `Berear ${token}`
+    Authorization: `Bearer ${token}`
   }
 });
-
 export const requestUserLogin = credentials => {
   const res = axios.post(api.url.loginUser(), credentials);
   return res;
