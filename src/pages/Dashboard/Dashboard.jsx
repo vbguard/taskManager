@@ -10,7 +10,7 @@ import { Switch, Route } from "react-router-dom";
 import { getUserTasks } from "../../redux/actions/tasksActions";
 import { getToken, getLoader } from "../../redux/selectors/selectors";
 import InfoPop from "../../components/InfoPop/InfoPop";
-import Svg from "../../components/Icon/Icon";
+import Icon from "../../components/Icon/Icon";
 
 import Task from "../../components/Task/Task.jsx";
 
@@ -96,7 +96,7 @@ class Dashboard extends Component {
       <>
         {modalInfo && <InfoPop onClose={this.onCloseModalInfo} />}
         <Header />
-        <Svg icon="Info" onClick={this.onOpenModalInfo} />
+        <Icon icon="Info" onClick={this.onOpenModalInfo} />
         {(loader && (
           <Loader
             type="Oval"

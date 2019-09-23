@@ -1,6 +1,7 @@
 import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
 import styles from "./InfoPop.module.css";
-import Svg from "../Icon/Icon";
+import Icon from "../Icon/Icon";
 import windowSize from "react-window-size";
 
 const {
@@ -29,6 +30,11 @@ const numberStyleGreen = [number, numberGreen];
 
 class InfoPop extends Component {
   state = {};
+
+  static propTypes = {
+    onClose: PropTypes.func.isRequired,
+    windowWidth: PropTypes.number.isRequired
+  };
 
   backdropeRef = createRef();
 
@@ -62,10 +68,10 @@ class InfoPop extends Component {
       >
         <div className={infoContainer}>
           <div className={header}>
-            <Svg icon="Info" className={svgInfo} />
+            <Icon icon="Info" className={svgInfo} />
             <p className={titleInfo}>Информация</p>
             <button type="button" className={buttonClose} onClick={onClose}>
-              <Svg icon="Clear" className={svgClear} />
+              <Icon icon="Clear" className={svgClear} />
             </button>
           </div>
           <div className={contentInfo}>
