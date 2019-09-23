@@ -43,6 +43,7 @@ class AuthForm extends Component {
 
 		return (
 			<div className={styles.wrapper}>
+				<ToastContainer />
 				<form
 					className={styles.registrationForm}
 					onSubmit={this.handleSubmit}
