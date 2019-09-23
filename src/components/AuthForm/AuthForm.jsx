@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { auth } from '../../redux/actions/authOperations';
 import styles from './AuthForm.module.css';
 
@@ -77,6 +78,20 @@ class AuthForm extends Component {
     );
   }
 }
+
+AuthForm.propTypes = {
+  nickname: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+};
+
+AuthForm.defaulProps = {
+  nickname: '',
+  password: '',
+  onSubmit: () => {},
+  handleChange: () => {}
+};
 
 const mapDispatchToProps = {
   onSubmit: auth
