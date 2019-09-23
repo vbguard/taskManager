@@ -64,6 +64,8 @@
     "react-spinkit": "^3.0.0",
     "react-super-responsive-table": "^4.3.12",
     "react-table": "^6.10.0",
+    "react-toast-notifications": "^2.2.5",
+    "react-toastify": "^5.4.0",
     "react-window-size": "^1.2.2",
     "redux": "^4.0.1",
     "redux-persist": "^6.0.0",
