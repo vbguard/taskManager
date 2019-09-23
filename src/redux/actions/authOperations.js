@@ -6,7 +6,7 @@ import {
 	logoutSuccess
 } from "./authActions";
 import { setAuthToken, clearAuthToken } from "../../config/axiousConfig";
-import * as notify from "../../components/Notification/Notification";
+import * as notify from "../../utils/notification";
 
 export const auth = credentials => dispatch => {
 	dispatch(authRequest());
