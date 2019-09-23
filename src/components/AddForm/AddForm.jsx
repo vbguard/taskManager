@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ArrowRight, Delete, Calendar } from '../../assets/icons/index';
-import { formSuccess } from '../../redux/actions/formAction';
+import { addTask } from '../../redux/actions/formAction';
 import style from './AddForm.module.css';
+import Icon from '../Icon/Icon';
 
 class AddForm extends Component {
   state = {
@@ -11,8 +11,13 @@ class AddForm extends Component {
   };
 
   handleChange = event => {
+    const { title, description } = this.state;
+    if (title.length > 50 || description.length > 200) {
+      return;
+    }
     this.setState({ [event.target.name]: event.target.value });
   };
+
   handleSubmit = event => {
     event.preventDefault();
     const { title, description } = this.state;
@@ -23,6 +28,7 @@ class AddForm extends Component {
     this.props.addForm({ ...this.state });
     this.setState({ title: '', description: '' });
   };
+
   handleReset = () => {
     this.setState({ title: '', description: '' });
   };
@@ -41,13 +47,10 @@ class AddForm extends Component {
             className={style.title}
           ></input>
           {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
-
           <div className={style.linkContainer}>
-            <a href="true" className={style.linkStyle}>
-              <Calendar className={style.formIcon} />
-              Выберете дату
-              <ArrowRight className={style.formIcon} />
-            </a>
+            <Icon icon="Calendar" className={style.formIcon} />
+            Выберете дату
+            <Icon icon="ArrowRight" className={style.formIcon} />
           </div>
           <label htmlFor="description" className={style.labelDescription}>
             Краткое описание:
@@ -62,7 +65,7 @@ class AddForm extends Component {
           ></textarea>
           {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
           <button type="button" className={style.deleteBtn}>
-            <Delete className={style.formIconDelete} />
+            <Icon icon="Delete" className={style.formIconDelete} />
           </button>
           <button type="submit" className={style.saveBtn}>
             Сохранить
@@ -75,9 +78,11 @@ class AddForm extends Component {
     );
   }
 }
+
 const mapDispatchToProps = dispatch => ({
-  addForm: ({ title, description }) => dispatch(formSuccess(title, description))
+  addForm: ({ title, description }) => dispatch(addTask(title, description))
 });
+
 export default connect(
   null,
   mapDispatchToProps

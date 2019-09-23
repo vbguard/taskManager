@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 // import styles from './Dashboard.module.css';
 import { loginSuccess } from '../../redux/actions/auth';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from '../../redux/selectors/selectors';
+import AddForm from '../../components/AddForm/AddForm';
 
 export const DashboardContext = React.createContext({});
 
@@ -24,11 +25,11 @@ const Calendar = () => (
   </div>
 );
 
-const AddForm = () => (
-  <div>
-    <h1>AddForm</h1>
-  </div>
-);
+// const AddForm = () => (
+//   <div>
+//     <h1>AddForm</h1>
+//   </div>
+// );
 
 const Tasks = () => (
   <div>
@@ -75,14 +76,19 @@ class Dashboard extends Component {
                   <Route path="/dashboard/calendar" component={Calendar} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
-                <button>+</button>
+                <button>
+                  <Link to="/dashboard/add">+</Link>
+                </button>
               </>
             )}
             {windowWidth >= 1024 && (
               <>
                 <Tasks />
                 <Calendar />
-                <button>+</button>
+                <button>
+                  <Link to="/dashboard/add">+</Link>
+                </button>
+                <Route path="/dashboard/add" component={AddForm} />
               </>
             )}
           </>
