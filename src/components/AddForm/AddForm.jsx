@@ -25,12 +25,19 @@ class AddForm extends Component {
       alert('Все поля должны быть заполнены');
       return;
     }
-    this.props.addForm(this.state);
+    if (!this.props.error) {
+      this.props.history.push('/dashboard');
+      this.props.addForm(this.state);
+    }
+
     this.setState({ title: '', description: '' });
   };
 
   handleReset = () => {
-    this.setState({ title: '', description: '' });
+    if (this.props.error) {
+      this.props.history.push('/dashboard');
+      this.setState({ title: '', description: '' });
+    }
   };
 
   render() {
@@ -89,11 +96,15 @@ class AddForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({ error: state.form.error });
 const mapDispatchToProps = dispatch => ({
-  addForm: ({ title, description }) => dispatch(addTask(title, description))
+  addForm: ({ title, description }) =>
+    dispatch(
+      addTask({ title, description, dates: ['2019-09-23T17:23:32.477Z'] })
+    )
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddForm);

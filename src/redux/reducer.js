@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { sessionReducer } from './reducers/sessionReducer';
 import { tasksReducer } from './reducers/tasksReducer';
-import {formReducer} from './reducers/formReducer'
+import { formReducer } from './reducers/formReducer';
 
 const sessionPersistConfig = {
   key: 'session',
@@ -12,7 +12,8 @@ const sessionPersistConfig = {
 
 const rootReducer = combineReducers({
   session: persistReducer(sessionPersistConfig, sessionReducer),
-  userTasks: tasksReducer
+  userTasks: tasksReducer,
+  form: formReducer
 });
 
 export default rootReducer;

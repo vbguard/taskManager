@@ -115,18 +115,18 @@ class Dashboard extends Component {
                   <Route path="/dashboard/calendar" component={Calendar} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
-                <button>
-                  <Link to="/dashboard/add">+</Link>
-                </button>
+                <Link to="/dashboard/add">
+                  <button>+</button>
+                </Link>
               </>
             )}
             {windowWidth >= 1024 && (
               <>
                 <Tasks />
                 <Calendar />
-                <button>
-                  <Link to="/dashboard/add">+</Link>
-                </button>
+                <Link to="/dashboard/add">
+                  <button>+</button>
+                </Link>
                 <Route path="/dashboard/add" component={AddForm} />
               </>
             )}

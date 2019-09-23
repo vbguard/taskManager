@@ -1,19 +1,19 @@
 import { formTypes } from '../actions/formAction';
 
-const initialState = {};
+const initialState = { title: '', description: '', error: null, loader: false };
 
 export const formReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case formTypes.ADD_TASK_FORM_LOADER:
+      return { ...state, loader: payload };
     case formTypes.ADD_TASK_FORM_SUCCESS:
       return {
         ...state,
         title: payload.title,
         description: payload.description
       };
-    case formTypes.POST_TASK_SUCCSESS:
-      return payload;
-    case formTypes.POST_TASK_ERROR:
-      return { ...state, error: payload };
+    case formTypes.ADD_TASK_FORM_ERROR:
+      return { ...state, error: payload.error };
     default:
       return state;
   }
