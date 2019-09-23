@@ -1,37 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import windowSize from 'react-window-size';
-import Loader from 'react-loader-spinner';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import windowSize from "react-window-size";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { compose } from "redux";
 // import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/authActions';
-import { Switch, Route } from 'react-router-dom';
-import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader } from '../../redux/selectors/selectors';
-import InfoPop from '../../components/InfoPop/InfoPop';
+import { loginSuccess } from "../../redux/actions/authActions";
+import { Switch, Route } from "react-router-dom";
+import { getUserTasks } from "../../redux/actions/tasksActions";
+import { getToken, getLoader } from "../../redux/selectors/selectors";
+import InfoPop from "../../components/InfoPop/InfoPop";
+import Svg from "../../components/Icon/Icon";
 
-import Task from '../../components/Task/Task.jsx';
+import Task from "../../components/Task/Task.jsx";
 
 const task = {
-  taskNumber: 1, taskHeader:'Подготовка документации',
-  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  taskNumber: 1,
+  taskHeader: "Подготовка документации",
+  taskDescription:
+    "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
   isLoop: false,
-  loopDates:[10,17,21], 
-  isComplete: true, 
-  onEdit: ()=> {}, 
-  onCompltete: ()=> {}
-}
+  loopDates: [10, 17, 21],
+  isComplete: true,
+  onEdit: () => {},
+  onCompltete: () => {}
+};
 const task22 = {
-  taskNumber: 1, 
-  taskHeader:'Подготовка документации',
-  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  taskNumber: 1,
+  taskHeader: "Подготовка документации",
+  taskDescription:
+    "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
   isLoop: true,
-  loopDates:[10,17,21], 
-  isComplete: false, 
-  onEdit: ()=> {}, 
-  onCompltete: ()=> {}
-}
+  loopDates: [10, 17, 21],
+  isComplete: false,
+  onEdit: () => {},
+  onCompltete: () => {}
+};
 
 export const DashboardContext = React.createContext({});
 
@@ -56,12 +60,12 @@ const AddForm = () => (
 const Tasks = () => (
   <div>
     <h1>Tasks</h1>
-    <Task task={task}/>
+    <Task task={task} />
   </div>
 );
 
 class Dashboard extends Component {
-  state = {};
+  state = { modalInfo: false };
 
   static propTypes = {
     loader: PropTypes.bool.isRequired,
@@ -76,13 +80,23 @@ class Dashboard extends Component {
     getUserTasks(token);
   }
 
+  onOpenModalInfo = () => {
+    this.setState({ modalInfo: true });
+  };
+
+  onCloseModalInfo = () => {
+    this.setState({ modalInfo: false });
+  };
+
   render() {
     const { windowWidth, loader } = this.props;
+    const { modalInfo } = this.state;
 
     return (
       <>
+        {modalInfo && <InfoPop onClose={this.onCloseModalInfo} />}
         <Header />
-        <InfoPop />
+        <Svg icon="Calendar" onClick={this.onOpenModalInfo} />
         {(loader && (
           <Loader
             type="Oval"
