@@ -8,7 +8,7 @@ axios.defaults.headers.put['Content-Type'] = 'application/json';
 
 const setToken = token => ({
   headers: {
-    Authorization: `Berear ${token}`
+    Authorization: `Bearer ${token}`
   }
 });
 

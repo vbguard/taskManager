@@ -19,7 +19,7 @@
     fill: var(--pale-grey);
 }
 
-.title {
+.titleInfo {
   width: 92px;
   height: 11px;
   font-family: GothamPro;
@@ -89,7 +89,7 @@
   align-items: center;
 }
 
-.numberOrange {
+.number {
   width: 20px;
   height: 18px;
   text-align: center;
@@ -103,21 +103,40 @@
   
 }
 
-.numberGreen {
-    width: 20px;
-    height: 18px;
-    text-align: center;
-    color: #00c853;
-    font-family: Verdana;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 18px;
-    border-radius: 5px;
-    border: solid 1px #00c853
+.numberOrange {
+  color: var(--dusty-orange);
+  border: solid 1px var(--dusty-orange);
+  
+}
 
-    ;
+.numberGreen {
+    color: #00c853;
+    border: solid 1px #00c853
 }
 
 .hyphen {
     margin: 10px;
+}
+
+@media (min-width: 768px) {
+  .infoContainer{
+    width: 470px;
+    height: 250px;
+  }
+
+  .title {
+  font-family: GothamPro;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  letter-spacing: 0.64px;
+  text-align: center;
+  color: #010101;
+  }
+}
+
+@media (min-width: 1024px) {
+  
 }

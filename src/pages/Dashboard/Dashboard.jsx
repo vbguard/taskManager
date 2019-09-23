@@ -9,6 +9,7 @@ import { loginSuccess } from '../../redux/actions/authActions';
 import { Switch, Route } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from '../../redux/selectors/selectors';
+import InfoPop from '../../components/InfoPop/InfoPop';
 
 export const DashboardContext = React.createContext({});
 
@@ -58,12 +59,13 @@ class Dashboard extends Component {
     return (
       <>
         <Header />
+        <InfoPop />
         {(loader && (
           <Loader
-            type="CradleLoader"
-            color="#00BFFF"
-            height={100}
-            width={100}
+            type="Oval"
+            color="#284060"
+            height={50}
+            width={50}
             timeout={3000} //3 secs
           />
         )) || (
