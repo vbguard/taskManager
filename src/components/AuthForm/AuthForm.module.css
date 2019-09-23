@@ -1,0 +1,46 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.registrationForm {
+    width: 295px;
+    height: 360px;
+}
+
+.title {
+    font-family: GothamPro;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.label {
+  display: block;
+  margin-bottom: 20px
+}
+
+.labelText {
+    display: block;
+    margin-bottom: 10px;
+    font-family: Verdana;
+    font-size: 12px;
+    font-weight: bold;
+}
+.button {
+    display: block;
+    width: 158px;
+    height: 35px;
+    box-shadow: 0px 6px 10px 0 var(--dusty-orange-33);
+    background-color: var(--dusty-orange);
+    border: 0px;
+
+}
+
+.buttonText {
+  font-family: Verdana;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--white);
+}

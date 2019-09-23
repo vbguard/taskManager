@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getToken } from '../redux/selectors/selectors';
 
-const ProtectedComponent = ({ component: Component, active, ...rest }) => {
-  let getUserToken = localStorage.getItem('userToken');
-  return active ? (
-    <Route {...rest} render={props => (!!getUserToken ? <Redirect to="/dashboard" /> : <Component {...props} />)} />
-  ) : (
-    <Route
-      {...rest}
-      render={props => (!!getUserToken ? <Component {...props} token={getUserToken} /> : <Redirect to="/login" />)}
-    />
+const ProtectedComponent = ({ component: Component, token, ...rest }) => {
+  return (
+    <Route {...rest} render={props => (!!token ? <Component {...props} token={token} /> : <Redirect to="/login" />)} />
   );
 };
 
-export default ProtectedComponent;
+const mapStateToProps = state => ({
+  token: getToken(state)
+});
+
+export default connect(mapStateToProps)(ProtectedComponent);
