@@ -11,6 +11,28 @@ import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from '../../redux/selectors/selectors';
 import InfoPop from '../../components/InfoPop/InfoPop';
 
+import Task from '../../components/Task/Task.jsx';
+
+const task = {
+  taskNumber: 1, taskHeader:'Подготовка документации',
+  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  isLoop: false,
+  loopDates:[10,17,21], 
+  isComplete: true, 
+  onEdit: ()=> {}, 
+  onCompltete: ()=> {}
+}
+const task22 = {
+  taskNumber: 1, 
+  taskHeader:'Подготовка документации',
+  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+  isLoop: true,
+  loopDates:[10,17,21], 
+  isComplete: false, 
+  onEdit: ()=> {}, 
+  onCompltete: ()=> {}
+}
+
 export const DashboardContext = React.createContext({});
 
 const Header = () => (
@@ -34,6 +56,7 @@ const AddForm = () => (
 const Tasks = () => (
   <div>
     <h1>Tasks</h1>
+    <Task task={task}/>
   </div>
 );
 

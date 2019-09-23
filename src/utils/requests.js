@@ -11,7 +11,6 @@ const setToken = token => ({
     Authorization: `Bearer ${token}`
   }
 });
-
 export const requestUserLogin = credentials => {
   const res = axios.post(api.url.loginUser(), credentials);
   return res;
