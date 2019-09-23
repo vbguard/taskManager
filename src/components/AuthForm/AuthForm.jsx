@@ -80,10 +80,10 @@ class AuthForm extends Component {
 }
 
 AuthForm.propTypes = {
-  nickname: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
+  nickname: PropTypes.string,
+  password: PropTypes.string,
+  onSubmit: PropTypes.func,
+  handleChange: PropTypes.func
 };
 
 AuthForm.defaulProps = {
