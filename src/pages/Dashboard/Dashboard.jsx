@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import windowSize from 'react-window-size';
-import Loader from 'react-loader-spinner';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import windowSize from "react-window-size";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { compose } from "redux";
 // import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/authActions';
-import { Switch, Route } from 'react-router-dom';
-import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader } from '../../redux/selectors/selectors';
+import { loginSuccess } from "../../redux/actions/authActions";
+import { Switch, Route } from "react-router-dom";
+import { getUserTasks } from "../../redux/actions/tasksActions";
+import { getToken, getLoader } from "../../redux/selectors/selectors";
+import InfoPop from "../../components/InfoPop/InfoPop";
+import Icon from "../../components/Icon/Icon";
 
 import TaskList from '../../components/TaskList/TaskList';
 
@@ -61,7 +63,7 @@ const Tasks = () => (
 );
 
 class Dashboard extends Component {
-  state = {};
+  state = { modalInfo: false };
 
   static propTypes = {
     loader: PropTypes.bool.isRequired,
@@ -76,18 +78,29 @@ class Dashboard extends Component {
     getUserTasks(token);
   }
 
+  onOpenModalInfo = () => {
+    this.setState({ modalInfo: true });
+  };
+
+  onCloseModalInfo = () => {
+    this.setState({ modalInfo: false });
+  };
+
   render() {
     const { windowWidth, loader } = this.props;
+    const { modalInfo } = this.state;
 
     return (
       <>
+        {modalInfo && <InfoPop onClose={this.onCloseModalInfo} />}
         <Header />
+        <Icon icon="Info" onClick={this.onOpenModalInfo} />
         {(loader && (
           <Loader
-            type="CradleLoader"
-            color="#00BFFF"
-            height={100}
-            width={100}
+            type="Oval"
+            color="#284060"
+            height={50}
+            width={50}
             timeout={3000} //3 secs
           />
         )) || (
