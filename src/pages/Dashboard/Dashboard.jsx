@@ -10,9 +10,9 @@ import { Switch, Route } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader } from '../../redux/selectors/selectors';
 
-import Task from '../../components/Task/Task.jsx';
+import TaskList from '../../components/TaskList/TaskList';
 
-const task = {
+const tasks = [{
   taskNumber: 1, taskHeader:'Подготовка документации',
   taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
   isLoop: false,
@@ -20,8 +20,8 @@ const task = {
   isComplete: true, 
   onEdit: ()=> {}, 
   onCompltete: ()=> {}
-}
-const task22 = {
+},
+{
   taskNumber: 1, 
   taskHeader:'Подготовка документации',
   taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
@@ -31,6 +31,7 @@ const task22 = {
   onEdit: ()=> {}, 
   onCompltete: ()=> {}
 }
+];
 
 export const DashboardContext = React.createContext({});
 
@@ -55,7 +56,7 @@ const AddForm = () => (
 const Tasks = () => (
   <div>
     <h1>Tasks</h1>
-    <Task task={task}/>
+    <TaskList tasks={tasks}/>
   </div>
 );
 
