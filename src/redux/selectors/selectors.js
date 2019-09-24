@@ -1,7 +1,7 @@
-export const getToken = state => {
-  const session = getSession(state);
+export const getToken = state => state.session.token;
 
-  return session.token;
-};
+export const getLoader = state => state.userTasks.loader;
 
 export const getSession = state => state.session;
+
+export const getModal = state => state.modal;

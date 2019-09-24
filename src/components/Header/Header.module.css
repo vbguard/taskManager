@@ -1,12 +1,10 @@
-.wrapperForLogin
-{
+.wrapperForLogin {
   width: 100%;
   background-color: var(--dark-grey-blue);
   background-image: url(../../assets/bg-header.jpg);
 }
 
-.wrapperForDashboard
-{
+.wrapperForDashboard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -16,7 +14,7 @@
   background-color: var(--dark-grey-blue);
 }
 
-.LoginRegisterLogoMob{
+.LoginRegisterLogoMob {
   margin: 0;
   padding-top: 18px;
   padding-left: 5%;
@@ -28,14 +26,17 @@
 
 .informBtn {
   width: 100%;
+  text-align: center;
   height: 40px;
   box-shadow: 0px 2px 2px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--light-blue-grey);
   border: 0;
+  padding-top: 10px;
 }
 
 .informSign {
-fill: var(--pale-grey);
+  fill: var(--pale-grey);
+  cursor: pointer;
 }
 
 .UserNameLetter {
@@ -60,6 +61,7 @@ fill: var(--pale-grey);
   padding-left: 15px;
   padding-bottom: 2px;
   padding-right: 5px;
+  cursor: pointer;
 }
 
 .nav {
@@ -68,12 +70,9 @@ fill: var(--pale-grey);
   align-items: center;
 }
 
-.UserName {    
+.UserName {
   display: none;
 }
-
-
-
 
 @media (min-width: 768px) {
   .wrapperForDashboard {
@@ -81,6 +80,8 @@ fill: var(--pale-grey);
   }
 
   .informBtn {
+    margin: 0;
+    padding: 0;
     width: auto;
     background-color: inherit;
     order: 1;
@@ -88,28 +89,12 @@ fill: var(--pale-grey);
     text-align: left;
     box-shadow: none;
   }
-  
+
   .nav {
-    order: 2
+    order: 2;
   }
 
   .UserName {
-      display: inline;
+    display: inline;
   }
-
-
 }
-
-
-/* 
-@media (min-width: 1024px) {
-  .content {
-    display: flex;
-  }
-  .map {
-    display: block;
-    flex-basis: 60%;
-    background-color: #5BC0BE;
-  }
-} */
-

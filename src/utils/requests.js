@@ -1,20 +1,28 @@
-import axios from 'axios';
-import { loginSuccess, loginError, authRequest } from '../redux/actions/auth';
-import * as api from './entyPoints';
+import axios from "axios";
+import * as api from "./entyPoints";
 
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.get['Content-Type'] = 'application/json';
-axios.defaults.headers.put['Content-Type'] = 'application/json';
-
-const setToken = token => ({
-  headers: {
-    Authorization: `Bearer ${token}`
-  }
+const axiosRequest = axios.create({
+	baseURL: "https://task-manager.goit.co.ua/api/"
 });
 
-export const requestUserLogin = credentials => dispatch => {
-  dispatch(authRequest());
+axiosRequest.defaults.headers.post["Content-Type"] = "application/json";
+axiosRequest.defaults.headers.get["Content-Type"] = "application/json";
+axiosRequest.defaults.headers.put["Content-Type"] = "application/json";
 
-  const res = axios.post(api.url.loginUser(), credentials);
-  return res;
+export const setAuthToken = token => {
+	axiosRequest.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
+export const clearAuthToken = () => {
+	axiosRequest.defaults.headers.common["Authorization"] = null;
+};
+
+export const requestUserLogin = async credentials => {
+	const res = await axiosRequest.post(api.url.loginUser(), credentials);
+	return res;
+};
+
+export const fetchPosts = async credentials => {
+	const res = await axiosRequest.get(api.url.getTasks());
+	return res;
 };
