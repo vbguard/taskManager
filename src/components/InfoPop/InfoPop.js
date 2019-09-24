@@ -1,8 +1,11 @@
 import React, { Component, createRef } from "react";
+import { closeModal } from "../../redux/actions/modalAction";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import PropTypes from "prop-types";
+import windowSize from "react-window-size";
 import styles from "./InfoPop.module.css";
 import Icon from "../Icon/Icon";
-import windowSize from "react-window-size";
 
 const {
   infoContainer,
@@ -32,7 +35,7 @@ class InfoPop extends Component {
   state = {};
 
   static propTypes = {
-    onClose: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
     windowWidth: PropTypes.number.isRequired
   };
 
@@ -47,18 +50,20 @@ class InfoPop extends Component {
   }
 
   handleKeyPress = e => {
+    const { closeModal } = this.props;
     if (e.code !== "Escape") return;
-    this.props.onClose();
+    closeModal();
   };
 
   handleBackDropClick = e => {
+    const { closeModal } = this.props;
     const { current } = this.backdropeRef;
     if (current && e.target !== current) return;
-    this.props.onClose();
+    closeModal();
   };
 
   render() {
-    const { windowWidth, onClose } = this.props;
+    const { windowWidth, closeModal } = this.props;
 
     return (
       <div
@@ -70,7 +75,7 @@ class InfoPop extends Component {
           <div className={header}>
             <Icon icon="Info" className={svgInfo} />
             <p className={titleInfo}>Информация</p>
-            <button type="button" className={buttonClose} onClick={onClose}>
+            <button type="button" className={buttonClose} onClick={closeModal}>
               <Icon icon="Clear" className={svgClear} />
             </button>
           </div>
@@ -108,4 +113,14 @@ class InfoPop extends Component {
   }
 }
 
-export default windowSize(InfoPop);
+const mDTP = dispatch => ({
+  closeModal: () => dispatch(closeModal())
+});
+
+export default compose(
+  connect(
+    null,
+    mDTP
+  ),
+  windowSize
+)(InfoPop);
