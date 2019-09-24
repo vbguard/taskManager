@@ -4,22 +4,15 @@ import styles from "./Header.module.css";
 import Icon from "../Icon/Icon";
 import InfoPop from "../../components/InfoPop/InfoPop";
 import { openModal } from "../../redux/actions/modalAction.js";
-import { getModal } from "../../redux/selectors/selectors";
+import { getModal, getNickname } from "../../redux/selectors/selectors";
 
 import { logout } from "../../redux/actions/authOperations";
 
 class Header extends Component {
   state = {};
 
-  componentDidMount() {
-    const { match } = this.props;
-    console.log("Component Didi Mount");
-    console.log(match);
-    // console.log(pathname.includes('dashboard'));
-  }
-
   render() {
-    const { match, modal, openModal } = this.props;
+    const { match, modal, openModal, nickname } = this.props;
     return (
       <div>
         {match.path.includes("/login") && (
@@ -46,10 +39,14 @@ class Header extends Component {
             </h1>
             <nav className={styles.nav}>
               <div className="Header-Dashboard-UserName-Mob">
-                <div className={styles.UserNameLetter}>N</div>
+                <div className={styles.UserNameLetter}>{nickname[0]}</div>
               </div>
 
-              <div className={styles.UserName}>Name</div>
+              <div
+                className={`${styles.UserName} Header-Dashboard-UserName-Mob`}
+              >
+                {nickname}
+              </div>
 
               <Icon icon="Logout" onClick={logout} className={styles.exitBtn} />
             </nav>
@@ -69,7 +66,8 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  modal: getModal(state)
+  modal: getModal(state),
+  nickname: getNickname(state)
 });
 
 const mapDispatchToProps = dispatch => ({

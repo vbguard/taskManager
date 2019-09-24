@@ -5,14 +5,13 @@ import AuthForm from "../../components/AuthForm/AuthForm";
 import { getToken } from "../../redux/selectors/selectors";
 import Header from "../../components/Header/Header";
 
-const Login = ({ token }) => (
+const Login = ({ token, match }) => (
   <>
     {token ? (
       <Redirect to="/dashboard" />
     ) : (
       <>
-        {/* <Header match={this.props.match} /> */}
-        <p>sdfksdfkj</p>
+        <Header match={match} />
         <AuthForm />
       </>
     )}
