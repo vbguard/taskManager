@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Header.module.css';
-import '../../stylesheet/fontStyle.css';
 import Icon from '../Icon/Icon';
 
 class Header extends Component {
   state = {};
 
   componentDidMount() {
-    const { pathname } = this.props;
+    const { match } = this.props;
     console.log('Component Didi Mount');
-    console.log(pathname.includes('dashboard'));
+    console.log(match);
+    // console.log(pathname.includes('dashboard'));
   }
 
   render() {
-    const { pathname } = this.props;
+    const { match } = this.props;
     return (
       <div>
-        {pathname.includes('login') && (
+        {match.path.includes('/login') && (
           <div className={styles.wrapperForLogin}>
             <h1 className={`${styles.LoginRegisterLogoMob} Header-LoginRegister-Logo-Mob`}>TaskTraker</h1>
             <h2 className={`${styles.LoginRegisterTaglineMob} Header-LoginRegister-Tagline-Mob`}>
@@ -26,17 +26,20 @@ class Header extends Component {
           </div>
         )}
 
-        {pathname.includes('dashboard') && (
+        {match.path.includes('dashboard') && (
           <div className={styles.wrapperForDashboard}>
             <h1 className={`${styles.LoginRegisterLogoMob} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
-            <div className={`${styles.UserNameLetter} Header-Dashboard-UserName-Mob`}>N</div>
-            {/* <div>Name</div> */}
-            <div>
-              ExitBtn
-              {/* <Icon /> */}
-            </div>
+            <nav className={styles.nav}>
+              <div className="Header-Dashboard-UserName-Mob">
+                <div className={styles.UserNameLetter}>N</div>
+              </div>
+
+              <div className={styles.UserName}>Name</div>
+
+              <Icon icon="Logout" className={styles.exitBtn} />
+            </nav>
             <button type="button" className={styles.informBtn}>
-              Information
+              <Icon icon="Info" className={styles.informSign} />
             </button>
           </div>
         )}

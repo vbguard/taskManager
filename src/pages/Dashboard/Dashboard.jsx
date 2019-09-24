@@ -15,7 +15,7 @@ class Dashboard extends Component {
     return (
       <div>
         <div>
-          <Header pathname={this.props.location.pathname} />
+          <Header match={this.props.match} />
         </div>
         <div></div>
         <div>
