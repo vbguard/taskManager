@@ -12,6 +12,7 @@ import { getUserTasks } from "../../redux/actions/tasksActions";
 import { getToken, getLoader, getModal } from "../../redux/selectors/selectors";
 import InfoPop from "../../components/InfoPop/InfoPop";
 import Icon from "../../components/Icon/Icon";
+import PopUpConfirmDelete from "../../components/PopUpConfirmDelete/PopUpConfirmDelete";
 
 import Task from "../../components/Task/Task.jsx";
 
@@ -78,6 +79,7 @@ class Dashboard extends Component {
     return (
       <>
         <Header />
+        <PopUpConfirmDelete />
         <Icon icon="Info" onClick={openModal} />
         {(loader && (
           <Loader

@@ -1,0 +1,39 @@
+.container {
+  width: 300px;
+  height: 150px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.title {
+  font-size: 18px;
+}
+
+.btnsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button {
+  width: 100px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.btnDelete {
+  background-color: red;
+  color: white;
+}
+
+.btnCancel {
+  background-color: transparent;
+  border: 1px solid blue;
+}

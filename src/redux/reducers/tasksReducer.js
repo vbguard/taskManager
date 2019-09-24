@@ -1,4 +1,4 @@
-import { tasksTypes } from '../actions/tasksActions';
+import { tasksTypes } from "../actions/tasksActions";
 
 const initialState = {
   tasks: null,
@@ -14,7 +14,16 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, tasks: payload, loader: false };
     case tasksTypes.FETCH_TASKS_ERROR:
       return { ...state, error: payload, loader: false };
-
+    case tasksTypes.DELETE_TASK_START:
+      return { ...state, loader: payload };
+    case tasksTypes.DELETE_TASK_SUCCESS:
+      return {
+        ...state,
+        loader: false,
+        tasks: state.tasks.filter(el => el.id !== payload)
+      };
+    case tasksTypes.DELETE_TASK_ERROR:
+      return { ...state, error: payload, loader: false };
     default:
       return state;
   }
