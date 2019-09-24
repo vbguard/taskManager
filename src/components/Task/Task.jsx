@@ -5,19 +5,35 @@ import styles from './Task.module.css';
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
 
+
+const refactoringProps = (props) => {
+    const {
+        isDone,
+        dates,
+        title,
+        description,
+        taskNumber
+      } = props.task;
+
+    const refactoringProps = {
+        isComplete: isDone,
+        loopDates: dates,
+        taskHeader: (!title) ? 'назва_таски' : title,
+        taskDescription: (!description) ? 'опис_таски' : description,
+        isLoop: dates.length>1 ? true : false,
+        taskNumber: (!taskNumber) ? 'номер_таски' : taskNumber,
+    }
+    return refactoringProps;
+}
+
+
 class Task extends Component {
-
-    // refactoringDates = this.props.task.loopDates.join(',');
-    
     render() {
-        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, isComplete, onEdit, onCompltete}=this.props.task;
-        const windowWidth =this.props.windowWidth;
-        const refactoringDates=loopDates.join(',');
-
+        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, isComplete, onEdit, onCompltete}=refactoringProps(this.props);
+        const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
         return (
             <>
-            {/* added fixed html to test */}
-            <div className={styles.task}>
+             <div className={styles.task}>
                 <div className={isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
                     <div className={styles.numberContainer}>
                         <p className={styles.headerNumber}>{taskNumber}. </p>
@@ -39,7 +55,7 @@ class Task extends Component {
                                     <Icon icon='Loop'/>
                             </button>
                             <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
-                                {refactoringDates}
+                                {loopDates}
                             </p>
                         </>)}
                     </div>
@@ -68,26 +84,21 @@ class Task extends Component {
 }
 
 Task.propTypes = {task: PropTypes.shape({
-    taskNumber: PropTypes.number.isRequired,
-    taskHeader: PropTypes.string.isRequired,
-    taskDescription: PropTypes.string.isRequired,
-    isLoop: PropTypes.bool.isRequired,
-    loopDates:PropTypes.arrayOf(PropTypes.number).isRequired,
-    isComplete: PropTypes.bool.isRequired,
-    onEdit: PropTypes.func.isRequired,
-    onCompltete: PropTypes.func.isRequired,})
-    
+    taskNumber: PropTypes.string,
+    isDone: PropTypes.bool.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    dates:PropTypes.arrayOf(PropTypes.string).isRequired,
+    onEdit: PropTypes.func,
+    onCompltete: PropTypes.func})
 }
 
-// Task.defaulProps = {
-//     taskNumber: null,
-//     taskHeader: '',
-//     taskDescription: '',
-//     isLoop: false,
-//     loopDates: null,
-//     isComplete: false,
-//     onEdit: () => {},
-//     onCompltete:  () => {},
-// }
+Task.defaulProps = {
+    taskHeader: '',
+    description: 'опис_таски',
+    title: 'назва_таски',
+    onEdit: () => {},
+    onCompltete:  () => {},
+}
 
 export default windowSize(Task);

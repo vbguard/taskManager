@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
+import {getTasks} from '../../redux/selectors/selectors';
 
 import styles from './TaskList.module.css';
 
 import Task from '../../components/Task/Task.jsx';
 
 
-export default class TaskList extends Component {
+class TaskList extends Component {
     render() {
         const tasks = this.props.tasks;
         return (
-            <ul>
-                {tasks.map((task) => {
-                   return <li key={task.id}><Task task={task}/></li>
+            <ul className={styles.list}>
+                {tasks && tasks.map((task) => {
+                   return <li key={task._id}><Task task={task}/></li>
                 }
                 )}
             </ul>
@@ -24,14 +25,16 @@ export default class TaskList extends Component {
 
 
 TaskList.propTypes = {
-    tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-            taskNumber: PropTypes.number.isRequired,
-            taskHeader: PropTypes.string.isRequired,
-            taskDescription: PropTypes.string.isRequired,
-            isLoop: PropTypes.bool.isRequired,
-            loopDates:PropTypes.arrayOf(PropTypes.number).isRequired,
-            isComplete: PropTypes.bool.isRequired,
-            onEdit: PropTypes.func.isRequired,
-            onCompltete: PropTypes.func.isRequired,}))
+    tasks: PropTypes.arrayOf(Object)
 }
+
+const mapStateToProps = state => ({
+    tasks : getTasks(state)
+})
+
+const mapDispatchToProps = {}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TaskList)

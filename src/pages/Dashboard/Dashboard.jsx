@@ -14,26 +14,7 @@ import Icon from "../../components/Icon/Icon";
 
 import TaskList from '../../components/TaskList/TaskList';
 
-const tasks = [{
-  taskNumber: 1, taskHeader:'Подготовка документации',
-  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
-  isLoop: false,
-  loopDates:[10,17,21], 
-  isComplete: true, 
-  onEdit: ()=> {}, 
-  onCompltete: ()=> {}
-},
-{
-  taskNumber: 1, 
-  taskHeader:'Подготовка документации',
-  taskDescription:'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
-  isLoop: true,
-  loopDates:[10,17,21], 
-  isComplete: false, 
-  onEdit: ()=> {}, 
-  onCompltete: ()=> {}
-}
-];
+// import tasks from '../../assets/tasksForTest.json'
 
 export const DashboardContext = React.createContext({});
 
@@ -58,7 +39,7 @@ const AddForm = () => (
 const Tasks = () => (
   <div>
     <h1>Tasks</h1>
-    <TaskList tasks={tasks}/>
+    <TaskList />
   </div>
 );
 
