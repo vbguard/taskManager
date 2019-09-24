@@ -9,6 +9,12 @@ axiosRequest.defaults.headers.post["Content-Type"] = "application/json";
 axiosRequest.defaults.headers.get["Content-Type"] = "application/json";
 axiosRequest.defaults.headers.put["Content-Type"] = "application/json";
 
+const setToken = token => ({
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+
 export const setAuthToken = token => {
   axiosRequest.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
