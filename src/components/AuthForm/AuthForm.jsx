@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { auth } from "../../redux/actions/authOperations";
 import styles from "./AuthForm.module.css";
-import { ToastContainer } from "react-toastify";
 import * as notify from "../../utils/notification";
 
 const INITIAL_STATE = {
@@ -43,7 +42,6 @@ class AuthForm extends Component {
 
 		return (
 			<div className={styles.wrapper}>
-				<ToastContainer />
 				<form
 					className={styles.registrationForm}
 					onSubmit={this.handleSubmit}
@@ -67,7 +65,7 @@ class AuthForm extends Component {
 					<label className={styles.label}>
 						<span className={styles.labelText}> Пароль: </span>
 						<input
-							className={styles.input}
+							className={styles.password}
 							type="password"
 							autoComplete="current-password"
 							size="12"

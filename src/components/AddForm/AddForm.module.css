@@ -1,18 +1,23 @@
-.formBg {
-  width: 295px;
-  height: auto;
-  padding: 0 11px;
-  box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
-  background-color: var(--white);
+.bodybg {
+  width: 320px;
+  height: 469px;
+  background-color: var(--pale-grey);
   margin: 0 auto;
 }
 
+.formBg {
+  width: 295px;
+  height: 391px;
+  box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
+  background-color: var(--white);
+  margin: 0 auto;
+  padding-top: 20px;
+}
 
 .title {
   width: 264px;
   height: 20px;
   border: none;
-  margin-top: 20px;
   border-bottom: solid 1px var(--light-periwinkle);
   margin-left: 11px
 }
@@ -41,9 +46,15 @@
   fill: var(--white);
 }
 
-.linkStyle {
-  width: 111px;
-  height: 12px;
+.dataPickerContainer {
+  width: 264px;
+  border: none;
+  border-bottom: solid 1px var(--light-periwinkle);
+  margin-left: 11px
+}
+
+.dataPickerTitle {
+  display: inline-block;
   font-family: Verdana;
   font-size: 12px;
   font-weight: bold;
@@ -51,14 +62,6 @@
   letter-spacing: 0.72px;
   text-decoration: none;
   color: var(--dark-navy-blue);
-}
-
-.linkContainer {
-  width: 264px;
-  border: none;
-  margin-top: 10px;
-  border-bottom: solid 1px var(--light-periwinkle);
-  margin-left: 11px
 }
 
 .labelDescription {
@@ -82,7 +85,7 @@
 }
 
 .textArea::placeholder {
-  font-family: 'Gotham Pro Light';
+  font-family: 'GothamPro';
   font-size: 13px;
   font-weight: 300;
   line-height: 1.54;
@@ -100,8 +103,8 @@
   border-radius: 50%;
   border: none;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px
+  margin-top: 12px;
+  margin-bottom: 14px
 }
 
 
@@ -113,6 +116,8 @@
   border: solid 1px var(--dark-grey-blue);
   background-color: transparent;
   margin-bottom: 10px;
+  margin-left: 2px;
+  margin-top: 3px;
   font-family: Verdana;
   font-size: 13px;
   font-weight: bold;
@@ -135,4 +140,128 @@
   color: var(--red);
   font-family: Verdana;
   font-size: 11px;
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+  .bodybg {
+    width: 768px;
+    height: 966px;
+  }
+
+  .formBg {
+    width: 710px;
+    height: 607px;
+    padding-top: 72px;
+    position: relative;
+  }
+
+  .title {
+    width: 600px;
+    margin-left: 55px
+  }
+
+  .title::placeholder {
+    width: 220px;
+    font-size: 24px;
+    line-height: 2.3;
+    letter-spacing: 1.44px;
+  }
+
+  .dataPickerContainer {
+    width: 600px;
+    margin-left: 55px
+  }
+
+  .labelDescription {
+    display: block;
+    margin-left: 55px
+  }
+
+  .textArea {
+    width: 600px;
+    height: 99px;
+    margin-left: 55px
+  }
+
+  .deleteBtn {
+    position: absolute;
+    left: 10%
+  }
+
+
+  .saveBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 26%;
+  }
+
+  .resetBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 49%;
+  }
+
+}
+
+@media (min-width:1024px) {
+  .bodybg {
+    width: 1280px;
+    height: 792px;
+    object-fit: contain;
+  }
+
+  .formBg {
+    width: 915px;
+    height: 607px;
+    object-fit: contain;
+    padding-top: 92px;
+    position: relative;
+  }
+
+  .title {
+    width: 730px;
+    margin-left: 93px
+  }
+
+  .title::placeholder {
+    width: 220px;
+    font-size: 24px;
+    line-height: 2.54;
+    letter-spacing: 1.44px;
+  }
+
+  .dataPickerContainer {
+    width: 730px;
+    margin-left: 93px
+  }
+
+  .labelDescription {
+    display: block;
+    margin-left: 93px
+  }
+
+  .textArea {
+    width: 730px;
+    height: 99px;
+    margin-left: 93px
+  }
+
+  .deleteBtn {
+    position: absolute;
+    left: 10%
+  }
+
+
+  .saveBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 32%;
+  }
+
+  .resetBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 49%;
+  }
+
 }

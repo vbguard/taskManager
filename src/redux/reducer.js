@@ -6,7 +6,7 @@ import { tasksReducer } from './reducers/tasksReducer';
 import { formReducer } from './reducers/formReducer';
 
 const sessionPersistConfig = {
-  key: 'session',
+  key: "session",
   storage
 };
 

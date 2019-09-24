@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addTask } from '../../redux/actions/formAction';
 import style from './AddForm.module.css';
 import Icon from '../Icon/Icon';
+import { warn } from '../../utils/notification';
 
 class AddForm extends Component {
   state = {
@@ -22,7 +23,7 @@ class AddForm extends Component {
     event.preventDefault();
     const { title, description } = this.state;
     if (title === '' || description === '') {
-      alert('Все поля должны быть заполнены');
+      warn('Все поля должны быть заполнены');
       return;
     }
     if (!this.props.error) {
@@ -58,9 +59,9 @@ class AddForm extends Component {
               Описание не должно быть больше 50-ти символов
             </span>
           )}
-          <div className={style.linkContainer}>
+          <div className={style.dataPickerContainer}>
             <Icon icon="Calendar" className={style.formIcon} />
-            Выберете дату
+            <p className={style.dataPickerTitle}>Выберете дату</p>
             <Icon icon="ArrowRight" className={style.formIcon} />
           </div>
           <label htmlFor="description" className={style.labelDescription}>
