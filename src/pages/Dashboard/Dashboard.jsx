@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import windowSize from 'react-window-size';
-import Loader from 'react-loader-spinner';
+import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/authActions';
-import { openModal } from '../../redux/actions/modalAction.js';
-import { Switch, Route, Link } from 'react-router-dom';
-import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
-import InfoPop from '../../components/InfoPop/InfoPop';
-import Icon from '../../components/Icon/Icon';
-import Calendar from '../../components/Calendar/Calendar';
+import PropTypes from 'prop-types';
 
+// import npm components
+import windowSize from 'react-window-size';
+import Loader from 'react-loader-spinner';
+
+// import Components
+import Calendar from '../../components/Calendar/Calendar';
+import InfoPop from '../../components/InfoPop/InfoPop';
 import TaskContainer from '../../components/Task/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
+import Header from '../../components/Header/Header';
 
-export const DashboardContext = React.createContext({});
+// import actions and selectors
+import { loginSuccess } from '../../redux/actions/authActions';
+import { getUserTasks } from '../../redux/actions/tasksActions';
+import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
 
-const Header = () => (
-  <div>
-    <h1>Header</h1>
-  </div>
-);
-
+// add styles
+import styles from './Dashboard.module.css';
 class Dashboard extends Component {
   state = {};
 
@@ -44,13 +41,14 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal, openModal } = this.props;
+    const { windowWidth, loader, modal } = this.props;
 
     return (
       <>
-        <Header />
-        <Icon icon="Info" onClick={openModal} />
-        {(loader && <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />) || (
+        <Header match={this.props.match} />
+        {loader ? (
+          <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
+        ) : (
           <>
             {windowWidth < 1024 && (
               <>
@@ -63,16 +61,13 @@ class Dashboard extends Component {
             )}
             {windowWidth >= 1024 && (
               <>
+                {/* // router => /dashboard @DashboardContainer
+                    // router => /dashboard/add @AddForm */}
+                <div className={styles.dashboardWrap}>
+                  <TaskContainer />
+                  <Calendar />
+                </div>
                 <Route path="/dashboard/add" component={AddForm} />
-                {this.props.location === '/dashboard' && (
-                  <>
-                    <TaskContainer />
-                    <Calendar />
-                    <Link to="/dashboard/add">
-                      <button className={styles.btnAdd}>+</button>
-                    </Link>
-                  </>
-                )}
               </>
             )}
           </>
@@ -91,8 +86,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loginSuccess: session => dispatch(loginSuccess(session)),
-  getUserTasks: token => dispatch(getUserTasks(token)),
-  openModal: () => dispatch(openModal())
+  getUserTasks: token => dispatch(getUserTasks(token))
 });
 
 export default compose(

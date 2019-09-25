@@ -1,5 +1,5 @@
 import axios from "axios";
-import { requestUserLogin } from "../../utils/requests";
+import { requestUserLogin, axiosRequest } from "../../utils/requests";
 import {
 	authRequest,
 	loginSuccess,
@@ -24,11 +24,13 @@ export const auth = credentials => dispatch => {
 };
 
 export const logout = () => dispatch => {
-	axios
-		.post("https://task-manager.goit.co.ua/api/auth")
-		.then(() => {
-			clearAuthToken();
-			dispatch(logoutSuccess());
-		})
-		.catch(err => console.log(err));
+	// axiosRequest
+	// 	.post("auth")
+	// 	.then(() => {
+	// 		clearAuthToken();
+	// 		dispatch(logoutSuccess());
+	// 	})
+	// .catch(err => console.log(err));
+	clearAuthToken();
+	dispatch(logoutSuccess());
 };
