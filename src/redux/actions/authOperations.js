@@ -14,12 +14,11 @@ export const auth = credentials => dispatch => {
 
 	requestUserLogin(credentials)
 		.then(({ data }) => {
-			console.log(data.token);
 			setAuthToken(data.token);
 			dispatch(loginSuccess(data));
 		})
 		.catch(err => {
-			notify.error("Wrong password");
+			notify.error("Wrong username or password");
 			dispatch(loginError(err));
 		});
 };
