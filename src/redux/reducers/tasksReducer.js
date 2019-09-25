@@ -1,5 +1,5 @@
 import { tasksTypes } from '../actions/tasksActions';
-
+import { formTypes } from '../actions/formAction';
 const initialState = {
   tasks: null,
   loader: false,
@@ -14,7 +14,8 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, tasks: payload, loader: false };
     case tasksTypes.FETCH_TASKS_ERROR:
       return { ...state, error: payload, loader: false };
-
+    case formTypes.ADD_TASK_FORM_SUCCESS:
+      return { ...state, tasks: payload.task };
     default:
       return state;
   }

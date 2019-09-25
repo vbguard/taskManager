@@ -32,3 +32,12 @@ export const fetchPosts = async token => {
 	const res = await axiosRequest.get(api.url.getTasks(), setToken(token));
 	return res;
 };
+
+export const fetchAddForm = async (credentials, token) => {
+  const res = await axiosRequest.post(
+    api.url.addForm(),
+    credentials,
+    setToken(token)
+  );
+  return res;
+};
