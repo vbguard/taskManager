@@ -12,6 +12,7 @@ import { getUserTasks } from "../../redux/actions/tasksActions";
 import { getToken, getLoader, getModal } from "../../redux/selectors/selectors";
 import InfoPop from "../../components/InfoPop/InfoPop";
 import Icon from "../../components/Icon/Icon";
+import Calendar from "../../components/Calendar/Calendar";
 
 import Task from "../../components/Task/Task.jsx";
 
@@ -32,12 +33,6 @@ export const DashboardContext = React.createContext({});
 const Header = () => (
 	<div>
 		<h1>Header</h1>
-	</div>
-);
-
-const Calendar = () => (
-	<div>
-		<h1>Calendar</h1>
 	</div>
 );
 
@@ -78,7 +73,26 @@ class Dashboard extends Component {
 		return (
 			<>
 				<Header />
-				<Icon icon="Info" onClick={openModal} />
+				{windowWidth < 768 && (
+					<>
+						<div className={styles.iconsContainer}>
+							<button
+								type="button"
+								className={styles.calendarBtnIcon}
+								onClick={() => alert("Появляется pop up с Календарём!")}
+							>
+								<Icon icon="Calendar" className={styles.btnCalendarIcon} />
+							</button>
+							<Icon icon="Info" onClick={openModal} />
+						</div>
+
+						<Switch>
+							<Route path="/dashboard" exact component={Tasks} />
+							<Route path="/dashboard/add" component={AddForm} />
+						</Switch>
+						<button className={styles.btnAdd}>+</button>
+					</>
+				)}
 				{(loader && (
 					<Loader
 						type="Oval"
@@ -89,32 +103,38 @@ class Dashboard extends Component {
 					/>
 				)) || (
 					<>
-						{windowWidth < 1024 && (
+						{windowWidth >= 768 && windowWidth < 1024 && (
 							<>
+								<Icon icon="Info" onClick={openModal} />
 								<Switch>
-									<Route
-										path="/dashboard"
-										exact
-										component={Tasks}
-									/>
-									<Route
-										path="/dashboard/calendar"
-										component={Calendar}
-									/>
-									<Route
-										path="/dashboard/add"
-										component={AddForm}
-									/>
+									<Route path="/dashboard" exact component={Tasks} />
+									<Route path="/dashboard/add" component={AddForm} />
 								</Switch>
+
 								<button className={styles.btnAdd}>+</button>
+
+								<button
+									className={styles.btnCalendar}
+									onClick={() => alert("Появляется pop up с Календарём!")}
+								>
+									<Icon icon="Calendar" className={styles.calendarSVG} />
+									<span className={styles.btnCalendarText}>
+										Перейти в календарь
+									</span>
+								</button>
 							</>
 						)}
 						{windowWidth >= 1024 && (
-							<>
-								<Tasks />
-								<Calendar />
-								<button className={styles.btnAdd}>+</button>
-							</>
+							<div className={styles.wrapper}>
+								<div className={styles.tasksWrapper}>
+									<button className={styles.btnAdd}>+</button>
+									<Tasks />
+								</div>
+
+								<div className={styles.calendarWrapper}>
+									<Calendar />
+								</div>
+							</div>
 						)}
 					</>
 				)}
