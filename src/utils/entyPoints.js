@@ -2,5 +2,5 @@ export const url = {
   // example
   loginUser: () => `/auth`,
   getTasks: () => `/tasks`,
-  deleteTask: () => "/task"
+  deleteTask: id => `/task/${id}`
 };

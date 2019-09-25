@@ -47,10 +47,9 @@ export const deleteTaskError = error => ({
   payload: error.message
 });
 
-export const deleteTask = token => dispatch => {
+export const deleteTask = data => dispatch => {
   dispatch(deleteTaskStart());
-  requestDeleteTask();
-  //   fetchPosts(token)
-  //     .then(resp => dispatch(fetchTasksSuccess(resp.data.tasks)))
-  //     .catch(error => dispatch(fetchTasksError(error)));
+  requestDeleteTask(data)
+    .then(resp => dispatch(deleteTaskSuccess(resp.data.task.id)))
+    .catch(error => dispatch(deleteTaskError(error)));
 };
