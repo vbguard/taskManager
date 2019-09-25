@@ -35,10 +35,10 @@ class AddForm extends Component {
   };
 
   handleReset = () => {
-    if (this.props.error) {
+    
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
-    }
+    
   };
 
   render() {

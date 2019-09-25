@@ -11,9 +11,11 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
 import InfoPop from '../../components/InfoPop/InfoPop';
-import Icon from '../../components/Icon/Icon';
-import Task from '../../components/Task/Task.jsx';
 import AddForm from '../../components/AddForm/AddForm';
+import Icon from '../../components/Icon/Icon';
+import Calendar from '../../components/Calendar/Calendar';
+
+import Task from '../../components/Task/Task.jsx';
 
 const task = {
   taskNumber: 1,
@@ -35,11 +37,11 @@ const Header = () => (
   </div>
 );
 
-const Calendar = () => (
-  <div>
-    <h1>Calendar</h1>
-  </div>
-);
+// const Calendar = () => (
+//   <div>
+//     <h1>Calendar</h1>
+//   </div>
+// );
 
 // const AddForm = () => (
 //   <div>
@@ -96,17 +98,16 @@ class Dashboard extends Component {
                   <Route path="/dashboard/calendar" component={Calendar} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
-                <Link to="/dashboard/add">
-                  <button className={styles.btnAdd}>+</button>
-                </Link>
-                <Route path="/dashboard/add" component={AddForm} />
               </>
             )}
             {windowWidth >= 1024 && (
               <>
                 <Tasks />
                 <Calendar />
-                <button className={styles.btnAdd}>+</button>
+                <Link to="/dashboard/add">
+                  <button className={styles.btnAdd}>+</button>
+                </Link>
+                <Route path="/dashboard/add" component={AddForm} />
               </>
             )}
           </>

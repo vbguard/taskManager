@@ -207,13 +207,11 @@
   .bodybg {
     width: 1280px;
     height: 792px;
-    object-fit: contain;
   }
 
   .formBg {
     width: 915px;
     height: 607px;
-    object-fit: contain;
     padding-top: 92px;
     position: relative;
   }
