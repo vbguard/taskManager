@@ -1,5 +1,5 @@
-@import './libs/normalize.css';
-@import './fonts.css';
-@import './vars.css';
-@import './fontStyle.css';
-@import '../../node_modules/react-infinite-calendar/styles.css';
+@import "./libs/normalize.css";
+@import "./fonts.css";
+@import "./vars.css";
+@import "./fontStyle.css";
+@import "../../node_modules/react-infinite-calendar/styles.css";
