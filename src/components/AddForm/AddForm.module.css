@@ -1,0 +1,265 @@
+.bodybg {
+  width: 320px;
+  height: 469px;
+  background-color: var(--pale-grey);
+  margin: 0 auto;
+}
+
+.formBg {
+  width: 295px;
+  height: 391px;
+  box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
+  background-color: var(--white);
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.title {
+  width: 264px;
+  height: 20px;
+  border: none;
+  border-bottom: solid 1px var(--light-periwinkle);
+  margin-left: 11px
+}
+
+.title::placeholder {
+  width: 228px;
+  font-family: 'Gotham Pro Bold';
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 4.36;
+  letter-spacing: 0.84px;
+  text-align: left;
+  color: var(--light-blue-grey);
+}
+
+.formIcon {
+  width: 20px;
+  height: 18px;
+  fill: var(--dusty-orange);
+  align-items: center;
+}
+
+.formIconDelete {
+  width: 20px;
+  height: 18px;
+  fill: var(--white);
+}
+
+.dataPickerContainer {
+  width: 264px;
+  border: none;
+  border-bottom: solid 1px var(--light-periwinkle);
+  margin-left: 11px
+}
+
+.dataPickerTitle {
+  display: inline-block;
+  font-family: Verdana;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 5.08;
+  letter-spacing: 0.72px;
+  text-decoration: none;
+  color: var(--dark-navy-blue);
+}
+
+.labelDescription {
+  font-family: Verdana;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 5.08;
+  letter-spacing: 0.72px;
+  text-align: left;
+  color: var(--black);
+  margin-left: 11px
+}
+
+.textArea {
+  width: 264px;
+  resize: none;
+  height: 177px;
+  border-radius: 5px;
+  border: solid 1px var(--light-periwinkle);
+  margin-left: 11px
+}
+
+.textArea::placeholder {
+  font-family: 'GothamPro';
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.54;
+  letter-spacing: 0.78px;
+  color: var(--greyish-brown);
+  padding-left: 5px;
+
+}
+
+.deleteBtn {
+  display: block;
+  width: 33px;
+  height: 33px;
+  background-color: var(--dark-grey-blue);
+  border-radius: 50%;
+  border: none;
+  margin: 0 auto;
+  margin-top: 12px;
+  margin-bottom: 14px
+}
+
+
+.resetBtn,
+.saveBtn {
+  width: 145px;
+  height: 35px;
+  border-radius: 5px;
+  border: solid 1px var(--dark-grey-blue);
+  background-color: transparent;
+  margin-bottom: 10px;
+  margin-left: 2px;
+  margin-top: 3px;
+  font-family: Verdana;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.78px;
+  text-align: center;
+  color: var(--dark-grey-blue);
+}
+
+.resetBtn:hover,
+.saveBtn:hover {
+  box-shadow: 0px 6px 10px 0 var(--dusty-orange-33);
+  background-color: var(--dusty-orange);
+  border: none;
+  color: var(--white);
+}
+
+.errorSpan {
+  color: var(--red);
+  font-family: Verdana;
+  font-size: 11px;
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+  .bodybg {
+    width: 768px;
+    height: 966px;
+  }
+
+  .formBg {
+    width: 710px;
+    height: 607px;
+    padding-top: 72px;
+    position: relative;
+  }
+
+  .title {
+    width: 600px;
+    margin-left: 55px
+  }
+
+  .title::placeholder {
+    width: 220px;
+    font-size: 24px;
+    line-height: 2.3;
+    letter-spacing: 1.44px;
+  }
+
+  .dataPickerContainer {
+    width: 600px;
+    margin-left: 55px
+  }
+
+  .labelDescription {
+    display: block;
+    margin-left: 55px
+  }
+
+  .textArea {
+    width: 600px;
+    height: 99px;
+    margin-left: 55px
+  }
+
+  .deleteBtn {
+    position: absolute;
+    left: 10%
+  }
+
+
+  .saveBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 26%;
+  }
+
+  .resetBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 49%;
+  }
+
+}
+
+@media (min-width:1024px) {
+  .bodybg {
+    width: 1280px;
+    height: 792px;
+  }
+
+  .formBg {
+    width: 915px;
+    height: 607px;
+    padding-top: 92px;
+    position: relative;
+  }
+
+  .title {
+    width: 730px;
+    margin-left: 93px
+  }
+
+  .title::placeholder {
+    width: 220px;
+    font-size: 24px;
+    line-height: 2.54;
+    letter-spacing: 1.44px;
+  }
+
+  .dataPickerContainer {
+    width: 730px;
+    margin-left: 93px
+  }
+
+  .labelDescription {
+    display: block;
+    margin-left: 93px
+  }
+
+  .textArea {
+    width: 730px;
+    height: 99px;
+    margin-left: 93px
+  }
+
+  .deleteBtn {
+    position: absolute;
+    left: 10%
+  }
+
+
+  .saveBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 32%;
+  }
+
+  .resetBtn {
+    position: absolute;
+    bottom: 2%;
+    left: 49%;
+  }
+
+}

@@ -1,0 +1,100 @@
+.wrapperForLogin {
+  width: 100%;
+  background-color: var(--dark-grey-blue);
+  background-image: url(../../assets/bg-header.jpg);
+}
+
+.wrapperForDashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--dark-grey-blue);
+}
+
+.LoginRegisterLogoMob {
+  margin: 0;
+  padding-top: 18px;
+  padding-left: 5%;
+}
+
+.LoginRegisterTaglineMob {
+  margin: 0;
+}
+
+.informBtn {
+  width: 100%;
+  text-align: center;
+  height: 40px;
+  box-shadow: 0px 2px 2px 0 rgba(1, 1, 0, 0.15);
+  background-color: var(--light-blue-grey);
+  border: 0;
+  padding-top: 10px;
+}
+
+.informSign {
+  fill: var(--pale-grey);
+  cursor: pointer;
+}
+
+.UserNameLetter {
+  border-width: 1px;
+  border-color: var(--light-blue-grey);
+  border-style: solid;
+  border-radius: 50%;
+  line-height: 21px;
+  width: 21px;
+  height: 21px;
+  vertical-align: middle;
+}
+
+.UserName {
+  display: none;
+}
+
+.exitBtn {
+  width: 18px;
+  height: 18px;
+  fill: var(--light-blue-grey);
+  padding-left: 15px;
+  padding-bottom: 2px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.UserName {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .wrapperForDashboard {
+    flex-wrap: nowrap;
+  }
+
+  .informBtn {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    background-color: inherit;
+    order: 1;
+    flex-grow: 1;
+    text-align: left;
+    box-shadow: none;
+  }
+
+  .nav {
+    order: 2;
+  }
+
+  .UserName {
+    display: inline;
+  }
+}
