@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./calendar.module.css";
-import { compareAsc, format } from "date-fns";
+import { compareAsc, addMonths, subMonths, format } from "date-fns";
 import Icon from "../../components/Icon/Icon";
 
 class Calendar extends Component {
@@ -12,29 +12,46 @@ class Calendar extends Component {
 	renderHeader() {
 		const dateFormat = "MMMM yyyy";
 		return (
-			<div className="header row flex-middle">
-				<div className="col col-start">
-					<div className={styles.icon} onClick={this.prevMonth}>
-						<Icon icon="Back" />
-					</div>
+			<div className={`${styles.header} ${styles.row} ${styles.flexMiddle}`}>
+				<div className={`${styles.col} ${styles.colStart}`}>
+					<button
+						type="button"
+						className={styles.iconBtn}
+						onClick={this.prevMonth}
+					>
+						<Icon icon="Back" className={styles.icon} />
+					</button>
 				</div>
-				<div className="col col-center">
+				<div className={`${styles.col} ${styles.colCenter}`}>
 					<span>{format(this.state.currentMonth, dateFormat)}</span>
 				</div>
-				<div className="col col-end" onClick={this.nextMonth}>
-					<div className={styles.icon}>
-						<Icon icon="Next" />
-					</div>
+				<div
+					className={`${styles.col} ${styles.colEnd}`}
+					onClick={this.nextMonth}
+				>
+					<button type="button" className={styles.iconBtn}>
+						<Icon icon="Next" className={styles.icon} />
+					</button>
 				</div>
 			</div>
 		);
 	}
+
+	nextMonth = () => {
+		this.setState({
+			currentMonth: addMonths(this.state.currentMonth, 1)
+		});
+	};
+	prevMonth = () => {
+		this.setState({
+			currentMonth: subMonths(this.state.currentMonth, 1)
+		});
+	};
+
 	renderDays() {}
 	renderCells() {}
 
 	onDateClick = day => {};
-	nextMonth = () => {};
-	prevMonth = () => {};
 
 	render() {
 		return (
