@@ -1,27 +1,28 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import windowSize from 'react-window-size';
-import Loader from 'react-loader-spinner';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/authActions';
-import { openModal } from '../../redux/actions/modalAction.js';
-import { Switch, Route, Link } from 'react-router-dom';
-import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
-import InfoPop from '../../components/InfoPop/InfoPop';
-import Icon from '../../components/Icon/Icon';
-import AddForm from '../../components/AddForm/AddForm';
-import Calendar from '../../components/Calendar/Calendar';
-import TaskList from '../../components/TaskList/TaskList';
-import Task from '../../components/Task/Task.jsx';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import windowSize from "react-window-size";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import styles from "./Dashboard.module.css";
+import { loginSuccess } from "../../redux/actions/authActions";
+import { openModal } from "../../redux/actions/modalAction.js";
+import { Switch, Route, Link } from "react-router-dom";
+import { getUserTasks } from "../../redux/actions/tasksActions";
+import { getToken, getLoader, getModal } from "../../redux/selectors/selectors";
+import InfoPop from "../../components/InfoPop/InfoPop";
+import Icon from "../../components/Icon/Icon";
+import AddForm from "../../components/AddForm/AddForm";
+import Calendar from "../../components/Calendar/Calendar";
+import TaskList from "../../components/TaskList/TaskList";
+import Task from "../../components/Task/Task.jsx";
+import Header from "../../components/Header/Header";
 
 const task = {
   taskNumber: 1,
-  taskHeader: 'Подготовка документации',
+  taskHeader: "Подготовка документации",
   taskDescription:
-    'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться',
+    "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
   isLoop: false,
   loopDates: [10, 17, 21],
   isComplete: true,
@@ -30,12 +31,6 @@ const task = {
 };
 
 export const DashboardContext = React.createContext({});
-
-const Header = () => (
-  <div>
-    <h1>Header</h1>
-  </div>
-);
 
 // const Calendar = () => (
 //   <div>
@@ -48,7 +43,6 @@ const Header = () => (
 //     <h1>AddForm</h1>
 //   </div>
 // );
-
 
 class Dashboard extends Component {
   state = {};
@@ -73,7 +67,7 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Header />
+        <Header match={this.props.match} />
         <Icon icon="Info" onClick={openModal} />
         {(loader && (
           <Loader
@@ -88,7 +82,7 @@ class Dashboard extends Component {
             {windowWidth < 1024 && (
               <>
                 <Switch>
-                  <Route path="/dashboard" exact component={Tasks} />
+                  {/* <Route path="/dashboard" exact component={Tasks} /> */}
                   <Route path="/dashboard/calendar" component={Calendar} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
@@ -96,7 +90,7 @@ class Dashboard extends Component {
             )}
             {windowWidth >= 1024 && (
               <>
-                <Tasks />
+                {/* <Tasks /> */}
                 <Calendar />
                 <Link to="/dashboard/add">
                   <button className={styles.btnAdd}>+</button>

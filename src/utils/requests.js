@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as api from "./entyPoints";
 
-const axiosRequest = axios.create({
+export const axiosRequest = axios.create({
 	baseURL: "https://task-manager.goit.co.ua/api/"
 });
 
