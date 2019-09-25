@@ -33,14 +33,14 @@ class Task extends Component {
         const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
         return (
             <>
-             <div className={styles.task}>
+              <div className={styles.task}>
                 <div className={isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
                     <div className={styles.numberContainer}>
                         <p className={styles.headerNumber}>{taskNumber}. </p>
-                    </div> 
+                    </div>
                     <div className={styles.textContainer}>
                         <p className={styles.headerText}>{taskHeader}</p>
-                    </div> 
+                    </div>
                 </div>
                 <div className={styles.taskBody}>
                     <p>{taskDescription}</p>
@@ -59,7 +59,7 @@ class Task extends Component {
                             </p>
                         </>)}
                     </div>
-                    
+
                     <div className={styles.taskControlsCompleteContainer}>
                         <button
                             className={styles.taskControlsEdit}

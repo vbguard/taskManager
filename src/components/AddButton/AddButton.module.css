@@ -1,0 +1,9 @@
+.btnAdd {
+	width: 30px;
+	height: 30px;
+	border: none;
+	border-radius: 50%;
+	background-color: var(--dusty-orange);
+	color: var(--white);
+	cursor: pointer;
+}

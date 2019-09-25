@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import { sessionReducer } from './reducers/sessionReducer';
 import { tasksReducer } from './reducers/tasksReducer';
 import { formReducer } from './reducers/formReducer';
+import { modalReducer } from './reducers/modalReducer';
 
 const sessionPersistConfig = {
   key: "session",
@@ -13,29 +14,8 @@ const sessionPersistConfig = {
 const rootReducer = combineReducers({
   session: persistReducer(sessionPersistConfig, sessionReducer),
   userTasks: tasksReducer,
-  form: formReducer
+  form: formReducer,
+  modal: modalReducer
 });
 
 export default rootReducer;
-
-// Store example
-
-// const store = {
-//   session: {
-//     user: {
-//       name: '',
-//       email: ''
-//     },
-//     token: ''
-//   },
-//   tasks: [
-//     {
-//       setID: '',
-//       _id: '',
-//       title: '',
-//       description: '',
-//       isDone: false,
-//       dates: ['', '', '']
-//     }
-//   ]
-// };

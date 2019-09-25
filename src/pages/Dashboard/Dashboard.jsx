@@ -1,49 +1,27 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import windowSize from "react-window-size";
-import Loader from "react-loader-spinner";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import styles from "./Dashboard.module.css";
-import { loginSuccess } from "../../redux/actions/authActions";
-import { openModal } from "../../redux/actions/modalAction.js";
-import { Switch, Route, Link } from "react-router-dom";
-import { getUserTasks } from "../../redux/actions/tasksActions";
-import { getToken, getLoader, getModal } from "../../redux/selectors/selectors";
-import InfoPop from "../../components/InfoPop/InfoPop";
-import Icon from "../../components/Icon/Icon";
-import AddForm from "../../components/AddForm/AddForm";
-import Calendar from "../../components/Calendar/Calendar";
-import TaskList from "../../components/TaskList/TaskList";
-import Task from "../../components/Task/Task.jsx";
-import Header from "../../components/Header/Header";
+import React, { Component } from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
 
-const task = {
-  taskNumber: 1,
-  taskHeader: "Подготовка документации",
-  taskDescription:
-    "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
-  isLoop: false,
-  loopDates: [10, 17, 21],
-  isComplete: true,
-  onEdit: () => {},
-  onCompltete: () => {}
-};
+// import npm components
+import windowSize from 'react-window-size';
+import Loader from 'react-loader-spinner';
 
-export const DashboardContext = React.createContext({});
+// import Components
+import Calendar from '../../components/Calendar/Calendar';
+import InfoPop from '../../components/InfoPop/InfoPop';
+import TaskContainer from '../../components/Task/TaskContainer';
+import AddForm from '../../components/AddForm/AddForm';
+import Header from '../../components/Header/Header';
 
-// const Calendar = () => (
-//   <div>
-//     <h1>Calendar</h1>
-//   </div>
-// );
+// import actions and selectors
+import { loginSuccess } from '../../redux/actions/authActions';
+import { getUserTasks } from '../../redux/actions/tasksActions';
+import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
 
-// const AddForm = () => (
-//   <div>
-//     <h1>AddForm</h1>
-//   </div>
-// );
-
+// add styles
+import styles from './Dashboard.module.css';
 class Dashboard extends Component {
   state = {};
 
@@ -63,26 +41,19 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal, openModal } = this.props;
+    const { windowWidth, loader, modal } = this.props;
 
     return (
       <>
         <Header match={this.props.match} />
-        <Icon icon="Info" onClick={openModal} />
-        {(loader && (
-          <Loader
-            type="Oval"
-            color="#284060"
-            height={35}
-            width={35}
-            timeout={3000}
-          />
-        )) || (
+        {loader ? (
+          <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
+        ) : (
           <>
             {windowWidth < 1024 && (
               <>
                 <Switch>
-                  {/* <Route path="/dashboard" exact component={Tasks} /> */}
+                  <Route path="/dashboard" exact component={TaskContainer} />
                   <Route path="/dashboard/calendar" component={Calendar} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
@@ -90,11 +61,12 @@ class Dashboard extends Component {
             )}
             {windowWidth >= 1024 && (
               <>
-                {/* <Tasks /> */}
-                <Calendar />
-                <Link to="/dashboard/add">
-                  <button className={styles.btnAdd}>+</button>
-                </Link>
+                {/* // router => /dashboard @DashboardContainer
+                    // router => /dashboard/add @AddForm */}
+                <div className={styles.dashboardWrap}>
+                  <TaskContainer />
+                  <Calendar />
+                </div>
                 <Route path="/dashboard/add" component={AddForm} />
               </>
             )}
@@ -114,8 +86,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loginSuccess: session => dispatch(loginSuccess(session)),
-  getUserTasks: token => dispatch(getUserTasks(token)),
-  openModal: () => dispatch(openModal())
+  getUserTasks: token => dispatch(getUserTasks(token))
 });
 
 export default compose(
