@@ -33,3 +33,11 @@ export const fetchPosts = async token => {
 	return res;
 };
 
+export const fetchAddForm = async (credentials, token) => {
+  const res = await axiosRequest.post(
+    api.url.addForm(),
+    credentials,
+    setToken(token)
+  );
+  return res;
+};
