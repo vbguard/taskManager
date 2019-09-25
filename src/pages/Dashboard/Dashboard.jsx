@@ -14,6 +14,9 @@ import InfoPop from "../../components/InfoPop/InfoPop";
 import Icon from "../../components/Icon/Icon";
 import Calendar from "../../components/Calendar/Calendar";
 
+<<<<<<< HEAD
+import TaskList from '../../components/TaskList/TaskList';
+=======
 import Task from "../../components/Task/Task.jsx";
 
 const task = {
@@ -27,6 +30,7 @@ const task = {
 	onEdit: () => {},
 	onCompltete: () => {}
 };
+>>>>>>> develop
 
 export const DashboardContext = React.createContext({});
 
@@ -43,10 +47,17 @@ const AddForm = () => (
 );
 
 const Tasks = () => (
+<<<<<<< HEAD
+  <div>
+    <h1>Tasks</h1>
+    <TaskList />
+  </div>
+=======
 	<div>
 		<h1>Tasks</h1>
 		<Task task={task} />
 	</div>
+>>>>>>> develop
 );
 
 class Dashboard extends Component {

@@ -1,0 +1,18 @@
+[{
+    "taskNumber": 1, 
+    "taskHeader":"Подготовка документации",
+    "taskDescription":"Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
+    "isLoop": false,
+    "loopDates":[10,17,21], 
+    "isComplete": true 
+  },
+  {
+    "taskNumber": 1, 
+    "taskHeader":"Подготовка документации",
+    "taskDescription":"Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
+    "isLoop": true,
+    "loopDates":[10,17,21], 
+    "isComplete": false 
+  }
+  ]
+  
