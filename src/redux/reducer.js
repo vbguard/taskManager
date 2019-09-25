@@ -1,10 +1,19 @@
-import { combineReducers } from 'redux';
-import { sessionReducer } from './reducers/session';
-import { tasksReducer } from './reducers/tasksReducer';
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { sessionReducer } from "./reducers/sessionReducer";
+import { tasksReducer } from "./reducers/tasksReducer";
+import { modalReducer } from "./reducers/modalReducer";
+
+const sessionPersistConfig = {
+  key: "session",
+  storage
+};
 
 const rootReducer = combineReducers({
-  session: sessionReducer,
-  userTasks: tasksReducer
+  session: persistReducer(sessionPersistConfig, sessionReducer),
+  userTasks: tasksReducer,
+  modal: modalReducer
 });
 
 export default rootReducer;
