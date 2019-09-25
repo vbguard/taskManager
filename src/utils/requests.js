@@ -33,9 +33,3 @@ export const fetchPosts = async token => {
 	return res;
 };
 
-export const requestGetUserTasks = credendials => dispatch => {
-  dispatch(authRequest());
-
-  const res = axios.post(api.url.getUserTasks(), setToken(credendials.token));
-  return res;
-};
