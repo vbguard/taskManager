@@ -15,6 +15,7 @@ import Icon from "../../components/Icon/Icon";
 import Header from "../../components/Header/Header";
 import Calendar from "../../components/Calendar/Calendar";
 
+import TaskList from "../../components/TaskList/TaskList";
 import Task from "../../components/Task/Task.jsx";
 
 const task = {
@@ -38,10 +39,16 @@ const AddForm = () => (
 );
 
 const Tasks = () => (
-  <div>
-    <h1>Tasks</h1>
-    <Task task={task} />
-  </div>
+  <>
+    <div>
+      <h1>Tasks</h1>
+      <Task task={task} />
+    </div>
+    <div>
+      <h1>Tasks</h1>
+      <TaskList />
+    </div>
+  </>
 );
 
 class Dashboard extends Component {
