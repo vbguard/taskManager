@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import windowSize from 'react-window-size';
-import Loader from 'react-loader-spinner';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import styles from './Dashboard.module.css';
-import { loginSuccess } from '../../redux/actions/authActions';
-import { openModal } from '../../redux/actions/modalAction.js';
-import { Switch, Route } from 'react-router-dom';
-import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
-import InfoPop from '../../components/InfoPop/InfoPop';
-import Icon from '../../components/Icon/Icon';
-import Calendar from '../../components/Calendar/Calendar';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import windowSize from "react-window-size";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import styles from "./Dashboard.module.css";
+import { loginSuccess } from "../../redux/actions/authActions";
+import { openModal } from "../../redux/actions/modalAction.js";
+import { Switch, Route } from "react-router-dom";
+import { getUserTasks } from "../../redux/actions/tasksActions";
+import { getToken, getLoader, getModal } from "../../redux/selectors/selectors";
+import InfoPop from "../../components/InfoPop/InfoPop";
+import Icon from "../../components/Icon/Icon";
+import Calendar from "../../components/Calendar/Calendar";
+import TaskList from '../../components/TaskList/TaskList';
 import TaskContainer from '../../components/Task/TaskContainer';
 
-import Task from '../../components/Task/Task.jsx';
 
 const task = {
   taskNumber: 1,
@@ -45,7 +45,7 @@ const AddForm = () => (
 const Tasks = () => (
   <div>
     <h1>Tasks</h1>
-    <Task task={task} />
+    <TaskList />
   </div>
 );
 
@@ -99,7 +99,7 @@ class Dashboard extends Component {
               <>
                 <Icon icon="Info" onClick={openModal} />
                 <Switch>
-                  <Route path="/dashboard" exact render={()=> <TaskContainer><Tasks /></TaskContainer>} />
+                  <Route path="/dashboard" exact render={()=> <TaskContainer><TaskList /></TaskContainer>} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
 
