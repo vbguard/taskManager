@@ -11,10 +11,10 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
 import InfoPop from '../../components/InfoPop/InfoPop';
-import AddForm from '../../components/AddForm/AddForm';
 import Icon from '../../components/Icon/Icon';
+import AddForm from '../../components/AddForm/AddForm';
 import Calendar from '../../components/Calendar/Calendar';
-
+import TaskList from '../../components/TaskList/TaskList';
 import Task from '../../components/Task/Task.jsx';
 
 const task = {
@@ -49,12 +49,6 @@ const Header = () => (
 //   </div>
 // );
 
-const Tasks = () => (
-  <div>
-    <h1>Tasks</h1>
-    <Task task={task} />
-  </div>
-);
 
 class Dashboard extends Component {
   state = {};
