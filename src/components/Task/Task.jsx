@@ -53,9 +53,9 @@ class Task extends Component {
                                 className={isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
                                     <Icon icon='Loop'/>
                             </button>
-                            <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                            {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
                                 {loopDates}
-                            </p>
+                            </p> */}
                         </>)}
                     </div>
 
@@ -92,12 +92,12 @@ Task.propTypes = {task: PropTypes.shape({
     onCompltete: PropTypes.func})
 }
 
-Task.defaulProps = {
+Task.defaultProps = {
     taskHeader: '',
     description: 'опис_таски',
     title: 'назва_таски',
     onEdit: () => {},
-    onCompltete:  () => {},
+    onComplete:  () => {},
 }
 
 export default windowSize(Task);
