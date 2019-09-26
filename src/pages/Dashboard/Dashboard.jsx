@@ -11,7 +11,7 @@ import Loader from 'react-loader-spinner';
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
 import InfoPop from '../../components/InfoPop/InfoPop';
-import TaskContainer from '../../components/Task/TaskContainer';
+import TaskContainer from '../../components/TaskContainer/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
 import Header from '../../components/Header/Header';
 
