@@ -15,6 +15,10 @@ import TaskContainer from '../../components/Task/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
 import Header from '../../components/Header/Header';
 
+// import pages
+
+import CalendarPage from '../CalendarPage/CalendarPage';
+
 // import actions and selectors
 import { loginSuccess } from '../../redux/actions/authActions';
 import { getUserTasks } from '../../redux/actions/tasksActions';
@@ -54,7 +58,7 @@ class Dashboard extends Component {
               <>
                 <Switch>
                   <Route path="/dashboard" exact component={TaskContainer} />
-                  <Route path="/dashboard/calendar" component={Calendar} />
+                  <Route path="/dashboard/calendar" component={CalendarPage} />
                   <Route path="/dashboard/add" component={AddForm} />
                 </Switch>
               </>
@@ -64,8 +68,12 @@ class Dashboard extends Component {
                 {/* // router => /dashboard @DashboardContainer
                     // router => /dashboard/add @AddForm */}
                 <div className={styles.dashboardWrap}>
-                  <TaskContainer />
-                  <Calendar />
+                  <div className={styles.tasksWrapper}>
+                    <TaskContainer />
+                  </div>
+                  <div className={styles.calendarWrapper}>
+                    <Calendar />
+                  </div>
                 </div>
                 <Route path="/dashboard/add" component={AddForm} />
               </>

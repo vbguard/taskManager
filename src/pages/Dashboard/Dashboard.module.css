@@ -1,24 +1,21 @@
-.wrapper {
+	.dashboardWrap {
 	display: flex;
 	margin: 0 auto;
-	width: 1280px;
+	width: 100%;
 	min-height: 100vh;
 	height: 100%;
 }
 
 .tasksWrapper {
-	width: 790px;
+	width: 60%;
 	background-color: var(--pale-grey);
 	display: flex;
-	justify-content: center;
+	justify-content: center
 }
 
 .calendarWrapper {
 	display: flex;
-	justify-content: flex-end;
-	width: 490px;
+	justify-content: center;
+	width: 40%;
 }
 
-.dashboardWrap {
-  display: flex;
-}
