@@ -49,8 +49,8 @@ class Task extends Component {
                         {isLoop &&(<>
                             <button
                                 type="button"
-                                disabled={isComplete ? true : false}
-                                className={isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
+                                disabled={loopDates[0].isComplete? true : false}
+                                className={loopDates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
                                     <Icon icon='Loop'/>
                             </button>
                             {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
@@ -68,12 +68,12 @@ class Task extends Component {
                         </button>
                         {windowWidth>768 ? <p>Редактировать</p>:null}
                         <button type="button"
-                            disabled={isComplete ? true : false}
-                            className={isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                            onClick={onCompltete}>
+                            disabled={loopDates[0].isComplete ? true : false}
+                            className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                            onClick={onComplete}>
                                 <Icon icon='Done'/>
                         </button>
-                        {windowWidth>768 ? (isComplete ? <p>Выполнено</p> : <p>Выполнить</p>) : null}
+                        {windowWidth>768 ? (loopDates[0].isComplete ? <p>Выполнено</p> : <p>Выполнить</p>) : null}
                     </div>
                 </div>
             </div>

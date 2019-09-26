@@ -15,7 +15,7 @@ const TaskList = ({ tasks }) => {
         tasks.map(task => {
           return (
             <li key={task._id}>
-              {/* <Task task={task} /> */}
+              <Task task={task} />
             </li>
           );
         })}
