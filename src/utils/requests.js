@@ -41,6 +41,13 @@ export const requestDeleteTask = async credentials => {
   return res;
 };
 
+export const requestUpdateTask = async credentials => {
+  const { id, token, data } = credentials;
+  setAuthToken(token);
+  const res = await axiosRequest.patch(api.url.deleteTask(id), data);
+  return res;
+};
+
 export const fetchAddForm = async (credentials, token) => {
   const res = await axiosRequest.post(
     api.url.addForm(),

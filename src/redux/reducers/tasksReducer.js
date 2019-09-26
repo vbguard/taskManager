@@ -26,7 +26,8 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.DELETE_TASK_ERROR:
       return { ...state, error: payload, loader: false };
     case formTypes.ADD_TASK_FORM_SUCCESS:
-      return { ...state, tasks: payload.task };
+      const newTask = payload.task;
+      return { ...state, tasks: [newTask, ...state.tasks ]};
     default:
       return state;
   }

@@ -20,15 +20,15 @@ export const postTaskError = error => ({
   payload: { error }
 });
 
-export const addTask = task => (dispatch, getState) => {
+export const addTask = data => (dispatch, getState) => {
   const store = getState();
 
   dispatch(postTaskStart(true));
 
-  fetchAddForm(task, store.session.token)
+  fetchAddForm(data, store.session.token)
     .then(response => {
       dispatch(postTaskStart(false));
-      dispatch(postTaskSuccess(response.data.tasks));
+      dispatch(postTaskSuccess(response.data.task));
     })
     .catch(error => dispatch(postTaskError(error)));
 };
