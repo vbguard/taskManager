@@ -8,19 +8,18 @@ import Icon from '../../components/Icon/Icon';
 
 const refactoringProps = (props) => {
     const {
-        isDone,
         dates,
         title,
         description,
-        taskNumber
+        taskNumber,
+        isRepeat
       } = props.task;
 
     const refactoringProps = {
-        isComplete: isDone,
         loopDates: dates,
         taskHeader: (!title) ? 'назва_таски' : title,
         taskDescription: (!description) ? 'опис_таски' : description,
-        isLoop: dates.length>1 ? true : false,
+        isRepeat,
         taskNumber: (!taskNumber) ? 'номер_таски' : taskNumber,
     }
     return refactoringProps;
@@ -29,12 +28,12 @@ const refactoringProps = (props) => {
 
 class Task extends Component {
     render() {
-        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, isComplete, onEdit, onCompltete}=refactoringProps(this.props);
+        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, onComplete }=refactoringProps(this.props);
         const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
         return (
             <>
               <div className={styles.task}>
-                <div className={isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
+                <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
                     <div className={styles.numberContainer}>
                         <p className={styles.headerNumber}>{taskNumber}. </p>
                     </div>
