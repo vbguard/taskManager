@@ -1,20 +1,50 @@
 import React, { Component } from 'react';
 import styles from '../../pages/CalendarPage/calendarPage.module.css';
 import InfiniteCalendar from 'react-infinite-calendar';
+import windowSize from 'react-window-size';
 
 class Calendar extends Component {
   state = {};
 
-  render() {
+  forMobile = () => {
     const today = new Date();
     const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-
     return (
-      <div className={styles.calendarContainer}>
-        <InfiniteCalendar selected={today} minDate={lastWeek} />
-      </div>
+      <InfiniteCalendar
+        width={289}
+        height={340}
+        selected={today}
+        minDate={lastWeek}
+        displayOptions={{
+          layout: 'portrait',
+          showHeader: false
+        }}
+      />
     );
+  };
+
+  forTablet = () => {
+    const today = new Date();
+    const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+    return (
+      <InfiniteCalendar
+        width={394}
+        height={500}
+        selected={today}
+        minDate={lastWeek}
+        displayOptions={{
+          layout: 'portrait',
+          showHeader: false
+        }}
+      />
+    );
+  };
+
+  render() {
+    const { windowWidth } = this.props;
+
+    return <div className={styles.calendarContainer}>{windowWidth < 768 ? this.forMobile() : this.forTablet()}</div>;
   }
 }
 
-export default Calendar;
+export default windowSize(Calendar);
