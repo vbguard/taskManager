@@ -14,7 +14,6 @@ import InfoPop from '../../components/InfoPop/InfoPop';
 import TaskContainer from '../../components/Task/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
 import Header from '../../components/Header/Header';
-import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
 
 // import actions and selectors
 import { loginSuccess } from '../../redux/actions/authActions';
@@ -47,7 +46,6 @@ class Dashboard extends Component {
     return (
       <>
         <Header match={this.props.match} />
-        <PopUpConfirmDelete />
         {loader ? (
           <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
         ) : (
