@@ -10,7 +10,6 @@ import Loader from 'react-loader-spinner';
 
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
-import InfoPop from '../../components/InfoPop/InfoPop';
 import TaskContainer from '../../components/Task/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
 import Header from '../../components/Header/Header';
@@ -18,7 +17,7 @@ import Header from '../../components/Header/Header';
 // import actions and selectors
 import { loginSuccess } from '../../redux/actions/authActions';
 import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
+import { getToken, getLoader } from '../../redux/selectors/selectors';
 
 // add styles
 import styles from './Dashboard.module.css';
@@ -41,7 +40,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal } = this.props;
+    const { windowWidth, loader } = this.props;
 
     return (
       <>
@@ -72,7 +71,6 @@ class Dashboard extends Component {
             )}
           </>
         )}
-        {modal && <InfoPop />}
       </>
     );
   }
@@ -80,8 +78,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   token: getToken(state),
-  loader: getLoader(state),
-  modal: getModal(state)
+  loader: getLoader(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,11 +1,11 @@
-import React, { Component, createRef } from "react";
-import { closeModal } from "../../redux/actions/modalAction";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import PropTypes from "prop-types";
-import windowSize from "react-window-size";
-import styles from "./InfoPop.module.css";
-import Icon from "../Icon/Icon";
+import React, { Component, createRef } from 'react';
+import { closeInfoModal } from '../../redux/actions/modalAction';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
+import windowSize from 'react-window-size';
+import styles from './InfoPop.module.css';
+import Icon from '../Icon/Icon';
 
 const {
   infoContainer,
@@ -42,16 +42,16 @@ class InfoPop extends Component {
   backdropeRef = createRef();
 
   componentDidMount() {
-    window.addEventListener("keydown", this.handleKeyPress);
+    window.addEventListener('keydown', this.handleKeyPress);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keydown", this.handleKeyPress);
+    window.removeEventListener('keydown', this.handleKeyPress);
   }
 
   handleKeyPress = e => {
     const { closeModal } = this.props;
-    if (e.code !== "Escape") return;
+    if (e.code !== 'Escape') return;
     closeModal();
   };
 
@@ -66,11 +66,7 @@ class InfoPop extends Component {
     const { windowWidth, closeModal } = this.props;
 
     return (
-      <div
-        className={overlay}
-        onClick={this.handleBackDropClick}
-        ref={this.backdropeRef}
-      >
+      <div className={overlay} onClick={this.handleBackDropClick} ref={this.backdropeRef}>
         <div className={infoContainer}>
           <div className={header}>
             <Icon icon="Info" className={svgInfo} />
@@ -80,9 +76,7 @@ class InfoPop extends Component {
             </button>
           </div>
           <div className={contentInfo}>
-            {windowWidth >= 768 && (
-              <h1 className={title}>Управляйте своими делами с TaskTracker</h1>
-            )}
+            {windowWidth >= 768 && <h1 className={title}>Управляйте своими делами с TaskTracker</h1>}
             <ul className={list}>
               <li className={listItem}>
                 <div className={iconContainer}>
@@ -93,14 +87,14 @@ class InfoPop extends Component {
               </li>
               <li className={listItem}>
                 <div className={iconContainer}>
-                  <p className={numberStyleOrange.join(" ")}>1</p>
+                  <p className={numberStyleOrange.join(' ')}>1</p>
                 </div>
                 <p className={hyphen}>-</p>
                 <p className={text}>Количество повторяющихся задач</p>
               </li>
               <li className={listItem}>
                 <div className={iconContainer}>
-                  <p className={numberStyleGreen.join(" ")}>2</p>
+                  <p className={numberStyleGreen.join(' ')}>2</p>
                 </div>
                 <p className={hyphen}>-</p>
                 <p className={text}>Количество неповторяющихся задач</p>
@@ -114,7 +108,7 @@ class InfoPop extends Component {
 }
 
 const mDTP = dispatch => ({
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeInfoModal())
 });
 
 export default compose(
