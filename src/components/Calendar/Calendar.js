@@ -19,6 +19,17 @@ class Calendar extends Component {
           layout: 'portrait',
           showHeader: false
         }}
+        locale={{
+          weekStartsOn: 1
+        }}
+        theme={{
+          selectionColor: '#284060',
+          textColor: {
+            default: '#333',
+            active: '#FFF'
+          },
+          weekdayColor: '#284060'
+        }}
       />
     );
   };
@@ -35,6 +46,17 @@ class Calendar extends Component {
         displayOptions={{
           layout: 'portrait',
           showHeader: false
+        }}
+        locale={{
+          weekStartsOn: 1
+        }}
+        theme={{
+          selectionColor: '#284060',
+          textColor: {
+            default: '#333',
+            active: '#FFF'
+          },
+          weekdayColor: '#284060'
         }}
       />
     );
