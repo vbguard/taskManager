@@ -1,4 +1,6 @@
 export const modalActionTypes = {
+  OPEN_MODAL: 'OPEN_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
   MODAL_INFO_OPEN: 'MODAL_INFO_OPEN',
   MODAL_INFO_CLOSE: 'MODAL_INFO_CLOSE',
   MODAL_CALENDAR_OPEN: 'MODAL_CALENDAR_OPEN',
@@ -6,6 +8,16 @@ export const modalActionTypes = {
   MODAL_DELETE_OPEN: 'MODAL_DELETE_OPEN',
   MODAL_DELETE_CLOSE: 'MODAL_DELETE_CLOSE'
 };
+
+export const openModal = () => ({
+  type: modalActionTypes.OPEN_MODAL,
+  payload: true
+});
+
+export const closeModal = () => ({
+  type: modalActionTypes.CLOSE_MODAL,
+  payload: false
+});
 
 export const openInfoModal = () => ({
   type: modalActionTypes.MODAL_INFO_OPEN,

@@ -13,6 +13,9 @@ import Calendar from '../../components/Calendar/Calendar';
 import TaskContainer from '../../components/Task/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
 import Header from '../../components/Header/Header';
+import Modal from '../../components/Modal/Modal';
+import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
+import InfoPop from '../../components/InfoPop/InfoPop';
 
 // import actions and selectors
 import { loginSuccess } from '../../redux/actions/authActions';
@@ -40,7 +43,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader } = this.props;
+    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
 
     return (
       <>
@@ -71,6 +74,13 @@ class Dashboard extends Component {
             )}
           </>
         )}
+        {modal && (
+          <Modal>
+            {modalInfo && <InfoPop />}
+            {modalCalendar && <Calendar />}
+            {modalDelete && <PopUpConfirmDelete />}
+          </Modal>
+        )}
       </>
     );
   }
@@ -78,7 +88,11 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   token: getToken(state),
-  loader: getLoader(state)
+  loader: getLoader(state),
+  modalInfo: state.modal.modalInfo,
+  modalCalendar: state.modal.modalCalendar,
+  modalDelete: state.modal.modalDelete,
+  modal: state.modal.modal
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteTask } from '../../redux/actions/tasksActions';
+import { closeModal, closeDeleteModal } from '../../redux/actions/modalAction';
 import { getToken } from '../../redux/selectors/selectors';
 import styles from './PopUpConfirmDelete.module.css';
 
@@ -13,7 +14,7 @@ class PopUpConfirmDelete extends Component {
   state = {};
 
   render() {
-    const { onDeleteTask, token, _id } = this.props;
+    const { onDeleteTask, token, _id, cancelDelete } = this.props;
 
     return (
       <div className={container}>
@@ -22,7 +23,9 @@ class PopUpConfirmDelete extends Component {
           <button className={btnDeleteStyle.join(' ')} onClick={() => onDeleteTask(_id, token)}>
             Удалить
           </button>
-          <button className={btnCancelStyle.join(' ')}>Отмена</button>
+          <button className={btnCancelStyle.join(' ')} onClick={cancelDelete}>
+            Отмена
+          </button>
         </div>
       </div>
     );
@@ -34,7 +37,11 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-  onDeleteTask: (id, token) => dispatch(deleteTask({ id, token }))
+  onDeleteTask: (id, token) => dispatch(deleteTask({ id, token })),
+  cancelDelete: () => {
+    dispatch(closeModal());
+    dispatch(closeDeleteModal());
+  }
 });
 
 export default connect(

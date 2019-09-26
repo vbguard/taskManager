@@ -1,6 +1,7 @@
 import { modalActionTypes } from '../actions/modalAction';
 
 const initialState = {
+  modal: false,
   modalInfo: false,
   modalCalendar: false,
   modalDelete: false
@@ -8,6 +9,10 @@ const initialState = {
 
 export const modalReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case modalActionTypes.OPEN_MODAL:
+      return { ...state, modal: payload };
+    case modalActionTypes.CLOSE_MODAL:
+      return { ...state, modal: payload };
     case modalActionTypes.MODAL_INFO_OPEN:
       return { ...state, modalInfo: payload };
     case modalActionTypes.MODAL_INFO_CLOSE:

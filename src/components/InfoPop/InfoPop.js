@@ -1,5 +1,5 @@
-import React, { Component, createRef } from 'react';
-import { closeInfoModal } from '../../redux/actions/modalAction';
+import React, { Component } from 'react';
+import { closeInfoModal, closeModal } from '../../redux/actions/modalAction';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ import Icon from '../Icon/Icon';
 
 const {
   infoContainer,
-  overlay,
   contentInfo,
   iconContainer,
   hyphen,
@@ -39,68 +38,43 @@ class InfoPop extends Component {
     windowWidth: PropTypes.number.isRequired
   };
 
-  backdropeRef = createRef();
-
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyPress);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyPress);
-  }
-
-  handleKeyPress = e => {
-    const { closeModal } = this.props;
-    if (e.code !== 'Escape') return;
-    closeModal();
-  };
-
-  handleBackDropClick = e => {
-    const { closeModal } = this.props;
-    const { current } = this.backdropeRef;
-    if (current && e.target !== current) return;
-    closeModal();
-  };
-
   render() {
     const { windowWidth, closeModal } = this.props;
 
     return (
-      <div className={overlay} onClick={this.handleBackDropClick} ref={this.backdropeRef}>
-        <div className={infoContainer}>
-          <div className={header}>
-            <Icon icon="Info" className={svgInfo} />
-            <p className={titleInfo}>Информация</p>
-            <button type="button" className={buttonClose} onClick={closeModal}>
-              <Icon icon="Clear" className={svgClear} />
-            </button>
-          </div>
-          <div className={contentInfo}>
-            {windowWidth >= 768 && <h1 className={title}>Управляйте своими делами с TaskTracker</h1>}
-            <ul className={list}>
-              <li className={listItem}>
-                <div className={iconContainer}>
-                  <p className={addIcon}>+</p>
-                </div>
-                <p className={hyphen}>-</p>
-                <p className={text}>Добавить новую задачу</p>
-              </li>
-              <li className={listItem}>
-                <div className={iconContainer}>
-                  <p className={numberStyleOrange.join(' ')}>1</p>
-                </div>
-                <p className={hyphen}>-</p>
-                <p className={text}>Количество повторяющихся задач</p>
-              </li>
-              <li className={listItem}>
-                <div className={iconContainer}>
-                  <p className={numberStyleGreen.join(' ')}>2</p>
-                </div>
-                <p className={hyphen}>-</p>
-                <p className={text}>Количество неповторяющихся задач</p>
-              </li>
-            </ul>
-          </div>
+      <div className={infoContainer}>
+        <div className={header}>
+          <Icon icon="Info" className={svgInfo} />
+          <p className={titleInfo}>Информация</p>
+          <button type="button" className={buttonClose} onClick={closeModal}>
+            <Icon icon="Clear" className={svgClear} />
+          </button>
+        </div>
+        <div className={contentInfo}>
+          {windowWidth >= 768 && <h1 className={title}>Управляйте своими делами с TaskTracker</h1>}
+          <ul className={list}>
+            <li className={listItem}>
+              <div className={iconContainer}>
+                <p className={addIcon}>+</p>
+              </div>
+              <p className={hyphen}>-</p>
+              <p className={text}>Добавить новую задачу</p>
+            </li>
+            <li className={listItem}>
+              <div className={iconContainer}>
+                <p className={numberStyleOrange.join(' ')}>1</p>
+              </div>
+              <p className={hyphen}>-</p>
+              <p className={text}>Количество повторяющихся задач</p>
+            </li>
+            <li className={listItem}>
+              <div className={iconContainer}>
+                <p className={numberStyleGreen.join(' ')}>2</p>
+              </div>
+              <p className={hyphen}>-</p>
+              <p className={text}>Количество неповторяющихся задач</p>
+            </li>
+          </ul>
         </div>
       </div>
     );
@@ -108,7 +82,10 @@ class InfoPop extends Component {
 }
 
 const mDTP = dispatch => ({
-  closeModal: () => dispatch(closeInfoModal())
+  closeModal: () => {
+    dispatch(closeModal());
+    dispatch(closeInfoModal());
+  }
 });
 
 export default compose(

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Header.module.css';
 import Icon from '../Icon/Icon';
-import InfoPop from '../../components/InfoPop/InfoPop';
-import { openInfoModal } from '../../redux/actions/modalAction.js';
+import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
 import { logout } from '../../redux/actions/authOperations';
 import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 
@@ -11,7 +10,7 @@ class Header extends Component {
   state = {};
 
   render() {
-    const { match, modal, openModal, nickname } = this.props;
+    const { match, openModal, openCalendar, nickname } = this.props;
     return (
       <div>
         {match.path.includes('/login') && (
@@ -36,10 +35,9 @@ class Header extends Component {
               <Icon icon="Logout" onClick={this.props.logout} className={styles.exitBtn} />
             </nav>
             <div className={styles.informBtn}>
-              <Icon icon="Calendar" className={styles.informSign} />
+              <Icon icon="Calendar" className={styles.informSign} onClick={openCalendar} />
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
             </div>
-            {modal && <InfoPop />}
           </div>
         )}
       </div>
@@ -53,7 +51,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openModal: () => dispatch(openInfoModal()),
+  openModal: () => {
+    dispatch(openModal());
+    dispatch(openInfoModal());
+  },
+  openCalendar: () => {
+    dispatch(openModal());
+    dispatch(openCalendarModal());
+  },
   logout: () => dispatch(logout())
 });
 
