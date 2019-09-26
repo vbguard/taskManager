@@ -35,7 +35,6 @@ export const fetchPosts = async token => {
 };
 
 export const requestDeleteTask = async credentials => {
-  console.log(credentials);
   const { id, token } = credentials;
   setAuthToken(token);
   const res = await axiosRequest.delete(api.url.deleteTask(id));

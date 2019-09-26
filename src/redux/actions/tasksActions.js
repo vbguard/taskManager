@@ -1,13 +1,12 @@
-import { fetchPosts, requestDeleteTask } from "../../utils/requests";
-
+import { fetchPosts, requestDeleteTask } from '../../utils/requests';
 
 export const tasksTypes = {
-  FETCH_TASKS_START: "FETCH_TASKS_START",
-  FETCH_TASKS_SUCCESS: "FETCH_TASKS_SUCCESS",
-  FETCH_TASKS_ERROR: "FETCH_TASKS_ERROR",
-  DELETE_TASK_START: "DELETE_TASK_START",
-  DELETE_TASK_SUCCESS: "DELETE_TASK_SUCCESS",
-  DELETE_TASK_ERROR: "DELETE_TASK_ERROR"
+  FETCH_TASKS_START: 'FETCH_TASKS_START',
+  FETCH_TASKS_SUCCESS: 'FETCH_TASKS_SUCCESS',
+  FETCH_TASKS_ERROR: 'FETCH_TASKS_ERROR',
+  DELETE_TASK_START: 'DELETE_TASK_START',
+  DELETE_TASK_SUCCESS: 'DELETE_TASK_SUCCESS',
+  DELETE_TASK_ERROR: 'DELETE_TASK_ERROR'
 };
 
 export const fetchTasksStart = () => ({
@@ -51,6 +50,6 @@ export const deleteTaskError = error => ({
 export const deleteTask = data => dispatch => {
   dispatch(deleteTaskStart());
   requestDeleteTask(data)
-    .then(resp => dispatch(deleteTaskSuccess(resp.data.task.id)))
+    .then(resp => dispatch(deleteTaskSuccess(resp.data.taskId)))
     .catch(error => dispatch(deleteTaskError(error)));
 };

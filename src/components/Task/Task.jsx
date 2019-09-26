@@ -54,9 +54,9 @@ class Task extends Component {
                                 className={isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
                                     <Icon icon='Loop'/>
                             </button>
-                            <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                            {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
                                 {loopDates}
-                            </p>
+                            </p> */}
                         </>)}
                     </div>
 
