@@ -7,7 +7,6 @@ import Icon from '../Icon/Icon';
 import s from './TaskContainer.module.css';
 
 const TaskContainer = props => {
-  console.log(props)
   return (
   <div className={s.taskContainer}>
     <TaskList />
