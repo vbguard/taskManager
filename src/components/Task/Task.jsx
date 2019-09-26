@@ -8,19 +8,18 @@ import Icon from '../../components/Icon/Icon';
 
 const refactoringProps = (props) => {
     const {
-        isDone,
         dates,
         title,
         description,
-        taskNumber
+        taskNumber,
+        isRepeat
       } = props.task;
 
     const refactoringProps = {
-        isComplete: isDone,
         loopDates: dates,
         taskHeader: (!title) ? 'назва_таски' : title,
         taskDescription: (!description) ? 'опис_таски' : description,
-        isLoop: dates.length>1 ? true : false,
+        isRepeat,
         taskNumber: (!taskNumber) ? 'номер_таски' : taskNumber,
     }
     return refactoringProps;
@@ -29,12 +28,12 @@ const refactoringProps = (props) => {
 
 class Task extends Component {
     render() {
-        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, isComplete, onEdit, onCompltete}=refactoringProps(this.props);
+        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, onComplete }=refactoringProps(this.props);
         const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
         return (
             <>
               <div className={styles.task}>
-                <div className={isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
+                <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
                     <div className={styles.numberContainer}>
                         <p className={styles.headerNumber}>{taskNumber}. </p>
                     </div>
@@ -50,13 +49,13 @@ class Task extends Component {
                         {isLoop &&(<>
                             <button
                                 type="button"
-                                disabled={isComplete ? true : false}
-                                className={isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
+                                disabled={loopDates[0].isComplete? true : false}
+                                className={loopDates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
                                     <Icon icon='Loop'/>
                             </button>
-                            <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                            {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
                                 {loopDates}
-                            </p>
+                            </p> */}
                         </>)}
                     </div>
 
@@ -69,12 +68,12 @@ class Task extends Component {
                         </button>
                         {windowWidth>768 ? <p>Редактировать</p>:null}
                         <button type="button"
-                            disabled={isComplete ? true : false}
-                            className={isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                            onClick={onCompltete}>
+                            disabled={loopDates[0].isComplete ? true : false}
+                            className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                            onClick={onComplete}>
                                 <Icon icon='Done'/>
                         </button>
-                        {windowWidth>768 ? (isComplete ? <p>Выполнено</p> : <p>Выполнить</p>) : null}
+                        {windowWidth>768 ? (loopDates[0].isComplete ? <p>Выполнено</p> : <p>Выполнить</p>) : null}
                     </div>
                 </div>
             </div>
@@ -93,12 +92,12 @@ Task.propTypes = {task: PropTypes.shape({
     onCompltete: PropTypes.func})
 }
 
-Task.defaulProps = {
+Task.defaultProps = {
     taskHeader: '',
     description: 'опис_таски',
     title: 'назва_таски',
     onEdit: () => {},
-    onCompltete:  () => {},
+    onComplete:  () => {},
 }
 
 export default windowSize(Task);

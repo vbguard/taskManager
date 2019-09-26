@@ -1,6 +1,7 @@
 export const url = {
-  // example
   loginUser: () => `/auth`,
   getTasks: () => `/tasks`,
-  addForm: () => `/task/create`
+  deleteTask: taskId => `/task/${taskId}`,
+  updateTask: taskId => `/task/${taskId}`,
+  addForm: () => `/tasks`
 };
