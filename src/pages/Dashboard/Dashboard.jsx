@@ -10,10 +10,12 @@ import Loader from 'react-loader-spinner';
 
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
-import InfoPop from '../../components/InfoPop/InfoPop';
 import TaskContainer from '../../components/Task/TaskContainer';
 import AddForm from '../../components/AddForm/AddForm';
 import Header from '../../components/Header/Header';
+import Modal from '../../components/Modal/Modal';
+import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
+import InfoPop from '../../components/InfoPop/InfoPop';
 
 // import pages
 
@@ -22,7 +24,7 @@ import CalendarPage from '../CalendarPage/CalendarPage';
 // import actions and selectors
 import { loginSuccess } from '../../redux/actions/authActions';
 import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader, getModal } from '../../redux/selectors/selectors';
+import { getToken, getLoader } from '../../redux/selectors/selectors';
 
 // add styles
 import styles from './Dashboard.module.css';
@@ -45,7 +47,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal } = this.props;
+    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
 
     return (
       <>
@@ -80,7 +82,13 @@ class Dashboard extends Component {
             )}
           </>
         )}
-        {modal && <InfoPop />}
+        {modal && (
+          <Modal>
+            {modalInfo && <InfoPop />}
+            {modalCalendar && <Calendar />}
+            {modalDelete && <PopUpConfirmDelete />}
+          </Modal>
+        )}
       </>
     );
   }
@@ -89,7 +97,10 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   token: getToken(state),
   loader: getLoader(state),
-  modal: getModal(state)
+  modalInfo: state.modal.modalInfo,
+  modalCalendar: state.modal.modalCalendar,
+  modalDelete: state.modal.modalDelete,
+  modal: state.modal.modal
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './Header.module.css';
-import windowSize from 'react-window-size';
 import Icon from '../Icon/Icon';
-import InfoPop from '../../components/InfoPop/InfoPop';
-import { openModal } from '../../redux/actions/modalAction.js';
+import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
 import { logout } from '../../redux/actions/authOperations';
-import { getModal, getNickname } from '../../redux/selectors/selectors';
+import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
+import { compose } from 'redux';
+import windowSize from 'react-window-size';
 import { CalendarButtonMobile } from '../CalendarButton/CalendarButton';
 
 class Header extends Component {
   state = {};
 
   render() {
-    const { match, modal, openModal, nickname, windowWidth } = this.props;
+    const { match, openModal, openCalendar, nickname, windowWidth } = this.props;
+
     return (
       <div>
         {match.path.includes('/login') && (
@@ -39,10 +39,10 @@ class Header extends Component {
               <Icon icon="Logout" onClick={this.props.logout} className={styles.exitBtn} />
             </nav>
             <div className={styles.informBtn}>
+              <Icon icon="Calendar" className={styles.informSign} onClick={openCalendar} />
               {windowWidth < 768 ? <CalendarButtonMobile className={styles.informSign} /> : ''}
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
             </div>
-            {modal && <InfoPop />}
           </div>
         )}
       </div>
@@ -51,12 +51,19 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  modal: getModal(state),
+  modal: getInfoModal(state),
   nickname: getNickname(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  openModal: () => dispatch(openModal()),
+  openModal: () => {
+    dispatch(openModal());
+    dispatch(openInfoModal());
+  },
+  openCalendar: () => {
+    dispatch(openModal());
+    dispatch(openCalendarModal());
+  },
   logout: () => dispatch(logout())
 });
 
