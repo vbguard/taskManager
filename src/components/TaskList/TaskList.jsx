@@ -9,8 +9,7 @@ import styles from './TaskList.module.css';
 
 
 const TaskList = ({ tasks }) => {
-  return (
-    <ul className={styles.list}>
+  return ((tasks && tasks.length) ? (<ul className={styles.list}>
       {tasks &&
         tasks.map(task => {
           return (
@@ -19,9 +18,9 @@ const TaskList = ({ tasks }) => {
             </li>
           );
         })}
-    </ul>
+    </ul>): <p className={styles.intro}>Нет запланированных задач... Время приступить к управлению своей жизнью!</p>
   );
-};
+  };
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(Object)

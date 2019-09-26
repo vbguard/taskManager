@@ -24,3 +24,16 @@ li {
 li:last-child{
     margin-bottom: 0;
 }
+
+.intro{
+  font-family: var(--primaryFontFamily);
+  font-size: var(--mobileFontSize);
+  font-weight: 800;
+
+}
+
+@media (min-width: 768px) {
+  .intro{
+    font-size: var(--tabletFontSize);
+  }
+}
