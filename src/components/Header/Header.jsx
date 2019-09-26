@@ -5,12 +5,16 @@ import Icon from '../Icon/Icon';
 import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
 import { logout } from '../../redux/actions/authOperations';
 import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
+import { compose } from 'redux';
+import windowSize from 'react-window-size';
+import { CalendarButtonMobile } from '../CalendarButton/CalendarButton';
 
 class Header extends Component {
   state = {};
 
   render() {
-    const { match, openModal, openCalendar, nickname } = this.props;
+    const { match, openModal, openCalendar, nickname, windowWidth } = this.props;
+
     return (
       <div>
         {match.path.includes('/login') && (
@@ -36,6 +40,7 @@ class Header extends Component {
             </nav>
             <div className={styles.informBtn}>
               <Icon icon="Calendar" className={styles.informSign} onClick={openCalendar} />
+              {windowWidth < 768 ? <CalendarButtonMobile className={styles.informSign} /> : ''}
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
             </div>
           </div>
@@ -62,7 +67,10 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  windowSize
 )(Header);
