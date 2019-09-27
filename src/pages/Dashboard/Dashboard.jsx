@@ -11,7 +11,7 @@ import Loader from 'react-loader-spinner';
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
 import TaskContainer from '../../components/Task/TaskContainer';
-import AddForm from '../../components/AddForm/AddForm';
+import AddForm from '../../components/EditTask/EditTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';

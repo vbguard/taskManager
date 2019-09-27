@@ -11,5 +11,23 @@ import { ReactComponent as ArrowRight } from '../icons/keyboard_arrow_right.svg'
 import { ReactComponent as Loop } from '../icons/loop.svg';
 import { ReactComponent as List } from '../icons/view_list.svg';
 import { ReactComponent as Edit } from '../icons/edit.svg';
+import { ReactComponent as Back } from '../icons/back.svg';
+import { ReactComponent as Next } from '../icons/next.svg';
 
-export { Arrow, Edit, Exit, Logout, ArrowBack, Calendar, Clear, Delete, Done, Info, ArrowRight, Loop, List };
+export {
+  Arrow,
+  Edit,
+  Exit,
+  Logout,
+  ArrowBack,
+  Calendar,
+  Clear,
+  Delete,
+  Done,
+  Info,
+  ArrowRight,
+  Loop,
+  List,
+  Back,
+  Next
+};
