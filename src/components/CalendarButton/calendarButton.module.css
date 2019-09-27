@@ -39,6 +39,13 @@ a {
 	box-shadow: 0 0 1px 1px var(--dusty-orange);
 }
 
+.oneDayTaskBtn {
+	widows: 20px;
+	height: 20px;
+	border: 1px solid var(--dusty-orange);
+	border-radius: 5px;
+}
+
 @media (min-width: 768px) {
 	.btnCalendar {
 		margin: 45px 0;
