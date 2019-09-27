@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -11,12 +11,11 @@ import Loader from 'react-loader-spinner';
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
 import TaskContainer from '../../components/Task/TaskContainer';
-import AddForm from '../../components/AddForm/AddForm';
+import AddTask from '../../components/AddTask/AddTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
 import InfoPop from '../../components/InfoPop/InfoPop';
-
 // import pages
 
 import CalendarPage from '../CalendarPage/CalendarPage';
@@ -61,14 +60,12 @@ class Dashboard extends Component {
                 <Switch>
                   <Route path="/dashboard" exact component={TaskContainer} />
                   <Route path="/dashboard/calendar" component={CalendarPage} />
-                  <Route path="/dashboard/add" component={AddForm} />
+                  <Route path="/dashboard/add" component={AddTask} />
                 </Switch>
               </>
             )}
             {windowWidth >= 1024 && (
               <>
-                {/* // router => /dashboard @DashboardContainer
-                    // router => /dashboard/add @AddForm */}
                 <div className={styles.dashboardWrap}>
                   <div className={styles.tasksWrapper}>
                     <TaskContainer />
@@ -76,8 +73,10 @@ class Dashboard extends Component {
                   <div className={styles.calendarWrapper}>
                     <Calendar />
                   </div>
+                  <Switch>
+                    <Route path="/dashboard" exact component={TaskContainer} />
+                  </Switch>
                 </div>
-                <Route path="/dashboard/add" component={AddForm} />
               </>
             )}
           </>
