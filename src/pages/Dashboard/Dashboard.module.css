@@ -19,3 +19,15 @@
 	width: 40%;
 }
 
+.wrapper {
+	position: relative;
+	height: 100vh;
+}
+
+.loader {
+	position: absolute;
+	position: absolute;
+    top: 30%;  
+    left: 50%; 
+    transform: translate(-50%, -30%);
+}
