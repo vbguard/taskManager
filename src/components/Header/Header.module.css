@@ -64,6 +64,23 @@
   content: "";
 }
 
+.logoutSign {
+  position: relative;
+  fill: var(--pale-grey);
+  cursor: pointer;
+  padding: 0 15px;
+  line-height: 1;
+}
+
+.logoutSign::before {
+  position: absolute;
+  height: 30px;
+  transform: translateY(-11%);
+  left: 0;
+  border-right:  2px solid var(--pale-grey);
+  content: "";
+}
+
 .exitWord {
   display: none;
   cursor: pointer;
@@ -83,27 +100,16 @@
 
 .UserName {
   display: none;
-  padding: 0 15px;
-  position: relative;
+  padding-right: 15px;
 }
 
-.UserName::before {
-  position: absolute;
-  left: 0px;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  height: 30px;
-  border-left:  2px solid var(--pale-grey);
-  content: "";
-}
-
-.exitWordWrapper {
+/* .exitWordWrapper {
   position: relative;
   padding-left: 15px;
   outline: 5  px solid violet;
-}
+} */
 
-.exitWordWrapper::before {
+/* .exitWordWrapper::before {
   position: absolute;
   height: 30px;
   top: 50%;
@@ -112,7 +118,7 @@
   border-left:  2px solid var(--pale-grey);
   color: blue;
   content: "";
-}
+} */
 
 .exitBtn {
   width: 21px;

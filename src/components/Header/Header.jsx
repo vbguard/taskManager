@@ -32,11 +32,14 @@ class Header extends Component {
             <nav className={`${styles.nav} Header-Dashboard-UserName-Mob`}>
               <div className={styles.UserNameLetter}>{nickname[0].toUpperCase()}</div>
               <div className={styles.UserName}>{nickname}</div>
-              <div className={styles.exitWordWrapper} onClick={logout}>
-                <span className={styles.exitWord}>Выйти</span>
-              </div>
-
-              <Icon icon="Logout" onClick={logout} className={styles.exitBtn} />
+              <span className={styles.logoutSign}>
+                <Icon icon="Logout" onClick={logout} className={styles.exitBtn} />
+              </span>
+              {/* <div className={styles.exitWordWrapper}> */}
+              <span className={styles.exitWord} onClick={logout}>
+                Выйти
+              </span>
+              {/* </div> */}
             </nav>
 
             <div className={`${styles.informBtn}  Header-Dashboard-UserName-Mob`}>

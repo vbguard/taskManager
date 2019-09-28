@@ -12,11 +12,12 @@ import Loader from 'react-loader-spinner';
 import Calendar from '../../components/Calendar/Calendar';
 import TaskContainer from '../../components/TaskContainer/TaskContainer';
 import AddTask from '../../components/AddTask/AddTask';
+import EditTask from '../../components/EditTask/EditTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
 import InfoPop from '../../components/InfoPop/InfoPop';
-
+import WrapDesktop from '../../components/WrapDesktop/WrapDesktop';
 // import pages
 
 import CalendarPage from '../CalendarPage/CalendarPage';
@@ -24,10 +25,11 @@ import CalendarPage from '../CalendarPage/CalendarPage';
 // import actions and selectors
 import { loginSuccess } from '../../redux/actions/authActions';
 import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader } from '../../redux/selectors/selectors';
+import { getToken, getLoader, getTasks } from '../../redux/selectors/selectors';
 
 // add styles
 import styles from './Dashboard.module.css';
+
 class Dashboard extends Component {
   state = {};
 
@@ -47,40 +49,33 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
+    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, taskId } = this.props;
 
     return (
       <>
         <Header match={this.props.match} location={this.props.location} />
         <div className={styles.wrapper}>
           {loader ? (
-            <div className={styles.loader}>
-              <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
-            </div>
+            <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
           ) : (
             <>
-              {windowWidth < 1280 && (
+              {windowWidth < 1024 && (
                 <>
                   <Switch>
                     <Route path="/dashboard" exact component={TaskContainer} />
                     <Route path="/dashboard/calendar" component={CalendarPage} />
                     <Route path="/dashboard/add" component={AddTask} />
+                    <Route path="/dashboard/edit" component={EditTask} />
                   </Switch>
                 </>
               )}
-              {windowWidth >= 1280 && (
+              {windowWidth >= 1024 && (
                 <>
-                  {/* // router => /dashboard @DashboardContainer
-                    // router => /dashboard/add @AddForm */}
-                  <div className={styles.dashboardWrap}>
-                    <div className={styles.tasksWrapper}>
-                      <TaskContainer />
-                    </div>
-                    <div className={styles.calendarWrapper}>
-                      <Calendar />
-                    </div>
-                  </div>
-                  <Route path="/dashboard/add" component={AddTask} />
+                  <Switch>
+                    <Route path="/dashboard" exact component={WrapDesktop} />
+                    <Route path="/dashboard/add" component={AddTask} />
+                    <Route path="/dashboard/edit" component={EditTask} />
+                  </Switch>
                 </>
               )}
             </>
@@ -104,7 +99,8 @@ const mapStateToProps = state => ({
   modalInfo: state.modal.modalInfo,
   modalCalendar: state.modal.modalCalendar,
   modalDelete: state.modal.modalDelete,
-  modal: state.modal.modal
+  modal: state.modal.modal,
+  taskId: getTasks(state)
 });
 
 const mapDispatchToProps = dispatch => ({
