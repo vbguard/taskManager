@@ -1,18 +1,20 @@
-import { fetchPosts, requestDeleteTask } from '../../utils/requests';
+import { closeModal } from '../actions/modalAction';
 
 export const tasksTypes = {
-  FETCH_TASKS_START: 'FETCH_TASKS_START',
+  FETCH_TASKS_REQUEST: 'FETCH_TASKS_REQUEST',
   FETCH_TASKS_SUCCESS: 'FETCH_TASKS_SUCCESS',
   FETCH_TASKS_ERROR: 'FETCH_TASKS_ERROR',
   DELETE_TASK_START: 'DELETE_TASK_START',
   DELETE_TASK_SUCCESS: 'DELETE_TASK_SUCCESS',
-  DELETE_TASK_ERROR: 'DELETE_TASK_ERROR'
+  DELETE_TASK_ERROR: 'DELETE_TASK_ERROR',
+  TASK_DONE_START: 'TASK_DONE_START',
+  TASK_DONE_SUCCESS: 'TASK_DONE_SUCCESS',
+  TASK_DONE_ERROR: 'TASK_DONE_ERROR',
+  EDIT_TASK_START: 'EDIT_TASK_START',
+  EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
+  EDIT_TASK_ERROR: 'EDIT_TASK_ERROR',
+  SEARCH_TASKS: 'SEARCH_TASKS'
 };
-
-export const fetchTasksStart = () => ({
-  type: tasksTypes.FETCH_TASKS_START,
-  payload: true
-});
 
 export const fetchTasksSuccess = tasks => ({
   type: tasksTypes.FETCH_TASKS_SUCCESS,
@@ -24,13 +26,44 @@ export const fetchTasksError = error => ({
   payload: error.message
 });
 
-export const getUserTasks = token => dispatch => {
-  dispatch(fetchTasksStart());
+export const getUserTasks = () => ({
+  type: tasksTypes.FETCH_TASKS_REQUEST,
+  payload: {
+    request: {
+      method: 'GET',
+      url: '/tasks'
+    },
 
-  fetchPosts(token)
-    .then(resp => dispatch(fetchTasksSuccess(resp.data.tasks)))
-    .catch(error => dispatch(fetchTasksError(error)));
-};
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(fetchTasksSuccess(response.data.tasks));
+      },
+      onError({ dispatch, error }) {
+        dispatch(fetchTasksError(error));
+      }
+    }
+  }
+});
+
+export const deleteTask = taskId => ({
+  type: tasksTypes.DELETE_TASK_START,
+  payload: {
+    request: {
+      method: 'DELETE',
+      url: `/task/${taskId}`
+    },
+
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(deleteTaskSuccess(response.data.taskId));
+        dispatch(closeModal());
+      },
+      onError({ dispatch, error }) {
+        dispatch(deleteTaskError(error));
+      }
+    }
+  }
+});
 
 export const deleteTaskStart = () => ({
   type: tasksTypes.DELETE_TASK_START,
@@ -47,9 +80,70 @@ export const deleteTaskError = error => ({
   payload: error.message
 });
 
-export const deleteTask = data => dispatch => {
-  dispatch(deleteTaskStart());
-  requestDeleteTask(data)
-    .then(resp => dispatch(deleteTaskSuccess(resp.data.taskId)))
-    .catch(error => dispatch(deleteTaskError(error)));
-};
+export const editTask = (data, taskId) => ({
+  type: tasksTypes.EDIT_TASK_START,
+  payload: {
+    request: {
+      method: 'PATCH',
+      url: `/task/${taskId}`
+    },
+
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(editTaskSuccess(data, response.data.taskId));
+      },
+      onError({ dispatch, error }) {
+        dispatch(editTaskError(error));
+      }
+    }
+  }
+});
+
+export const editTaskStart = () => ({
+  type: tasksTypes.EDIT_TASK_START,
+  payload: true
+});
+
+export const editTaskSuccess = id => ({
+  type: tasksTypes.EDIT_TASK_SUCCESS,
+  payload: id
+});
+
+export const editTaskError = error => ({
+  type: tasksTypes.EDIT_TASK_ERROR,
+  payload: error.message
+});
+
+export const requestDoneTask = (data, taskId) => ({
+  type: tasksTypes.TASK_DONE_START,
+  payload: {
+    request: {
+      method: 'PATCH',
+      url: `/task/${taskId}`
+    },
+
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(doneTaskSuccess(data, response.data.taskId));
+      },
+      onError({ dispatch, error }) {
+        dispatch(doneTaskError(error));
+      }
+    }
+  }
+});
+
+export const doneTaskSuccess = id => ({
+  type: tasksTypes.TASK_DONE_SUCCESS,
+  payload: id
+});
+
+export const doneTaskError = error => ({
+  type: tasksTypes.TASK_DONE_ERROR,
+  payload: error.message
+});
+
+export const searchTasks = search => ({
+  type: tasksTypes.SEARCH_TASKS,
+  payload: search
+});

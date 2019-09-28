@@ -1,32 +1,38 @@
 .wrapperForLogin {
   width: 100%;
   background-color: var(--dark-grey-blue);
-  background-image: url(../../assets/bg-header.jpg);
+  background: url(../../assets/bg-header.jpg) no-repeat top center fixed; 
 }
 
 .wrapperForDashboard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: baseline;
   justify-content: space-between;
   width: 100%;
   background-color: var(--dark-grey-blue);
 }
 
-.LoginRegisterLogoMob {
+.LoginRegisterLogo {
   margin: 0;
   padding-top: 18px;
-  padding-left: 5%;
 }
 
-.LoginRegisterTaglineMob {
+.LoginRegisterTagline {
   margin: 0;
+}
+
+.DashboardLogo {
+  padding: 0 15px;
+  position: relative;
 }
 
 .informBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
   width: 100%;
-  text-align: center;
   height: 40px;
   box-shadow: 0px 2px 2px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--light-blue-grey);
@@ -37,30 +43,88 @@
 .informSign {
   fill: var(--pale-grey);
   cursor: pointer;
+  margin-left: 15px;
+  line-height: 1;
+}
+
+.calendarSign {
+  position: relative;
+  fill: var(--pale-grey);
+  cursor: pointer;
+  padding: 0 15px;
+  line-height: 1;
+}
+
+.calendarSign::after {
+  position: absolute;
+  height: 30px;
+  transform: translateY(-11%);
+  right: 0;
+  border-right:  2px solid var(--pale-grey);
+  content: "";
+}
+
+.logoutSign {
+  position: relative;
+  fill: var(--pale-grey);
+  cursor: pointer;
+  padding: 0 15px;
+  line-height: 1;
+}
+
+.logoutSign::before {
+  position: absolute;
+  height: 30px;
+  transform: translateY(-11%);
+  left: 0;
+  border-right:  2px solid var(--pale-grey);
+  content: "";
+}
+
+.exitWord {
+  display: none;
+  cursor: pointer;
 }
 
 .UserNameLetter {
-  border-width: 1px;
-  border-color: var(--light-blue-grey);
+  border-width: 2px;
+  border-color: var(--pale-grey);
   border-style: solid;
   border-radius: 50%;
   line-height: 21px;
   width: 21px;
   height: 21px;
   vertical-align: middle;
+  margin: 0 15px;
 }
 
 .UserName {
   display: none;
+  padding-right: 15px;
 }
 
-.exitBtn {
-  width: 18px;
-  height: 18px;
-  fill: var(--light-blue-grey);
+/* .exitWordWrapper {
+  position: relative;
   padding-left: 15px;
-  padding-bottom: 2px;
-  padding-right: 5px;
+  outline: 5  px solid violet;
+} */
+
+/* .exitWordWrapper::before {
+  position: absolute;
+  height: 30px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-left:  2px solid var(--pale-grey);
+  color: blue;
+  content: "";
+} */
+
+.exitBtn {
+  width: 21px;
+  height: 21px;
+  fill: var(--pale-grey);
+  padding-top: 3px;
   cursor: pointer;
 }
 
@@ -68,10 +132,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.UserName {
-  display: none;
+  padding-right: 30px;
 }
 
 @media (min-width: 768px) {
@@ -79,15 +140,28 @@
     flex-wrap: nowrap;
   }
 
+  .exitWord {
+    display: inline;
+    padding-right: 15px;
+  }
+
   .informBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    text-align: center;
     margin: 0;
     padding: 0;
+    border: 0;
     width: auto;
-    background-color: inherit;
+    height: auto;
     order: 1;
     flex-grow: 1;
     text-align: left;
     box-shadow: none;
+    background-color: inherit;
+    
   }
 
   .nav {
@@ -97,4 +171,21 @@
   .UserName {
     display: inline;
   }
+
+  .DashboardLogo::after {
+    position: absolute;
+    height: 30px;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 0;
+    border-right:  2px solid var(--pale-grey);
+    content: "";
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapperForLogin {
+   background-size: contain;
+  }
+
 }
