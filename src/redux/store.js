@@ -2,9 +2,28 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
 import rootReducer from './reducer';
 import thunk from 'redux-thunk';
+import axios from 'axios';
+import axiosMiddleware from 'redux-axios-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const middleWares = [thunk];
+//=========== axios instance ===============================
+
+const client = axios.create({
+  baseURL: 'https://task-manager.goit.co.ua/api/',
+  responseType: 'json'
+});
+
+// Add a request interceptor
+client.interceptors.request.use(function(config) {
+  const token = store.getState().session.token;
+  config.headers.Authorization = `Bearer ${token}`;
+
+  return config;
+});
+
+//============================================================
+
+const middleWares = [thunk, axiosMiddleware(client)];
 const enhancer = composeWithDevTools(applyMiddleware(...middleWares));
 
 const configureStore = () => {

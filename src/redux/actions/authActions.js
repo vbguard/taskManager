@@ -1,3 +1,5 @@
+import * as notify from '../../utils/notification';
+
 export const authTypes = {
   AUTH_REQUEST: 'auth/AUTH_REQUEST',
   LOGIN_SUCCESS: 'auth/LOGIN_SUCCESS',
@@ -5,13 +7,11 @@ export const authTypes = {
   LOGOUT: 'auth/USER_LOGOUT'
 };
 
-export const authRequest = () => ({
-  type: authTypes.AUTH_REQUEST
-});
+//================ actions ===============================
 
-export const loginSuccess = response => ({
+export const loginSuccess = payload => ({
   type: authTypes.LOGIN_SUCCESS,
-  payload: response
+  payload: payload
 });
 
 export const loginError = error => ({
@@ -22,3 +22,29 @@ export const loginError = error => ({
 export const logoutSuccess = () => ({
   type: authTypes.LOGOUT
 });
+
+//==========  operations =================================
+
+export const authRequest = credential => ({
+  type: authTypes.AUTH_REQUEST,
+  payload: {
+    request: {
+      method: 'POST',
+      url: '/auth',
+      data: credential
+    },
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(loginSuccess(response.data));
+      },
+      onError({ dispatch, error }) {
+        notify.error('Wrong username or password');
+        dispatch(loginError(error));
+      }
+    }
+  }
+});
+
+export const logout = () => dispatch => {
+  dispatch(logoutSuccess());
+};

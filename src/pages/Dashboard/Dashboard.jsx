@@ -23,9 +23,8 @@ import WrapDesktop from '../../components/WrapDesktop/WrapDesktop';
 import CalendarPage from '../CalendarPage/CalendarPage';
 
 // import actions and selectors
-import { loginSuccess } from '../../redux/actions/authActions';
 import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader, getTasks } from '../../redux/selectors/selectors';
+import { getLoader, getTaskId } from '../../redux/selectors/selectors';
 
 // add styles
 import styles from './Dashboard.module.css';
@@ -44,8 +43,8 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    const { token, getUserTasks } = this.props;
-    getUserTasks(token);
+    const { getUserTasks } = this.props;
+    getUserTasks();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions);
@@ -97,18 +96,16 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  token: getToken(state),
   loader: getLoader(state),
   modalInfo: state.modal.modalInfo,
   modalCalendar: state.modal.modalCalendar,
   modalDelete: state.modal.modalDelete,
   modal: state.modal.modal,
-  taskId: getTasks(state)
+  taskId: getTaskId(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginSuccess: session => dispatch(loginSuccess(session)),
-  getUserTasks: token => dispatch(getUserTasks(token))
+  getUserTasks: () => dispatch(getUserTasks())
 });
 
 export default compose(
