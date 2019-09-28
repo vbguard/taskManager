@@ -9,7 +9,7 @@ import styles from './Task.module.css';
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
 import { requestDoneTask } from '../../redux/actions/tasksActions.js';
-import { getToken, getIdForEdit } from '../../redux/selectors/selectors';
+import { getToken, getTaskId } from '../../redux/selectors/selectors';
 
 const refactoringProps = props => {
   const { dates, title, description, taskNumber, isRepeat, _id } = props.task;
@@ -34,7 +34,7 @@ class Task extends Component {
     return (
       <>
         <div className={styles.task}>
-          <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
+          <div className={loopDates[0].isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
             <div className={styles.numberContainer}>
               <p className={styles.headerNumber}>{taskNumber}. </p>
             </div>
@@ -115,7 +115,7 @@ Task.defaultProps = {
 
 const mSTP = state => ({
   token: getToken(state),
-  id: getIdForEdit(state)
+  id: getTaskId(state)
 });
 
 const mDTP = dispatch => ({

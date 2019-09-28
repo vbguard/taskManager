@@ -1,6 +1,5 @@
-import { fetchAddForm } from '../../utils/requests';
-
 export const formTypes = {
+  ADD_TASK_FORM_REQUEST: 'ADD_TASK_FORM_REQUEST',
   ADD_TASK_FORM_SUCCESS: 'ADD_TASK_FORM_SUCCESS',
   ADD_TASK_FORM_LOADER: 'ADD_TASK_FORM_LOADER',
   ADD_TASK_FORM_ERROR: 'ADD_TASK_FORM_ERROR'
@@ -17,18 +16,25 @@ export const postTaskSuccess = task => ({
 });
 export const postTaskError = error => ({
   type: formTypes.ADD_TASK_FORM_ERROR,
-  payload: { error }
+  payload: error.message
 });
 
-export const addTask = data => (dispatch, getState) => {
-  const store = getState();
+export const addTask = data => ({
+  type: formTypes.ADD_TASK_FORM_REQUEST,
+  payload: {
+    request: {
+      method: 'POST',
+      url: '/tasks',
+      data
+    },
 
-  dispatch(postTaskStart(true));
-
-  fetchAddForm(data, store.session.token)
-    .then(response => {
-      dispatch(postTaskStart(false));
-      dispatch(postTaskSuccess(response.data.task));
-    })
-    .catch(error => dispatch(postTaskError(error)));
-};
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(postTaskSuccess(response.data.task));
+      },
+      onError({ dispatch, error }) {
+        dispatch(postTaskError(error));
+      }
+    }
+  }
+});

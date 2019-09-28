@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { auth } from "../../redux/actions/authOperations";
-import styles from "./AuthForm.module.css";
-import * as notify from "../../utils/notification";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { authRequest } from '../../redux/actions/authActions';
+import styles from './AuthForm.module.css';
+import * as notify from '../../utils/notification';
+import { getError } from './authFormSelectors';
 
 const INITIAL_STATE = {
-  nickname: "",
-  password: ""
+  nickname: '',
+  password: ''
 };
 
 class AuthForm extends Component {
@@ -18,23 +19,28 @@ class AuthForm extends Component {
   };
 
   handleSubmit = e => {
+    const { error } = this.props;
+
     e.preventDefault();
 
     const { nickname, password } = this.state;
 
     if (nickname.length < 5 || nickname.length > 15) {
-      notify.error("The nickname should be between 5 and 15 symbols");
+      notify.error('The nickname should be between 5 and 15 symbols');
       return;
     }
 
     if (password.length < 5 || password.length > 12) {
-      notify.error("The password should be between 5 and 12 symbols");
+      notify.error('The password should be between 5 and 12 symbols');
       return;
     }
 
     this.props.onSubmit({ ...this.state });
 
-    this.setState({ ...INITIAL_STATE });
+    if (error) {
+      this.setState({ ...this.state, password: '' });
+      return;
+    }
   };
 
   render() {
@@ -43,18 +49,11 @@ class AuthForm extends Component {
     return (
       <div className={styles.wrapper}>
         <form className={styles.registrationForm} onSubmit={this.handleSubmit}>
-          <h2 className={styles.title}>
-            Введите данные для регистрации или логинизации
-          </h2>
+          <h2 className={styles.title}>Введите данные для регистрации или логинизации</h2>
 
           <label className={styles.label}>
             <span className={styles.labelText}>Уникальный ник:</span>
-            <input
-              className={styles.input}
-              value={nickname}
-              name="nickname"
-              onChange={this.handleChange}
-            ></input>
+            <input className={styles.input} value={nickname} name="nickname" onChange={this.handleChange}></input>
           </label>
 
           <label className={styles.label}>
@@ -88,17 +87,21 @@ AuthForm.propTypes = {
 };
 
 AuthForm.defaulProps = {
-  nickname: "",
-  password: "",
+  nickname: '',
+  password: '',
   onSubmit: () => {},
   handleChange: () => {}
 };
 
+const mapStateToProps = state => ({
+  error: getError(state)
+});
+
 const mapDispatchToProps = {
-  onSubmit: auth
+  onSubmit: authRequest
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AuthForm);

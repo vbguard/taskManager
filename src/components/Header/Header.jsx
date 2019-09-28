@@ -11,7 +11,7 @@ import { CalendarButtonMobile } from '../CalendarButton/CalendarButton';
 import SearchTasks from '../SearchTasks/SearchTasks.jsx';
 
 import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
-import { logout } from '../../redux/actions/authOperations';
+import { logout } from '../../redux/actions/authActions';
 import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 
 class Header extends Component {

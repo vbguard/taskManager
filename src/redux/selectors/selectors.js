@@ -14,4 +14,4 @@ export const getDeleteModal = state => state.modal.modalDelete;
 
 export const getNickname = state => state.session.nickname;
 
-export const getIdForEdit = state => state.id;
+export const getTaskId = state => state.id;
