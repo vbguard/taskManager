@@ -79,7 +79,6 @@ class Dashboard extends Component {
                     <Route path="/dashboard/add" component={AddTask} />
                     <Route path="/dashboard/edit" component={EditTask} />
                   </Switch>
-                  <SortTask />
                 </>
               )}
             </>
