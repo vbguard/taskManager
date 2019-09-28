@@ -25,6 +25,16 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       };
     case tasksTypes.DELETE_TASK_ERROR:
       return { ...state, error: payload, loader: false };
+    case tasksTypes.EDIT_TASK_START:
+      return { ...state, loader: payload };
+    case tasksTypes.EDIT_TASK_SUCCESS:
+      return {
+        ...state,
+        loader: false,
+        tasks: state.tasks.find(el => el._id === payload)
+      };
+    case tasksTypes.EDIT_TASK_ERROR:
+      return { ...state, error: payload, loader: false };
     case formTypes.ADD_TASK_FORM_SUCCESS:
       const newTask = payload.task;
       return { ...state, tasks: [newTask, ...state.tasks] };

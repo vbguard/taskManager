@@ -7,21 +7,22 @@ import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
 
-
 const TaskList = ({ tasks }) => {
-  return (
-    <ul className={styles.list}>
+  return ((tasks && tasks.length) ? (<ul className={styles.list}>
       {tasks &&
         tasks.map(task => {
           return (
             <li key={task._id}>
-              <Task task={task} />
+              <Task task={task} taskId={task.id} />
             </li>
           );
         })}
-    </ul>
+    </ul>): (<div>
+        <p className={styles.intro}>Нет запланированных задач...</p>
+        <p className={styles.intro}>Время начать управлять своей жизнью!</p>
+      </div>)
   );
-};
+  };
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(Object)
