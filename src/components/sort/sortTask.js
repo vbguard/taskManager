@@ -6,14 +6,14 @@ class sortTask extends Component {
   state = {};
 
   componentDidMount() {
-    const { date } = this.props;
-    console.log(date);
+    const { dates } = this.props;
+    console.log(dates);
   }
 
   render() {
     return <h1>gg</h1>;
   }
 }
-const MSTP = state => ({ dates: getDate(state) });
+const MSTP = state => ({ dates:state.userTasks });
 
 export default connect(MSTP)(sortTask);
