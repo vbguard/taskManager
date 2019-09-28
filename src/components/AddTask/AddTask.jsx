@@ -4,7 +4,6 @@ import { addTask } from '../../redux/actions/formAction';
 import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
-import { openModal, openDeleteModal } from '../../redux/actions/modalAction';
 
 class AddForm extends Component {
   state = {
@@ -47,7 +46,7 @@ class AddForm extends Component {
 
   render() {
     const { title, description } = this.state;
-    const { confirmDelete } = this.props;
+
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
@@ -77,9 +76,6 @@ class AddForm extends Component {
             placeholder="Введите описание задачи"
           ></textarea>
           {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
-          <button type="button" className={style.deleteBtn}>
-            <Icon icon="Delete" className={style.formIconDelete} onClick={confirmDelete} />
-          </button>
           <button type="submit" className={style.saveBtn}>
             Сохранить
           </button>
@@ -94,11 +90,7 @@ class AddForm extends Component {
 
 const mapStateToProps = state => ({ error: state.form.error });
 const mapDispatchToProps = dispatch => ({
-  addForm: data => dispatch(addTask(data)),
-  confirmDelete: () => {
-    dispatch(openModal());
-    dispatch(openDeleteModal());
-  }
+  addForm: data => dispatch(addTask(data))
 });
 
 export default connect(
