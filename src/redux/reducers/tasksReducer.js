@@ -4,13 +4,14 @@ import { formTypes } from '../actions/formAction';
 const initialState = {
   tasks: null,
   loader: false,
-  error: null
+  error: null,
+  search: ''
 };
 
 export const tasksReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case tasksTypes.FETCH_TASKS_REQUEST:
-      return { ...state, loader: true };
+    case tasksTypes.FETCH_TASKS_START:
+      return { ...state, loader: payload };
     case tasksTypes.FETCH_TASKS_SUCCESS:
       return { ...state, tasks: payload, loader: false };
     case tasksTypes.FETCH_TASKS_ERROR:
@@ -26,7 +27,7 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.DELETE_TASK_ERROR:
       return { ...state, error: payload, loader: false };
     case tasksTypes.EDIT_TASK_START:
-      return { ...state, loader: true };
+      return { ...state, loader: payload };
     case tasksTypes.EDIT_TASK_SUCCESS:
       return {
         ...state,
@@ -38,6 +39,10 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case formTypes.ADD_TASK_FORM_SUCCESS:
       const newTask = payload.task;
       return { ...state, tasks: [newTask, ...state.tasks] };
+    case tasksTypes.SEARCH_TASKS:
+      return { ...state, search: payload };
+    case tasksTypes.CLEAR_SEARCH:
+      return { ...state, search: payload };
     default:
       return state;
   }

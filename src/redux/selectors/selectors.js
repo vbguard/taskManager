@@ -4,7 +4,25 @@ export const getLoader = state => state.userTasks.loader;
 
 export const getSession = state => state.session;
 
-export const getTasks = state => state.userTasks.tasks;
+export const getTasks = (state, search) => {
+  if (state.userTasks.tasks) {
+    if (search === '') {
+      return state.userTasks.tasks;
+    }
+    return state.userTasks.tasks.filter(el => {
+      const title = el.title
+        .split(' ')
+        .join('')
+        .toLowerCase();
+      const request = search
+        .split(' ')
+        .join('')
+        .toLowerCase();
+      return title.includes(request);
+    });
+  }
+  console.log(state.userTasks.tasks, search);
+};
 
 export const getInfoModal = state => state.modal.modalInfo;
 
