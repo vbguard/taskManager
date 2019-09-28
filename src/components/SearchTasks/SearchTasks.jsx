@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { searchTasks } from '../../redux/actions/tasksActions';
 
 class SearchTasks extends Component {
   state = { search: '' };
@@ -8,14 +9,32 @@ class SearchTasks extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.search);
+    this.setState({ search: '' });
+  };
+
   render() {
-    return <input type="text" value={this.state.text} onChange={this.handleChange} name="search" />;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.search}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          name="search"
+        />
+      </form>
+    );
   }
 }
 
 const mSTP = state => ({});
 
-const mDTP = dispatch => ({});
+const mDTP = dispatch => ({
+  onSubmit: search => dispatch(searchTasks(search))
+});
 
 export default connect(
   mSTP,

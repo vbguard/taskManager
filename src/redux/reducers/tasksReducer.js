@@ -38,6 +38,21 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case formTypes.ADD_TASK_FORM_SUCCESS:
       const newTask = payload.task;
       return { ...state, tasks: [newTask, ...state.tasks] };
+    case tasksTypes.SEARCH_TASKS:
+      return {
+        ...state,
+        tasks: state.tasks.filter(el => {
+          const title = el.title
+            .split(' ')
+            .join('')
+            .toLowerCase();
+          const search = payload
+            .split(' ')
+            .join('')
+            .toLowerCase();
+          return title.includes(search);
+        })
+      };
     default:
       return state;
   }
