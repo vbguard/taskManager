@@ -13,3 +13,5 @@ export const getCalendarModal = state => state.modal.modalCalendar;
 export const getDeleteModal = state => state.modal.modalDelete;
 
 export const getNickname = state => state.session.nickname;
+
+export const getTaskId = state => state.id;

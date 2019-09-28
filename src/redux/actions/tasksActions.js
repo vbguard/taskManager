@@ -1,4 +1,4 @@
-import { requestDeleteTask } from '../../utils/requests';
+import { requestDeleteTask, requestUpdateTask } from '../../utils/requests';
 
 export const tasksTypes = {
   FETCH_TASKS_REQUEST: 'FETCH_TASKS_REQUEST',
@@ -78,11 +78,11 @@ export const deleteTask = data => dispatch => {
     .catch(error => dispatch(deleteTaskError(error)));
 };
 
-// export const editTask = data => dispatch => {
-//   dispatch(editTaskStart());
-//   requestUpdateTask(data)
-//     .then(resp => {
-//       dispatch(editTaskSuccess(resp.data));
-//     })
-//     .catch(error => dispatch(editTaskError(error)));
-// };
+export const editTask = data => dispatch => {
+  dispatch(editTaskStart());
+  requestUpdateTask(data)
+    .then(resp => {
+      dispatch(editTaskSuccess(resp.data));
+    })
+    .catch(error => dispatch(editTaskError(error)));
+};

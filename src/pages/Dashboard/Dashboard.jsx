@@ -24,11 +24,7 @@ import CalendarPage from '../CalendarPage/CalendarPage';
 
 // import actions and selectors
 import { getUserTasks } from '../../redux/actions/tasksActions';
-<<<<<<< HEAD
-import { getLoader } from '../../redux/selectors/selectors';
-=======
-import { getToken, getLoader, getTasks } from '../../redux/selectors/selectors';
->>>>>>> c5f000e11dc1867bc9d054fb207bd87439ddf899
+import { getLoader, getTaskId } from '../../redux/selectors/selectors';
 
 // add styles
 
@@ -51,7 +47,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, taskId } = this.props;
+    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
 
     return (
       <>
@@ -99,7 +95,7 @@ const mapStateToProps = state => ({
   modalCalendar: state.modal.modalCalendar,
   modalDelete: state.modal.modalDelete,
   modal: state.modal.modal,
-  taskId: getTasks(state)
+  taskId: getTaskId(state)
 });
 
 const mapDispatchToProps = dispatch => ({
