@@ -12,28 +12,31 @@ const refactoringProps = (props) => {
         title,
         description,
         taskNumber,
-        isRepeat
+        isRepeat,
+        isComplete
       } = props.task;
 
     const refactoringProps = {
-        loopDates: dates,
+        loopDates: dates.map(date=>new Date(date.date).getDate()).join(','),
         taskHeader: (!title) ? 'назва_таски' : title,
         taskDescription: (!description) ? 'опис_таски' : description,
-        isRepeat,
+        isLoop:isRepeat,
         taskNumber: (!taskNumber) ? 'номер_таски' : taskNumber,
+        isComplete
     }
     return refactoringProps;
 }
 
 
 class Task extends Component {
+    
     render() {
-        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, onComplete }=refactoringProps(this.props);
+        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, onComplete, isComplete }=refactoringProps(this.props);
         const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
         return (
             <>
               <div className={styles.task}>
-                <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
+                <div className={isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
                     <div className={styles.numberContainer}>
                         <p className={styles.headerNumber}>{taskNumber}. </p>
                     </div>
@@ -49,13 +52,13 @@ class Task extends Component {
                         {isLoop &&(<>
                             <button
                                 type="button"
-                                disabled={loopDates[0].isComplete? true : false}
-                                className={loopDates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
+                                disabled={isComplete? true : false}
+                                className={isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
                                     <Icon icon='Loop'/>
                             </button>
-                            {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                            <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
                                 {loopDates}
-                            </p> */}
+                            </p>
                         </>)}
                     </div>
 

@@ -1,18 +1,121 @@
-[{
-    "taskNumber": 1, 
-    "taskHeader":"Подготовка документации",
-    "taskDescription":"Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
-    "isLoop": false,
-    "loopDates":[10,17,21], 
-    "isComplete": true 
-  },
-  {
-    "taskNumber": 1, 
-    "taskHeader":"Подготовка документации",
-    "taskDescription":"Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться",
-    "isLoop": true,
-    "loopDates":[10,17,21], 
-    "isComplete": false 
-  }
+{
+  "success": true,
+  "tasks": [
+      {
+          "_id": "5d8c0c50b3d71a949f3d91bc",
+          "title": "task45",
+          "description": "descr",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-23T21:00:00.000Z"
+              },
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T21:00:00.000Z"
+              },
+              {
+                  "isComplete": false,
+                  "date": "2019-09-28T21:00:00.000Z"
+              }
+          ],
+          "isRepeat": true
+      },
+      {
+          "_id": "5d8cefa92b69c74f74aba57f",
+          "title": "Нова таска",
+          "description": "Тестове описання",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8cf0272b69c74f74aba580",
+          "title": "Нова таска 2",
+          "description": "Таке собі описання",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8cf0522b69c74f74aba581",
+          "title": "00_File structure__Саша Репета",
+          "description": "jdjkdkdkld dkdkd",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8cf07e2b69c74f74aba582",
+          "title": "NodeJS, Debug, Nodemon - Іван, Саша",
+          "description": "kjbnjlklk lkl jo",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8cf0e32b69c74f74aba583",
+          "title": "Screen-Cast",
+          "description": "afgasg fga fs",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8d0c3b2b69c74f74aba584",
+          "title": "Sunt aut facere repellat provident occaecati",
+          "description": "qqqqqqqqqqqq",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8e34852b69c74f74aba586",
+          "title": "test",
+          "description": "sdvsdvsdv",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      },
+      {
+          "_id": "5d8e34922b69c74f74aba587",
+          "title": "fbdf",
+          "description": "fbdbf",
+          "dates": [
+              {
+                  "isComplete": false,
+                  "date": "2019-09-25T22:00:00.000Z"
+              }
+          ],
+          "isRepeat": false
+      }
   ]
-  
+}
