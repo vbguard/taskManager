@@ -72,9 +72,9 @@ export const deleteTask = data => dispatch => {
     .catch(error => dispatch(deleteTaskError(error)));
 };
 
-// export const editTask = data => dispatch => {
-//   dispatch(editTaskStart());
-//   requestUpdateTask(data)
-//     .then(resp => dispatch(editTaskSuccess(resp.data.)))
-//     .catch(error => dispatch(editTaskError(error)));
-// };
+export const editTask = data => dispatch => {
+  dispatch(editTaskStart());
+  requestUpdateTask(data)
+    .then(resp => dispatch(editTaskSuccess(resp.data.task)))
+    .catch(error => dispatch(editTaskError(error)));
+};

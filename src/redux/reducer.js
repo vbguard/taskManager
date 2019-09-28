@@ -5,9 +5,10 @@ import { sessionReducer } from './reducers/sessionReducer';
 import { tasksReducer } from './reducers/tasksReducer';
 import { formReducer } from './reducers/formReducer';
 import { modalReducer } from './reducers/modalReducer';
+import { idEditReducer } from './reducers/getIdEditTask';
 
 const sessionPersistConfig = {
-  key: "session",
+  key: 'session',
   storage
 };
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   userTasks: tasksReducer,
   form: formReducer,
   modal: modalReducer,
-  });
+  id: idEditReducer
+});
 
 export default rootReducer;

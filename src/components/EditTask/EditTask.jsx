@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addTask } from '../../redux/actions/formAction';
 import style from './EditTask.module.css';
 import Icon from '../Icon/Icon';
+import { getTasks } from '../../redux/selectors/selectors';
+import { editTask } from '../../redux/actions/tasksActions';
 import { warn } from '../../utils/notification';
 import { openModal, openDeleteModal } from '../../redux/actions/modalAction';
 
@@ -13,6 +15,11 @@ class EditTask extends Component {
     dates: [{ date: '09-26-2019' }]
   };
 
+  componentDidMount() {
+    const { id, tasks } = this.props;
+    const newState = tasks.find(el => el._id === id);
+    this.setState({ ...newState });
+  }
   handleChange = event => {
     const { title, description } = this.state;
     if (title.length > 50 || description.length > 200) {
@@ -48,6 +55,7 @@ class EditTask extends Component {
   render() {
     const { title, description } = this.state;
     const { confirmDelete } = this.props;
+    console.log(title);
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
@@ -92,9 +100,15 @@ class EditTask extends Component {
   }
 }
 
-const mapStateToProps = state => ({ error: state.form.error });
+const mapStateToProps = state => ({
+  id: state.id,
+  error: state.form.error,
+  tasks: getTasks(state)
+});
+
 const mapDispatchToProps = dispatch => ({
-  addForm: data => dispatch(addTask(data)),
+  // addForm: data => dispatch(addTask(data)),
+  editTask: data => dispatch(editTask(data)),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());

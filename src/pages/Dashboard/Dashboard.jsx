@@ -63,7 +63,7 @@ class Dashboard extends Component {
                   <Route path="/dashboard" exact component={TaskContainer} />
                   <Route path="/dashboard/calendar" component={CalendarPage} />
                   <Route path="/dashboard/add" component={AddTask} />
-                  <Route path={`/dashboard/edit`} component={EditTask} />
+                  <Route path="/dashboard/edit" component={EditTask} />
                 </Switch>
               </>
             )}
@@ -72,7 +72,7 @@ class Dashboard extends Component {
                 <Switch>
                   <Route path="/dashboard" exact component={WrapDesktop} />
                   <Route path="/dashboard/add" component={AddTask} />
-                  <Route path={`/dashboard/edit`} component={EditTask} />
+                  <Route path="/dashboard/edit" component={EditTask} />
                 </Switch>
               </>
             )}

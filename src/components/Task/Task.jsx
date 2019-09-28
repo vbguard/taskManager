@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { editTaskSuccess } from '../../redux/actions/tasksActions';
+// import { editTaskSuccess, editTask } from '../../redux/actions/tasksActions';
+import { getIdSuccess } from '../../redux/actions/getIdAction';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Task.module.css';
@@ -24,10 +25,12 @@ const refactoringProps = props => {
 
 class Task extends Component {
   render() {
-    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, onComplete, taskId } = refactoringProps(this.props);
+    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, onComplete, taskId } = refactoringProps(
+      this.props
+    );
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
     const { onEdit } = this.props;
-    console.log(taskId);
+
     return (
       <>
         <div className={styles.task}>
@@ -63,8 +66,8 @@ class Task extends Component {
             </div>
 
             <div className={styles.taskControlsCompleteContainer}>
-              <Link to={`/dashboard/edit`}>
-                <button className={styles.taskControlsEdit} type="button" onClick={taskId => onEdit(taskId)}>
+              <Link to="/dashboard/edit">
+                <button className={styles.taskControlsEdit} type="button" onClick={() => onEdit(taskId)}>
                   <Icon icon="Edit" />
                 </button>
               </Link>
@@ -106,8 +109,8 @@ Task.defaultProps = {
   onComplete: () => {}
 };
 
-const MSTP = state => ({ taskId: state.userTasks.tasks_id });
-const MDTP = dispatch => ({ onEdit: taskId => dispatch(editTaskSuccess(taskId)) });
+const MSTP = state => ({});
+const MDTP = dispatch => ({ onEdit: taskId => dispatch(getIdSuccess(taskId)) });
 export default compose(
   connect(
     MSTP,
