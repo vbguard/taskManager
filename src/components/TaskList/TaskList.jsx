@@ -7,14 +7,13 @@ import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
 
-
 const TaskList = ({ tasks }) => {
   return ((tasks && tasks.length) ? (<ul className={styles.list}>
       {tasks &&
         tasks.map(task => {
           return (
             <li key={task._id}>
-              <Task task={task} />
+              <Task task={task} taskId={task.id} />
             </li>
           );
         })}
