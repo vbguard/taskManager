@@ -3,6 +3,7 @@ import { formTypes } from '../actions/formAction';
 
 const initialState = {
   tasks: null,
+  calendar: null,
   loader: false,
   error: null,
   search: ''
@@ -13,7 +14,7 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.FETCH_TASKS_START:
       return { ...state, loader: payload };
     case tasksTypes.FETCH_TASKS_SUCCESS:
-      return { ...state, tasks: payload, loader: false };
+      return { ...state, ...payload, loader: false };
     case tasksTypes.FETCH_TASKS_ERROR:
       return { ...state, error: payload, loader: false };
     case tasksTypes.DELETE_TASK_START:
