@@ -1,6 +1,8 @@
 .bodybg {
-  width: 320px;
-  height: 469px;
+    position: absolute;
+    top: 80px;
+    height: calc(100vh - 80px - 2px);
+    width: 100vw;
   background-color: var(--pale-grey);
   margin: 0 auto;
 }
@@ -142,10 +144,12 @@
   font-size: 11px;
 }
 
-@media (min-width:768px) and (max-width:1023px) {
+@media (min-width:768px) and (max-width:1279px) {
   .bodybg {
-    width: 768px;
-    height: 966px;
+    position: absolute;
+    top: 80px;
+    height: calc(100vh - 80px - 2px);
+    width: 100vw;
   }
 
   .formBg {
@@ -203,15 +207,17 @@
 
 }
 
-@media (min-width:1024px) {
+@media (min-width:1280px) {
   .bodybg {
-    width: 1280px;
-    height: 792px;
+    position: absolute;
+    top: 80px;
+    height: calc(100vh - 80px - 2px);
+    width: 100vw;
   }
 
   .formBg {
     width: 915px;
-    height: 607px;
+    /* height: 607px; */
     padding-top: 92px;
     position: relative;
   }

@@ -1,0 +1,22 @@
+.taskInnerContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.taskContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    .taskInnerContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 74px;
+    }
+  }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../../redux/actions/formAction';
-import style from './AddForm.module.css';
+import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
 import { openModal, openDeleteModal } from '../../redux/actions/modalAction';

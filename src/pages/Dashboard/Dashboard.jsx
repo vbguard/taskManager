@@ -10,17 +10,12 @@ import Loader from 'react-loader-spinner';
 
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
-<<<<<<< HEAD
 import InfoPop from '../../components/InfoPop/InfoPop';
 import TaskContainer from '../../components/TaskContainer/TaskContainer';
-=======
-import TaskContainer from '../../components/Task/TaskContainer';
->>>>>>> develop
-import AddForm from '../../components/AddForm/AddForm';
+import AddForm from '../../components/AddTask/AddTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
-import InfoPop from '../../components/InfoPop/InfoPop';
 
 // import pages
 
@@ -61,7 +56,7 @@ class Dashboard extends Component {
           <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
         ) : (
           <>
-            {windowWidth < 1024 && (
+            {windowWidth < 1280 && (
               <>
                 <Switch>
                   <Route path="/dashboard" exact component={TaskContainer} />
@@ -70,7 +65,7 @@ class Dashboard extends Component {
                 </Switch>
               </>
             )}
-            {windowWidth >= 1024 && (
+            {windowWidth >= 1280 && (
               <>
                 {/* // router => /dashboard @DashboardContainer
                     // router => /dashboard/add @AddForm */}

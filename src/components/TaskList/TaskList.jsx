@@ -18,7 +18,10 @@ const TaskList = ({ tasks }) => {
             </li>
           );
         })}
-    </ul>): <p className={styles.intro}>Нет запланированных задач... Время приступить к управлению своей жизнью!</p>
+    </ul>): (<div>
+        <p className={styles.intro}>Нет запланированных задач...</p>
+        <p className={styles.intro}>Время начать управлять своей жизнью!</p>
+      </div>)
   );
   };
 

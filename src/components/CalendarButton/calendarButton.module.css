@@ -5,8 +5,8 @@ a {
 .btnCalendar {
 	display: flex;
 	justify-content: center;
-  align-items: center;
-  line-height:35px;
+  	align-items: center;
+  	line-height:35px;
 	margin: 30px auto;
 	width: 250px;
 	height: 35px;
@@ -37,10 +37,4 @@ a {
 
 .btnCalendar:focus {
 	box-shadow: 0 0 1px 1px var(--dusty-orange);
-}
-
-@media (min-width: 768px) {
-	.btnCalendar {
-		margin: 45px 0;
-	}
 }
