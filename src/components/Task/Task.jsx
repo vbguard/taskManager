@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import styles from './Task.module.css';
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
+import { requestDoneTask } from '../../redux/actions/tasksActions.js';
+import { getToken, getIdForEdit } from '../../redux/selectors/selectors';
 
 const refactoringProps = props => {
   const { dates, title, description, taskNumber, isRepeat, _id } = props.task;
@@ -25,11 +27,9 @@ const refactoringProps = props => {
 
 class Task extends Component {
   render() {
-    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, onComplete, taskId } = refactoringProps(
-      this.props
-    );
+    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
-    const { onEdit } = this.props;
+    const { onEdit, token, id, onComplete } = this.props;
 
     return (
       <>
@@ -76,7 +76,7 @@ class Task extends Component {
                 type="button"
                 disabled={loopDates[0].isComplete ? true : false}
                 className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                onClick={onComplete}
+                onClick={() => onComplete(id, token, { dates: [] })}
               >
                 <Icon icon="Done" />
               </button>
@@ -95,31 +95,38 @@ Task.propTypes = {
     isRepeat: PropTypes.bool.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    dates:PropTypes.arrayOf(PropTypes.shape({
+    dates: PropTypes.arrayOf(
+      PropTypes.shape({
         isComplete: PropTypes.bool,
-        date: PropTypes.string 
-    })).isRequired,
+        date: PropTypes.string
+      })
+    ).isRequired,
     onEdit: PropTypes.func,
     onCompltete: PropTypes.func
   })
 };
 
 Task.defaultProps = {
-    description: 'опис_таски',
-    title: 'назва_таски',
-    dates:[],
-    isRepeat:false,
-    onEdit: () => {},
-    onComplete:  () => {},
+  taskHeader: '',
+  description: 'опис_таски',
+  title: 'назва_таски',
+  onEdit: () => {}
 };
 
-const MSTP = state => ({});
-const MDTP = dispatch => ({ onEdit: taskId => dispatch(getIdSuccess(taskId)) });
+const mSTP = state => ({
+  token: getToken(state),
+  id: getIdForEdit(state)
+});
+
+const mDTP = dispatch => ({
+  onComplete: (id, token, data) => dispatch(requestDoneTask({ id, token, data })),
+  onEdit: taskId => dispatch(getIdSuccess(taskId))
+});
 
 export default compose(
   connect(
-    MSTP,
-    MDTP
+    mSTP,
+    mDTP
   ),
   windowSize
 )(Task);

@@ -7,9 +7,13 @@ export const tasksTypes = {
   DELETE_TASK_START: 'DELETE_TASK_START',
   DELETE_TASK_SUCCESS: 'DELETE_TASK_SUCCESS',
   DELETE_TASK_ERROR: 'DELETE_TASK_ERROR',
+  TASK_DONE_START: 'TASK_DONE_START',
+  TASK_DONE_SUCCESS: 'TASK_DONE_SUCCESS',
+  TASK_DONE_ERROR: 'TASK_DONE_ERROR',
   EDIT_TASK_START: 'EDIT_TASK_START',
   EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
-  EDIT_TASK_ERROR: 'EDIT_TASK_ERROR'
+  EDIT_TASK_ERROR: 'EDIT_TASK_ERROR',
+  SEARCH_TASKS: 'SEARCH_TASKS'
 };
 
 export const fetchTasksStart = () => ({
@@ -72,6 +76,28 @@ export const deleteTask = data => dispatch => {
     .catch(error => dispatch(deleteTaskError(error)));
 };
 
+export const doneTaskStart = () => ({
+  type: tasksTypes.TASK_DONE_START,
+  payload: true
+});
+
+export const doneTaskSuccess = id => ({
+  type: tasksTypes.TASK_DONE_SUCCESS,
+  payload: id
+});
+
+export const doneTaskError = error => ({
+  type: tasksTypes.TASK_DONE_ERROR,
+  payload: error.message
+});
+
+export const requestDoneTask = data => dispatch => {
+  dispatch(doneTaskStart());
+  requestUpdateTask(data)
+    .then(resp => console.log(resp))
+    .catch(err => dispatch(doneTaskError(err)));
+};
+
 export const editTask = data => dispatch => {
   dispatch(editTaskStart());
   requestUpdateTask(data)
@@ -80,3 +106,8 @@ export const editTask = data => dispatch => {
     })
     .catch(error => dispatch(editTaskError(error)));
 };
+
+export const searchTasks = search => ({
+  type: tasksTypes.SEARCH_TASKS,
+  payload: search
+});

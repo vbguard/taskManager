@@ -8,6 +8,7 @@ import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 import { compose } from 'redux';
 import windowSize from 'react-window-size';
 import { CalendarButtonMobile } from '../CalendarButton/CalendarButton';
+import SearchTasks from '../SearchTasks/SearchTasks.jsx';
 
 class Header extends Component {
   state = {};
@@ -49,6 +50,7 @@ class Header extends Component {
                 </span>
               )}
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
+              <SearchTasks />
             </div>
           </div>
         )}

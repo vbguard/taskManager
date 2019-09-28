@@ -52,7 +52,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
+    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, history, location, match } = this.props;
 
     return (
       <>
@@ -88,7 +88,7 @@ class Dashboard extends Component {
           <Modal>
             {modalInfo && <InfoPop />}
             {modalCalendar && <Calendar />}
-            {modalDelete && <PopUpConfirmDelete />}
+            {modalDelete && <PopUpConfirmDelete history={history} location={location} match={match} />}
           </Modal>
         )}
       </>
