@@ -7,6 +7,12 @@ import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
 
+// import tasks from '../../../src/assets/tasksForTest.json';
+import datesFromTasks from '../../utils/utils';
+import tasks from '../../assets/tasksForTest.json';
+// console.log(tasks.tasks);
+// import datesFromTasks from '../../../src/utils/utils.js'
+datesFromTasks(tasks.tasks);
 
 const TaskList = ({ tasks }) => {
   return ((tasks && tasks.length) ? (<ul className={styles.list}>
