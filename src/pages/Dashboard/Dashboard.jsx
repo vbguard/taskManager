@@ -10,7 +10,7 @@ import Loader from 'react-loader-spinner';
 
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
-import TaskContainer from '../../components/Task/TaskContainer';
+import TaskContainer from '../../components/TaskContainer/TaskContainer';
 import AddTask from '../../components/AddTask/AddTask';
 import EditTask from '../../components/EditTask/EditTask';
 import Header from '../../components/Header/Header';

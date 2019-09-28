@@ -5,8 +5,8 @@ a {
 .btnCalendar {
 	display: flex;
 	justify-content: center;
-  align-items: center;
-  line-height:35px;
+  	align-items: center;
+  	line-height:35px;
 	margin: 30px auto;
 	width: 250px;
 	height: 35px;

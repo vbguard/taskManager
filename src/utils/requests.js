@@ -41,8 +41,9 @@ export const requestDeleteTask = async credentials => {
   return res;
 };
 
-export const requestUpdateTask = async credentials => {
-  const { id, token, data } = credentials;
+export const requestUpdateTask = async (credentials, token) => {
+  const { id,  data } = credentials;
+  
   setAuthToken(token);
   const res = await axiosRequest.patch(api.url.updateTask(id), data);
   return res;

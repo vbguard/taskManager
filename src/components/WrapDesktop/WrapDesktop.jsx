@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskContainer from '../Task/TaskContainer';
+import TaskContainer from '../TaskContainer/TaskContainer';
 import Calendar from '../Calendar/Calendar';
 import styles from './WrapDesktop.module.css';
 

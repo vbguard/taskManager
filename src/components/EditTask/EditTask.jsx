@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTask } from '../../redux/actions/formAction';
 import style from './EditTask.module.css';
 import Icon from '../Icon/Icon';
 import { getTasks } from '../../redux/selectors/selectors';
@@ -20,6 +19,7 @@ class EditTask extends Component {
     const newState = tasks.find(el => el._id === id);
     this.setState({ ...newState });
   }
+
   handleChange = event => {
     const { title, description } = this.state;
     if (title.length > 50 || description.length > 200) {
@@ -31,18 +31,30 @@ class EditTask extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { title, description, dates } = this.state;
+    const { token, id, tasks } = this.props;
+    const editTask = tasks.find(el => el._id === id);
 
     if (title === '' || description === '') {
       warn('Все поля должны быть заполнены');
       return;
     }
 
-    if (!this.props.error) {
-      this.props.addForm({ title, description, dates });
+    if (
+      !this.props.error ||
+      title !== editTask.title ||
+      description !== editTask.description ||
+      dates.length !== editTask.dates.length
+    ) {
+      this.props.editTask({ title, description, dates }, token, id);
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
     }
-    if (this.props.error) {
+    if (
+      this.props.error ||
+      title === editTask.title ||
+      description === editTask.description ||
+      dates.length === editTask.dates.length
+    ) {
       this.setState({ error: this.props.error });
     }
   };
@@ -55,7 +67,6 @@ class EditTask extends Component {
   render() {
     const { title, description } = this.state;
     const { confirmDelete } = this.props;
-    console.log(title);
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
@@ -103,12 +114,12 @@ class EditTask extends Component {
 const mapStateToProps = state => ({
   id: state.id,
   error: state.form.error,
-  tasks: getTasks(state)
+  tasks: getTasks(state),
+  token: state.session.token
 });
 
 const mapDispatchToProps = dispatch => ({
-  // addForm: data => dispatch(addTask(data)),
-  editTask: data => dispatch(editTask(data)),
+  editTask: (data, token, id) => dispatch(editTask({ data, token, id })),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());

@@ -8,9 +8,11 @@ import { CalendarButtonTablet } from '../CalendarButton/CalendarButton';
 const TaskContainer = props => {
   return (
     <div className={s.taskContainer}>
-      <TaskList />
-      <AddButton />
-      {props.windowWidth > 768 && props.windowWidth < 1024 ? <CalendarButtonTablet /> : ''}
+      <div className={s.taskInnerContainer}>
+        <TaskList />
+        <AddButton />
+      </div>
+      {props.windowWidth >= 768 && props.windowWidth < 1280 ? <CalendarButtonTablet /> : ''}
     </div>
   );
 };

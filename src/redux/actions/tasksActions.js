@@ -75,6 +75,8 @@ export const deleteTask = data => dispatch => {
 export const editTask = data => dispatch => {
   dispatch(editTaskStart());
   requestUpdateTask(data)
-    .then(resp => dispatch(editTaskSuccess(resp.data.task)))
+    .then(resp => {
+      dispatch(editTaskSuccess(resp.data));
+    })
     .catch(error => dispatch(editTaskError(error)));
 };
