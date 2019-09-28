@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styles from './Header.module.css';
 import Icon from '../Icon/Icon';
 import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
-import { logout } from '../../redux/actions/authOperations';
+import { logout } from '../../redux/actions/authActions';
 import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 import { compose } from 'redux';
 import windowSize from 'react-window-size';

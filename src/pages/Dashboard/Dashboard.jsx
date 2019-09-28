@@ -22,9 +22,8 @@ import InfoPop from '../../components/InfoPop/InfoPop';
 import CalendarPage from '../CalendarPage/CalendarPage';
 
 // import actions and selectors
-import { loginSuccess } from '../../redux/actions/authActions';
 import { getUserTasks } from '../../redux/actions/tasksActions';
-import { getToken, getLoader } from '../../redux/selectors/selectors';
+import { getLoader } from '../../redux/selectors/selectors';
 
 // add styles
 import styles from './Dashboard.module.css';
@@ -42,8 +41,8 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    const { token, getUserTasks } = this.props;
-    getUserTasks(token);
+    const { getUserTasks } = this.props;
+    getUserTasks();
   }
 
   render() {
@@ -99,7 +98,6 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  token: getToken(state),
   loader: getLoader(state),
   modalInfo: state.modal.modalInfo,
   modalCalendar: state.modal.modalCalendar,
@@ -108,8 +106,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginSuccess: session => dispatch(loginSuccess(session)),
-  getUserTasks: token => dispatch(getUserTasks(token))
+  getUserTasks: () => dispatch(getUserTasks())
 });
 
 export default compose(
