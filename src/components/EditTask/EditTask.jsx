@@ -11,7 +11,7 @@ class EditTask extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{ date: '09-26-2019' }]
+    dates: [{ date: '09-28-2019' }]
   };
 
   componentDidMount() {
@@ -119,7 +119,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  editTask: (data, token, id) => dispatch(editTask({ data, token, id })),
+  editTask: (data, id) => dispatch(editTask({ data, id })),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());

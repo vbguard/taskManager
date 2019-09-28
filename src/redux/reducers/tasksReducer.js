@@ -26,7 +26,7 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.DELETE_TASK_ERROR:
       return { ...state, error: payload, loader: false };
     case tasksTypes.EDIT_TASK_START:
-      return { ...state, loader: payload };
+      return { ...state, loader: true };
     case tasksTypes.EDIT_TASK_SUCCESS:
       return {
         ...state,

@@ -1,4 +1,4 @@
-import { requestDeleteTask, requestUpdateTask } from '../../utils/requests';
+import { closeModal } from '../actions/modalAction';
 
 export const tasksTypes = {
   FETCH_TASKS_REQUEST: 'FETCH_TASKS_REQUEST',
@@ -41,6 +41,26 @@ export const getUserTasks = () => ({
   }
 });
 
+export const deleteTask = taskId => ({
+  type: tasksTypes.DELETE_TASK_START,
+  payload: {
+    request: {
+      method: 'DELETE',
+      url: `/task/${taskId}`
+    },
+
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(deleteTaskSuccess(response.data.taskId));
+        dispatch(closeModal());
+      },
+      onError({ dispatch, error }) {
+        dispatch(deleteTaskError(error));
+      }
+    }
+  }
+});
+
 export const deleteTaskStart = () => ({
   type: tasksTypes.DELETE_TASK_START,
   payload: true
@@ -54,6 +74,25 @@ export const deleteTaskSuccess = id => ({
 export const deleteTaskError = error => ({
   type: tasksTypes.DELETE_TASK_ERROR,
   payload: error.message
+});
+
+export const editTask = (data, taskId) => ({
+  type: tasksTypes.EDIT_TASK_START,
+  payload: {
+    request: {
+      method: 'PATCH',
+      url: `/task/${taskId}`
+    },
+
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(editTaskSuccess(data, response.data.taskId));
+      },
+      onError({ dispatch, error }) {
+        dispatch(editTaskError(error));
+      }
+    }
+  }
 });
 
 export const editTaskStart = () => ({
@@ -70,19 +109,3 @@ export const editTaskError = error => ({
   type: tasksTypes.EDIT_TASK_ERROR,
   payload: error.message
 });
-
-export const deleteTask = data => dispatch => {
-  dispatch(deleteTaskStart());
-  requestDeleteTask(data)
-    .then(resp => dispatch(deleteTaskSuccess(resp.data.taskId)))
-    .catch(error => dispatch(deleteTaskError(error)));
-};
-
-export const editTask = data => dispatch => {
-  dispatch(editTaskStart());
-  requestUpdateTask(data)
-    .then(resp => {
-      dispatch(editTaskSuccess(resp.data));
-    })
-    .catch(error => dispatch(editTaskError(error)));
-};
