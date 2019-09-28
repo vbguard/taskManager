@@ -115,6 +115,7 @@ Task.defaultProps = {
 
 const MSTP = state => ({});
 const MDTP = dispatch => ({ onEdit: taskId => dispatch(getIdSuccess(taskId)) });
+
 export default compose(
   connect(
     MSTP,

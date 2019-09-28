@@ -52,7 +52,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, taskId } = this.props;
+    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
 
     return (
       <>
