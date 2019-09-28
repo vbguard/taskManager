@@ -52,6 +52,23 @@
   line-height: 1;
 }
 
+.searchWrapper {
+  position: relative;
+  fill: var(--pale-grey);
+  cursor: pointer;
+  padding: 0 15px;
+  line-height: 1;
+}
+
+.searchWrapper::before {
+  position: absolute;
+  height: 30px;
+  transform: translateY(-18%);
+  left: 0;
+  border-right:  2px solid var(--pale-grey);
+  content: "";
+}
+
 .calendarSign {
   position: relative;
   fill: var(--pale-grey);
