@@ -7,7 +7,7 @@
           "description": "descr",
           "dates": [
               {
-                  "isComplete": false,
+                  "isComplete": true,
                   "date": "2019-09-23T21:00:00.000Z"
               },
               {
@@ -39,7 +39,7 @@
           "description": "Таке собі описання",
           "dates": [
               {
-                  "isComplete": false,
+                  "isComplete": true,
                   "date": "2019-09-25T22:00:00.000Z"
               }
           ],

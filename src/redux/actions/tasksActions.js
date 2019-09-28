@@ -113,19 +113,24 @@ export const editTaskError = error => ({
   type: tasksTypes.EDIT_TASK_ERROR,
   payload: error.message
 });
-<<<<<<< HEAD
-=======
 
-export const deleteTask = data => dispatch => {
-  dispatch(deleteTaskStart());
-  requestDeleteTask(data)
-    .then(resp => dispatch(deleteTaskSuccess(resp.data.taskId)))
-    .catch(error => dispatch(deleteTaskError(error)));
-};
-
-export const doneTaskStart = () => ({
+export const requestDoneTask = (data, taskId) => ({
   type: tasksTypes.TASK_DONE_START,
-  payload: true
+  payload: {
+    request: {
+      method: 'PATCH',
+      url: `/task/${taskId}`
+    },
+
+    options: {
+      onSuccess({ dispatch, response }) {
+        dispatch(doneTaskSuccess(data, response.data.taskId));
+      },
+      onError({ dispatch, error }) {
+        dispatch(doneTaskError(error));
+      }
+    }
+  }
 });
 
 export const doneTaskSuccess = id => ({
@@ -138,24 +143,7 @@ export const doneTaskError = error => ({
   payload: error.message
 });
 
-export const requestDoneTask = data => dispatch => {
-  dispatch(doneTaskStart());
-  requestUpdateTask(data)
-    .then(resp => console.log(resp))
-    .catch(err => dispatch(doneTaskError(err)));
-};
-
-export const editTask = data => dispatch => {
-  dispatch(editTaskStart());
-  requestUpdateTask(data)
-    .then(resp => {
-      dispatch(editTaskSuccess(resp.data));
-    })
-    .catch(error => dispatch(editTaskError(error)));
-};
-
 export const searchTasks = search => ({
   type: tasksTypes.SEARCH_TASKS,
   payload: search
 });
->>>>>>> 477041863b9be7e3d35d0a665cd369f0f27aa037

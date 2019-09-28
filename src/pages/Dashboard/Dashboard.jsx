@@ -51,11 +51,7 @@ class Dashboard extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete } = this.props;
-=======
     const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, history, location, match } = this.props;
->>>>>>> 477041863b9be7e3d35d0a665cd369f0f27aa037
 
     return (
       <>
