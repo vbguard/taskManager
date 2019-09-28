@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styles from './Header.module.css';
-import Icon from '../Icon/Icon';
-import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
-import { logout } from '../../redux/actions/authOperations';
-import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import windowSize from 'react-window-size';
+
+import styles from './Header.module.css';
+
+import Icon from '../Icon/Icon';
 import { CalendarButtonMobile } from '../CalendarButton/CalendarButton';
 import SearchTasks from '../SearchTasks/SearchTasks.jsx';
+
+import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
+import { logout } from '../../redux/actions/authActions';
+import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 
 class Header extends Component {
   state = {};
@@ -28,19 +32,18 @@ class Header extends Component {
         {/* =====================DASHBOARD */}
         {match.path.includes('dashboard') && (
           <div className={styles.wrapperForDashboard}>
-            <h1 className={`${styles.DashboardLogo} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
-
+            <Link to="/dashboard">
+              <h1 className={`${styles.DashboardLogo} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
+            </Link>
             <nav className={`${styles.nav} Header-Dashboard-UserName-Mob`}>
               <div className={styles.UserNameLetter}>{nickname[0].toUpperCase()}</div>
               <div className={styles.UserName}>{nickname}</div>
               <span className={styles.logoutSign}>
                 <Icon icon="Logout" onClick={logout} className={styles.exitBtn} />
               </span>
-              {/* <div className={styles.exitWordWrapper}> */}
               <span className={styles.exitWord} onClick={logout}>
                 Выйти
               </span>
-              {/* </div> */}
             </nav>
 
             <div className={`${styles.informBtn}  Header-Dashboard-UserName-Mob`}>
