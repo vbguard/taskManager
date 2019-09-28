@@ -7,6 +7,7 @@ import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
 
+<<<<<<< HEAD
 // import tasks from '../../../src/assets/tasksForTest.json';
 import datesFromTasks from '../../utils/utils';
 import tasks from '../../assets/tasksForTest.json';
@@ -14,13 +15,15 @@ import tasks from '../../assets/tasksForTest.json';
 // import datesFromTasks from '../../../src/utils/utils.js'
 datesFromTasks(tasks.tasks);
 
+=======
+>>>>>>> develop
 const TaskList = ({ tasks }) => {
   return ((tasks && tasks.length) ? (<ul className={styles.list}>
       {tasks &&
         tasks.map(task => {
           return (
             <li key={task._id}>
-              <Task task={task} />
+              <Task task={task} taskId={task.id} />
             </li>
           );
         })}
