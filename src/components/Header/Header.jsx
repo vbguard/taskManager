@@ -13,6 +13,7 @@ import SearchTasks from '../SearchTasks/SearchTasks.jsx';
 import { openInfoModal, openModal, openCalendarModal } from '../../redux/actions/modalAction.js';
 import { logout } from '../../redux/actions/authActions';
 import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
+import { clearSearch } from '../../redux/actions/tasksActions';
 
 class Header extends Component {
   state = {};
@@ -32,7 +33,7 @@ class Header extends Component {
         {/* =====================DASHBOARD */}
         {match.path.includes('dashboard') && (
           <div className={styles.wrapperForDashboard}>
-            <Link to="/dashboard">
+            <Link to="/dashboard" onClick={this.props.onMainPage}>
               <h1 className={`${styles.DashboardLogo} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
             </Link>
             <nav className={`${styles.nav} Header-Dashboard-UserName-Mob`}>
@@ -84,7 +85,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(openModal());
     dispatch(openCalendarModal());
   },
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  onMainPage: () => dispatch(clearSearch())
 });
 
 export default compose(

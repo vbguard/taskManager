@@ -13,7 +13,8 @@ export const tasksTypes = {
   EDIT_TASK_START: 'EDIT_TASK_START',
   EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
   EDIT_TASK_ERROR: 'EDIT_TASK_ERROR',
-  SEARCH_TASKS: 'SEARCH_TASKS'
+  SEARCH_TASKS: 'SEARCH_TASKS',
+  CLEAR_SEARCH: 'CLEAR_SEARCH'
 };
 
 export const fetchTasksSuccess = tasks => ({
@@ -146,4 +147,9 @@ export const doneTaskError = error => ({
 export const searchTasks = search => ({
   type: tasksTypes.SEARCH_TASKS,
   payload: search
+});
+
+export const clearSearch = () => ({
+  type: tasksTypes.CLEAR_SEARCH,
+  payload: ''
 });
