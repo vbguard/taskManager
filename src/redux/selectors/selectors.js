@@ -13,11 +13,11 @@ export const getTasks = (state, search) => {
       const title = el.title
         .split(' ')
         .join('')
-        .tiLowerCase();
+        .toLowerCase();
       const request = search
         .split(' ')
         .join('')
-        .tiLowerCase();
+        .toLowerCase();
       return title.includes(request);
     });
   }

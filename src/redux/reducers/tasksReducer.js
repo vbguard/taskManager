@@ -41,6 +41,8 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, tasks: [newTask, ...state.tasks] };
     case tasksTypes.SEARCH_TASKS:
       return { ...state, search: payload };
+    case tasksTypes.CLEAR_SEARCH:
+      return { ...state, search: payload };
     default:
       return state;
   }
