@@ -29,7 +29,9 @@ const refactoringProps = (props) => {
 
 
 class Task extends Component {
-    
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateDimensions);
+      }
     render() {
         const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, onComplete, isComplete }=refactoringProps(this.props);
         const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
@@ -87,18 +89,22 @@ class Task extends Component {
 
 Task.propTypes = {task: PropTypes.shape({
     taskNumber: PropTypes.string,
-    isDone: PropTypes.bool.isRequired,
+    isRepeat: PropTypes.bool.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    dates:PropTypes.arrayOf(PropTypes.string).isRequired,
+    dates:PropTypes.arrayOf(PropTypes.shape({
+        isComplete: PropTypes.bool,
+        date: PropTypes.string 
+    })).isRequired,
     onEdit: PropTypes.func,
     onCompltete: PropTypes.func})
 }
 
 Task.defaultProps = {
-    taskHeader: '',
     description: 'опис_таски',
     title: 'назва_таски',
+    dates:[],
+    isRepeat:false,
     onEdit: () => {},
     onComplete:  () => {},
 }
