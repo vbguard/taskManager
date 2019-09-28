@@ -47,7 +47,8 @@ class AddForm extends Component {
 
   render() {
     const { title, description } = this.state;
-    const { confirmDelete } = this.props;
+    const { confirmDelete, history } = this.props;
+
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>

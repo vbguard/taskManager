@@ -1,103 +1,126 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Task.module.css';
+
+import { requestDoneTask } from '../../redux/actions/tasksActions';
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
 
+const refactoringProps = props => {
+  const { dates, title, description, taskNumber, isRepeat, _id, token } = props.task;
 
-const refactoringProps = (props) => {
-    const {
-        dates,
-        title,
-        description,
-        taskNumber,
-        isRepeat
-      } = props.task;
-
-    const refactoringProps = {
-        loopDates: dates,
-        taskHeader: (!title) ? 'назва_таски' : title,
-        taskDescription: (!description) ? 'опис_таски' : description,
-        isRepeat,
-        taskNumber: (!taskNumber) ? 'номер_таски' : taskNumber,
-    }
-    return refactoringProps;
-}
-
+  const refactoringProps = {
+    token,
+    id: _id,
+    loopDates: dates,
+    taskHeader: !title ? 'назва_таски' : title,
+    taskDescription: !description ? 'опис_таски' : description,
+    isRepeat,
+    taskNumber: !taskNumber ? 'номер_таски' : taskNumber
+  };
+  return refactoringProps;
+};
 
 class Task extends Component {
-    render() {
-        const {taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, onComplete }=refactoringProps(this.props);
-        const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
-        return (
-            <>
-              <div className={styles.task}>
-                <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
-                    <div className={styles.numberContainer}>
-                        <p className={styles.headerNumber}>{taskNumber}. </p>
-                    </div>
-                    <div className={styles.textContainer}>
-                        <p className={styles.headerText}>{taskHeader}</p>
-                    </div>
-                </div>
-                <div className={styles.taskBody}>
-                    <p>{taskDescription}</p>
-                </div>
-                <div className={styles.taskControls}>
-                    <div className={styles.taskControlsRepeat}>
-                        {isLoop &&(<>
-                            <button
-                                type="button"
-                                disabled={loopDates[0].isComplete? true : false}
-                                className={loopDates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn}>
-                                    <Icon icon='Loop'/>
-                            </button>
-                            {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
-                                {loopDates}
-                            </p> */}
-                        </>)}
-                    </div>
+  render() {
+    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, isComplete, id } = refactoringProps(
+      this.props
+    );
 
-                    <div className={styles.taskControlsCompleteContainer}>
-                        <button
-                            className={styles.taskControlsEdit}
-                            type="button"
-                            onClick={onEdit}>
-                                <Icon icon='Edit'/>
-                        </button>
-                        {windowWidth>768 ? <p>Редактировать</p>:null}
-                        <button type="button"
-                            disabled={loopDates[0].isComplete ? true : false}
-                            className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                            onClick={onComplete}>
-                                <Icon icon='Done'/>
-                        </button>
-                        {windowWidth>768 ? (loopDates[0].isComplete ? <p>Выполнено</p> : <p>Выполнить</p>) : null}
-                    </div>
-                </div>
+    const { onComplete, token } = this.props;
+
+    const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
+    return (
+      <>
+        <div className={styles.task}>
+          <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
+            <div className={styles.numberContainer}>
+              <p className={styles.headerNumber}>{taskNumber}. </p>
             </div>
-            </>
-        )
-    }
+            <div className={styles.textContainer}>
+              <p className={styles.headerText}>{taskHeader}</p>
+            </div>
+          </div>
+          <div className={styles.taskBody}>
+            <p>{taskDescription}</p>
+          </div>
+          <div className={styles.taskControls}>
+            <div className={styles.taskControlsRepeat}>
+              {isLoop && (
+                <>
+                  <button
+                    type="button"
+                    disabled={loopDates[0].isComplete ? true : false}
+                    className={
+                      loopDates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
+                    }
+                  >
+                    <Icon icon="Loop" />
+                  </button>
+                  <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                    {loopDates}
+                  </p>
+                </>
+              )}
+            </div>
+
+            <div className={styles.taskControlsCompleteContainer}>
+              <button className={styles.taskControlsEdit} type="button" onClick={onEdit}>
+                <Icon icon="Edit" />
+              </button>
+              {windowWidth > 768 ? <p>Редактировать</p> : null}
+              <button
+                type="button"
+                disabled={loopDates[0].isComplete ? true : false}
+                className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                onClick={() => onComplete(id, token, { dates: [] })}
+              >
+                <Icon icon="Done" />
+              </button>
+              {windowWidth > 768 ? loopDates[0].isComplete ? <p>Выполнено</p> : <p>Выполнить</p> : null}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
-Task.propTypes = {task: PropTypes.shape({
+Task.propTypes = {
+  task: PropTypes.shape({
     taskNumber: PropTypes.string,
     isDone: PropTypes.bool.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    dates:PropTypes.arrayOf(PropTypes.string).isRequired,
+    dates: PropTypes.arrayOf(PropTypes.string).isRequired,
     onEdit: PropTypes.func,
-    onCompltete: PropTypes.func})
-}
+    onCompltete: PropTypes.func
+  })
+};
 
 Task.defaultProps = {
-    taskHeader: '',
-    description: 'опис_таски',
-    title: 'назва_таски',
-    onEdit: () => {},
-    onComplete:  () => {},
-}
+  taskHeader: '',
+  description: 'опис_таски',
+  title: 'назва_таски',
+  onEdit: () => {}
+};
 
-export default windowSize(Task);
+const mSTP = state => ({
+  token: state.session.token
+});
+
+const mDTP = dispatch => ({
+  onComplete: (id, token, data) => dispatch(requestDoneTask({ id, token, data }))
+});
+
+export default compose(
+  connect(
+    mSTP,
+    mDTP
+  ),
+  windowSize
+)(Task);

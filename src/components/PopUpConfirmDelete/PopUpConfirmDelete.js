@@ -13,14 +13,20 @@ const btnCancelStyle = [button, btnCancel];
 class PopUpConfirmDelete extends Component {
   state = {};
 
+  handleDelete = (id, token) => {
+    this.props.onDeleteTask(id, token);
+    this.props.cancelDelete();
+    this.props.history.push('/dashboard');
+  };
+
   render() {
-    const { onDeleteTask, token, _id, cancelDelete } = this.props;
+    const { token, _id, cancelDelete } = this.props;
 
     return (
       <div className={container}>
         <h1 className={title}>Подтвердите удаление задачи</h1>
         <div className={btnsContainer}>
-          <button className={btnDeleteStyle.join(' ')} onClick={() => onDeleteTask(_id, token)}>
+          <button className={btnDeleteStyle.join(' ')} onClick={() => this.handleDelete(_id, token)}>
             Удалить
           </button>
           <button className={btnCancelStyle.join(' ')} onClick={cancelDelete}>
