@@ -8,6 +8,7 @@ import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 import { compose } from 'redux';
 import windowSize from 'react-window-size';
 import { CalendarButtonMobile } from '../CalendarButton/CalendarButton';
+import SearchTasks from '../SearchTasks/SearchTasks.jsx';
 
 class Header extends Component {
   state = {};
@@ -29,6 +30,7 @@ class Header extends Component {
         {match.path.includes('dashboard') && (
           <div className={styles.wrapperForDashboard}>
             <h1 className={`${styles.LoginRegisterLogoMob} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
+
             <nav className={styles.nav}>
               <div className="Header-Dashboard-UserName-Mob">
                 <div className={styles.UserNameLetter}>{nickname[0]}</div>
@@ -42,6 +44,7 @@ class Header extends Component {
               <Icon icon="Calendar" className={styles.informSign} onClick={openCalendar} />
               {windowWidth < 768 ? <CalendarButtonMobile className={styles.informSign} /> : ''}
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
+              <SearchTasks />
             </div>
           </div>
         )}

@@ -12,7 +12,8 @@ export const tasksTypes = {
   TASK_DONE_ERROR: 'TASK_DONE_ERROR',
   EDIT_TASK_START: 'EDIT_TASK_START',
   EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
-  EDIT_TASK_ERROR: 'EDIT_TASK_ERROR'
+  EDIT_TASK_ERROR: 'EDIT_TASK_ERROR',
+  SEARCH_TASKS: 'SEARCH_TASKS'
 };
 
 export const fetchTasksStart = () => ({
@@ -105,3 +106,8 @@ export const editTask = data => dispatch => {
     })
     .catch(error => dispatch(editTaskError(error)));
 };
+
+export const searchTasks = search => ({
+  type: tasksTypes.SEARCH_TASKS,
+  payload: search
+});
