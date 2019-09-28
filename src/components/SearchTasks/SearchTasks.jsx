@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styles from './SearchTasks.module.css';
 
 class SearchTasks extends Component {
   state = { search: '' };
@@ -9,7 +10,15 @@ class SearchTasks extends Component {
   };
 
   render() {
-    return <input type="text" value={this.state.text} onChange={this.handleChange} name="search" />;
+    return (
+      <input
+        type="text"
+        value={this.state.text}
+        onChange={this.handleChange}
+        name="search"
+        className={styles.searchInput}
+      />
+    );
   }
 }
 
