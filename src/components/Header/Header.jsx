@@ -40,12 +40,10 @@ class Header extends Component {
             </nav>
 
             <div className={`${styles.informBtn}  Header-Dashboard-UserName-Mob`}>
-              {windowWidth < 768 && location.pathname === '/dashboard' ? (
+              {windowWidth < 768 && location.pathname === '/dashboard' && (
                 <span className={styles.calendarSign}>
                   <CalendarButtonMobile />
                 </span>
-              ) : (
-                ''
               )}
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
             </div>

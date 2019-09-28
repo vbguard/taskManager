@@ -1,9 +1,8 @@
-	.dashboardWrap {
+.dashboardWrap {
 	display: flex;
 	margin: 0 auto;
 	width: 100%;
-	min-height: 100vh;
-	height: 100%;
+	/* height: 100%; */
 }
 
 .tasksWrapper {
@@ -19,3 +18,17 @@
 	width: 40%;
 }
 
+.wrapper {
+	/* position: relative; */
+	/* height: 100vh; */
+	padding-top: 48px;
+	background-color: var(--pale-grey);
+}
+
+.loader {
+	position: absolute;
+	position: absolute;
+    top: 30%;  
+    left: 50%; 
+    transform: translate(-50%, -30%);
+}
