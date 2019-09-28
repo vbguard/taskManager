@@ -17,9 +17,12 @@ export const tasksTypes = {
   CLEAR_SEARCH: 'CLEAR_SEARCH'
 };
 
-export const fetchTasksSuccess = tasks => ({
+export const fetchTasksSuccess = ({ tasks, calendar }) => ({
   type: tasksTypes.FETCH_TASKS_SUCCESS,
-  payload: tasks
+  payload: {
+    tasks,
+    calendar
+  }
 });
 
 export const fetchTasksError = error => ({
@@ -37,7 +40,7 @@ export const getUserTasks = () => ({
 
     options: {
       onSuccess({ dispatch, response }) {
-        dispatch(fetchTasksSuccess(response.data.tasks));
+        dispatch(fetchTasksSuccess(response.data));
       },
       onError({ dispatch, error }) {
         dispatch(fetchTasksError(error));
