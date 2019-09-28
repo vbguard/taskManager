@@ -17,7 +17,8 @@
 
 .title {
   width: 264px;
-  height: 35px;
+  height: 40px;
+
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
   margin-left: 11px
@@ -89,7 +90,7 @@
   font-family: 'GothamPro';
   font-size: 13px;
   font-weight: 300;
-  line-height: 1.54;
+  line-height: 1;
   letter-spacing: 0.78px;
   color: var(--greyish-brown);
   padding-left: 5px;
@@ -158,6 +159,7 @@
 
   .title {
     width: 600px;
+    height: 40px;
     margin-left: 55px
   }
 

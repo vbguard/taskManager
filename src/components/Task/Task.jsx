@@ -92,21 +92,25 @@ class Task extends Component {
 Task.propTypes = {
   task: PropTypes.shape({
     taskNumber: PropTypes.string,
-    isDone: PropTypes.bool.isRequired,
+    isRepeat: PropTypes.bool.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    dates: PropTypes.arrayOf(PropTypes.string).isRequired,
+    dates:PropTypes.arrayOf(PropTypes.shape({
+        isComplete: PropTypes.bool,
+        date: PropTypes.string 
+    })).isRequired,
     onEdit: PropTypes.func,
     onCompltete: PropTypes.func
   })
 };
 
 Task.defaultProps = {
-  taskHeader: '',
-  description: 'опис_таски',
-  title: 'назва_таски',
-  onEdit: () => {},
-  onComplete: () => {}
+    description: 'опис_таски',
+    title: 'назва_таски',
+    dates:[],
+    isRepeat:false,
+    onEdit: () => {},
+    onComplete:  () => {},
 };
 
 const MSTP = state => ({});

@@ -47,6 +47,9 @@ class Dashboard extends Component {
     const { token, getUserTasks } = this.props;
     getUserTasks(token);
   }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
 
   render() {
     const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, taskId } = this.props;
