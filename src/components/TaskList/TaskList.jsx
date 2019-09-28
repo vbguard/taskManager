@@ -15,7 +15,8 @@ import tasks from '../../assets/tasksForTest.json';
 datesFromTasks(tasks.tasks);
 
 const TaskList = ({ tasks }) => {
-  return ((tasks && tasks.length) ? (<ul className={styles.list}>
+  return tasks && tasks.length ? (
+    <ul className={styles.list}>
       {tasks &&
         tasks.map(task => {
           return (
@@ -24,19 +25,21 @@ const TaskList = ({ tasks }) => {
             </li>
           );
         })}
-    </ul>): (<div>
-        <p className={styles.intro}>Нет запланированных задач...</p>
-        <p className={styles.intro}>Время начать управлять своей жизнью!</p>
-      </div>)
+    </ul>
+  ) : (
+    <div>
+      <p className={styles.intro}>Нет запланированных задач...</p>
+      <p className={styles.intro}>Время начать управлять своей жизнью!</p>
+    </div>
   );
-  };
+};
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(Object)
 };
 
 const mapStateToProps = state => ({
-  tasks: getTasks(state)
+  tasks: getTasks(state, state.userTasks.search)
 });
 
 const mapDispatchToProps = {};
