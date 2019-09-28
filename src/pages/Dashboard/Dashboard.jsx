@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -10,12 +10,12 @@ import Loader from 'react-loader-spinner';
 
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
-import InfoPop from '../../components/InfoPop/InfoPop';
 import TaskContainer from '../../components/TaskContainer/TaskContainer';
 import AddForm from '../../components/AddTask/AddTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
+import InfoPop from '../../components/InfoPop/InfoPop';
 
 // import pages
 
@@ -52,36 +52,40 @@ class Dashboard extends Component {
     return (
       <>
         <Header match={this.props.match} />
-        {loader ? (
-          <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
-        ) : (
-          <>
-            {windowWidth < 1280 && (
-              <>
-                <Switch>
-                  <Route path="/dashboard" exact component={TaskContainer} />
-                  <Route path="/dashboard/calendar" component={CalendarPage} />
-                  <Route path="/dashboard/add" component={AddForm} />
-                </Switch>
-              </>
-            )}
-            {windowWidth >= 1280 && (
-              <>
-                {/* // router => /dashboard @DashboardContainer
+        <div className={styles.wrapper}>
+          {loader ? (
+            <div className={styles.loader}>
+              <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
+            </div>
+          ) : (
+            <>
+              {windowWidth < 1280 && (
+                <>
+                  <Switch>
+                    <Route path="/dashboard" exact component={TaskContainer} />
+                    <Route path="/dashboard/calendar" component={CalendarPage} />
+                    <Route path="/dashboard/add" component={AddForm} />
+                  </Switch>
+                </>
+              )}
+              {windowWidth >= 1280 && (
+                <>
+                  {/* // router => /dashboard @DashboardContainer
                     // router => /dashboard/add @AddForm */}
-                <div className={styles.dashboardWrap}>
-                  <div className={styles.tasksWrapper}>
-                    <TaskContainer />
+                  <div className={styles.dashboardWrap}>
+                    <div className={styles.tasksWrapper}>
+                      <TaskContainer />
+                    </div>
+                    <div className={styles.calendarWrapper}>
+                      <Calendar />
+                    </div>
                   </div>
-                  <div className={styles.calendarWrapper}>
-                    <Calendar />
-                  </div>
-                </div>
-                <Route path="/dashboard/add" component={AddForm} />
-              </>
-            )}
-          </>
-        )}
+                  <Route path="/dashboard/add" component={AddForm} />
+                </>
+              )}
+            </>
+          )}
+        </div>
         {modal && (
           <Modal>
             {modalInfo && <InfoPop />}
