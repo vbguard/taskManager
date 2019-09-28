@@ -58,7 +58,7 @@ class Header extends Component {
               </span>
               {/* {location.pathname === '/dashboard' && <SearchTasks />} */}
               {location.pathname === '/dashboard' && (
-                <span className={styles.logoutSign}>
+                <span className={styles.searchWrapper}>
                   <SearchTasks />
                 </span>
               )}
