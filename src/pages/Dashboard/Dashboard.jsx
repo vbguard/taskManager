@@ -10,7 +10,7 @@ import Loader from 'react-loader-spinner';
 
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
-import TaskContainer from '../../components/Task/TaskContainer';
+import TaskContainer from '../../components/TaskContainer/TaskContainer';
 import AddForm from '../../components/AddTask/AddTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
@@ -59,7 +59,7 @@ class Dashboard extends Component {
             </div>
           ) : (
             <>
-              {windowWidth < 1024 && (
+              {windowWidth < 1280 && (
                 <>
                   <Switch>
                     <Route path="/dashboard" exact component={TaskContainer} />
@@ -68,7 +68,7 @@ class Dashboard extends Component {
                   </Switch>
                 </>
               )}
-              {windowWidth >= 1024 && (
+              {windowWidth >= 1280 && (
                 <>
                   {/* // router => /dashboard @DashboardContainer
                     // router => /dashboard/add @AddForm */}
