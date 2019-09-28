@@ -23,8 +23,9 @@ export const addTask = data => ({
   type: formTypes.ADD_TASK_FORM_REQUEST,
   payload: {
     request: {
-      method: 'PUT',
-      url: '/tasks'
+      method: 'POST',
+      url: '/tasks',
+      data
     },
 
     options: {
