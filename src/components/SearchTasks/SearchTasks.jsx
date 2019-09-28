@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchTasks } from '../../redux/actions/tasksActions';
+import styles from './SearchTasks.module.css';
+
 
 class SearchTasks extends Component {
   state = { search: '' };
