@@ -9,7 +9,10 @@ export const tasksTypes = {
   DELETE_TASK_ERROR: 'DELETE_TASK_ERROR',
   TASK_DONE_START: 'TASK_DONE_START',
   TASK_DONE_SUCCESS: 'TASK_DONE_SUCCESS',
-  TASK_DONE_ERROR: 'TASK_DONE_ERROR'
+  TASK_DONE_ERROR: 'TASK_DONE_ERROR',
+  EDIT_TASK_START: 'EDIT_TASK_START',
+  EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
+  EDIT_TASK_ERROR: 'EDIT_TASK_ERROR'
 };
 
 export const fetchTasksStart = () => ({
@@ -50,6 +53,21 @@ export const deleteTaskError = error => ({
   payload: error.message
 });
 
+export const editTaskStart = () => ({
+  type: tasksTypes.EDIT_TASK_START,
+  payload: true
+});
+
+export const editTaskSuccess = id => ({
+  type: tasksTypes.EDIT_TASK_SUCCESS,
+  payload: id
+});
+
+export const editTaskError = error => ({
+  type: tasksTypes.EDIT_TASK_ERROR,
+  payload: error.message
+});
+
 export const deleteTask = data => dispatch => {
   dispatch(deleteTaskStart());
   requestDeleteTask(data)
@@ -77,4 +95,13 @@ export const requestDoneTask = data => dispatch => {
   requestUpdateTask(data)
     .then(resp => console.log(resp))
     .catch(err => dispatch(doneTaskError(err)));
+};
+
+export const editTask = data => dispatch => {
+  dispatch(editTaskStart());
+  requestUpdateTask(data)
+    .then(resp => {
+      dispatch(editTaskSuccess(resp.data));
+    })
+    .catch(error => dispatch(editTaskError(error)));
 };

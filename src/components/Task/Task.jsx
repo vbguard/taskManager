@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+// import { editTaskSuccess, editTask } from '../../redux/actions/tasksActions';
+import { getIdSuccess } from '../../redux/actions/getIdAction';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Task.module.css';
-
-import { requestDoneTask } from '../../redux/actions/tasksActions';
-
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
+import { requestDoneTask } from '../../redux/actions/tasksActions.js';
+import { getToken, getIdForEdit } from '../../redux/selectors/selectors';
 
 const refactoringProps = props => {
-  const { dates, title, description, taskNumber, isRepeat, _id, token } = props.task;
+  const { dates, title, description, taskNumber, isRepeat, _id } = props.task;
 
   const refactoringProps = {
-    token,
-    id: _id,
     loopDates: dates,
     taskHeader: !title ? 'назва_таски' : title,
     taskDescription: !description ? 'опис_таски' : description,
     isRepeat,
-    taskNumber: !taskNumber ? 'номер_таски' : taskNumber
+    taskNumber: !taskNumber ? 'номер_таски' : taskNumber,
+    taskId: _id
   };
   return refactoringProps;
 };
 
 class Task extends Component {
   render() {
-    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, onEdit, isComplete, id } = refactoringProps(
+    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, onComplete, taskId } = refactoringProps(
       this.props
     );
-
-    const { onComplete, token } = this.props;
-
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
+    const { onEdit, token, id } = this.props;
+
     return (
       <>
         <div className={styles.task}>
@@ -61,17 +60,19 @@ class Task extends Component {
                   >
                     <Icon icon="Loop" />
                   </button>
-                  <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
-                    {loopDates}
-                  </p>
+                  {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                                {loopDates}
+                            </p> */}
                 </>
               )}
             </div>
 
             <div className={styles.taskControlsCompleteContainer}>
-              <button className={styles.taskControlsEdit} type="button" onClick={onEdit}>
-                <Icon icon="Edit" />
-              </button>
+              <Link to="/dashboard/edit">
+                <button className={styles.taskControlsEdit} type="button" onClick={() => onEdit(taskId)}>
+                  <Icon icon="Edit" />
+                </button>
+              </Link>
               {windowWidth > 768 ? <p>Редактировать</p> : null}
               <button
                 type="button"
@@ -110,11 +111,13 @@ Task.defaultProps = {
 };
 
 const mSTP = state => ({
-  token: state.session.token
+  token: getToken(state),
+  id: getIdForEdit(state)
 });
 
 const mDTP = dispatch => ({
-  onComplete: (id, token, data) => dispatch(requestDoneTask({ id, token, data }))
+  onComplete: (id, token, data) => dispatch(requestDoneTask({ id, token, data })),
+  onEdit: taskId => dispatch(getIdSuccess(taskId))
 });
 
 export default compose(
