@@ -5,7 +5,7 @@ import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
 
-class AddForm extends Component {
+class AddTask extends Component {
   state = {
     title: '',
     description: '',
@@ -96,4 +96,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddForm);
+)(AddTask);
