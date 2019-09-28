@@ -17,7 +17,9 @@
 
   --mobileFontSize: 12px;
   --tabletFontSize: 13px;
+  --tabletHeaderFontSize: 18px;
   --secondarymobileFontSize: 11px;
+  --primaryHeaderFontFamily: 'Gotham Pro';
   --primaryFontFamily: 'Gotham Pro Light';
   --secondaryFontFamily: 'Verdana';
 }
