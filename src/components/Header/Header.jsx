@@ -52,10 +52,15 @@ class Header extends Component {
                   <CalendarButtonMobile />
                 </span>
               )}
-              <span className={styles.calendarSign}>
+              <span className={styles.informSignWrapper}>
                 <Icon icon="Info" onClick={openModal} className={styles.informSign} />
               </span>
-              {location.pathname === '/dashboard' && <SearchTasks />}
+              {/* {location.pathname === '/dashboard' && <SearchTasks />} */}
+              {location.pathname === '/dashboard' && (
+                <span className={styles.logoutSign}>
+                  <SearchTasks />
+                </span>
+              )}
             </div>
           </div>
         )}

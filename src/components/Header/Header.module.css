@@ -22,6 +22,8 @@
   margin: 0;
 }
 
+
+
 .DashboardLogo {
   padding: 0 15px;
   position: relative;
@@ -42,6 +44,11 @@
 .informSign {
   fill: var(--pale-grey);
   cursor: pointer;
+  line-height: 1;
+}
+
+.informSignWrapper {
+  padding: 0 15px;
   line-height: 1;
 }
 
