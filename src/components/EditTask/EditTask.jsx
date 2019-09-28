@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../../redux/actions/formAction';
-import style from './AddForm.module.css';
+import style from './EditTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
 import { openModal, openDeleteModal } from '../../redux/actions/modalAction';
 
-class AddForm extends Component {
+class EditTask extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{date: '09-26-2019'}]
+    dates: [{ date: '09-26-2019' }]
   };
 
   handleChange = event => {
@@ -31,12 +31,12 @@ class AddForm extends Component {
     }
 
     if (!this.props.error) {
-      this.props.addForm({title, description, dates});
+      this.props.addForm({ title, description, dates });
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
     }
     if (this.props.error) {
-      this.setState({ error: this.props.error })
+      this.setState({ error: this.props.error });
     }
   };
 
@@ -94,7 +94,7 @@ class AddForm extends Component {
 
 const mapStateToProps = state => ({ error: state.form.error });
 const mapDispatchToProps = dispatch => ({
-  addForm: (data) => dispatch(addTask(data)),
+  addForm: data => dispatch(addTask(data)),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());
@@ -104,4 +104,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddForm);
+)(EditTask);

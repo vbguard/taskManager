@@ -1,21 +1,14 @@
-	.dashboardWrap {
-	display: flex;
-	margin: 0 auto;
-	width: 100%;
-	min-height: 100vh;
-	height: 100%;
+
+
+.wrapper {
+	position: relative;
+	height: 100vh;
 }
 
-.tasksWrapper {
-	width: 60%;
-	background-color: var(--pale-grey);
-	display: flex;
-	justify-content: center
+.loader {
+	position: absolute;
+	position: absolute;
+    top: 30%;  
+    left: 50%; 
+    transform: translate(-50%, -30%);
 }
-
-.calendarWrapper {
-	display: flex;
-	justify-content: center;
-	width: 40%;
-}
-

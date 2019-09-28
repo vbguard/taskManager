@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   session: persistReducer(sessionPersistConfig, sessionReducer),
   userTasks: tasksReducer,
   form: formReducer,
-  modal: modalReducer
-});
+  modal: modalReducer,
+  });
 
 export default rootReducer;
