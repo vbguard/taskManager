@@ -28,6 +28,7 @@ import { getUserTasks } from '../../redux/actions/tasksActions';
 import { getToken, getLoader, getTasks } from '../../redux/selectors/selectors';
 
 // add styles
+import styles from './Dashboard.module.css';
 
 class Dashboard extends Component {
   state = {};
@@ -46,38 +47,43 @@ class Dashboard extends Component {
     const { token, getUserTasks } = this.props;
     getUserTasks(token);
   }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
 
   render() {
     const { windowWidth, loader, modal, modalInfo, modalCalendar, modalDelete, history, location, match } = this.props;
 
     return (
       <>
-        <Header match={this.props.match} />
-        {loader ? (
-          <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
-        ) : (
-          <>
-            {windowWidth < 1024 && (
-              <>
-                <Switch>
-                  <Route path="/dashboard" exact component={TaskContainer} />
-                  <Route path="/dashboard/calendar" component={CalendarPage} />
-                  <Route path="/dashboard/add" component={AddTask} />
-                  <Route path="/dashboard/edit" component={EditTask} />
-                </Switch>
-              </>
-            )}
-            {windowWidth >= 1024 && (
-              <>
-                <Switch>
-                  <Route path="/dashboard" exact component={WrapDesktop} />
-                  <Route path="/dashboard/add" component={AddTask} />
-                  <Route path="/dashboard/edit" component={EditTask} />
-                </Switch>
-              </>
-            )}
-          </>
-        )}
+        <Header match={this.props.match} location={this.props.location} />
+        <div className={styles.wrapper}>
+          {loader ? (
+            <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
+          ) : (
+            <>
+              {windowWidth < 1024 && (
+                <>
+                  <Switch>
+                    <Route path="/dashboard" exact component={TaskContainer} />
+                    <Route path="/dashboard/calendar" component={CalendarPage} />
+                    <Route path="/dashboard/add" component={AddTask} />
+                    <Route path="/dashboard/edit" component={EditTask} />
+                  </Switch>
+                </>
+              )}
+              {windowWidth >= 1024 && (
+                <>
+                  <Switch>
+                    <Route path="/dashboard" exact component={WrapDesktop} />
+                    <Route path="/dashboard/add" component={AddTask} />
+                    <Route path="/dashboard/edit" component={EditTask} />
+                  </Switch>
+                </>
+              )}
+            </>
+          )}
+        </div>
         {modal && (
           <Modal>
             {modalInfo && <InfoPop />}
