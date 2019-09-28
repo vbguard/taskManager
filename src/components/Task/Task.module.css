@@ -176,7 +176,9 @@ p {
 		padding: 0px 2.5em 16px;
 	}
 	.taskControls button {
+		flex: none;
 		width: 34px;
+		flex-basis: 34px;
 		height: 34px;
 	}
 	.taskControlsEdit + p {
@@ -211,6 +213,7 @@ p {
 		padding: 0px 2.5em 16px;
 	}
 	.taskControls button {
+		flex: none;
 		width: 34px;
 		height: 34px;
 	}
