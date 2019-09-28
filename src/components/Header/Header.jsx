@@ -13,39 +13,46 @@ class Header extends Component {
   state = {};
 
   render() {
-    const { match, openModal, openCalendar, nickname, windowWidth } = this.props;
+    const { match, location, openModal, logout, nickname, windowWidth } = this.props;
 
     return (
-      <div>
+      <>
         {match.path.includes('/login') && (
           <div className={styles.wrapperForLogin}>
-            <h1 className={`${styles.LoginRegisterLogoMob} Header-LoginRegister-Logo-Mob`}>TaskTraker</h1>
-            <h2 className={`${styles.LoginRegisterTaglineMob} Header-LoginRegister-Tagline-Mob`}>
-              Организуй свои дела
-            </h2>
+            <h1 className={`${styles.LoginRegisterLogo} Header-LoginRegister-Logo-Mob`}>TaskTraker</h1>
+            <h2 className={`${styles.LoginRegisterTagline} Header-LoginRegister-Tagline-Mob`}>Организуй свои дела</h2>
           </div>
         )}
 
+        {/* =====================DASHBOARD */}
         {match.path.includes('dashboard') && (
           <div className={styles.wrapperForDashboard}>
-            <h1 className={`${styles.LoginRegisterLogoMob} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
-            <nav className={styles.nav}>
-              <div className="Header-Dashboard-UserName-Mob">
-                <div className={styles.UserNameLetter}>{nickname[0]}</div>
+            <h1 className={`${styles.DashboardLogo} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
+
+            <nav className={`${styles.nav} Header-Dashboard-UserName-Mob`}>
+              <div className={styles.UserNameLetter}>{nickname[0].toUpperCase()}</div>
+              <div className={styles.UserName}>{nickname}</div>
+              <div className={styles.exitWordWrapper} onClick={logout}>
+                <span className={styles.exitWord}>Выйти</span>
               </div>
 
-              <div className={`${styles.UserName} Header-Dashboard-UserName-Mob`}>{nickname}</div>
-
-              <Icon icon="Logout" onClick={this.props.logout} className={styles.exitBtn} />
+              <Icon icon="Logout" onClick={logout} className={styles.exitBtn} />
             </nav>
-            <div className={styles.informBtn}>
-              <Icon icon="Calendar" className={styles.informSign} onClick={openCalendar} />
-              {windowWidth < 768 ? <CalendarButtonMobile className={styles.informSign} /> : ''}
+
+            <div className={`${styles.informBtn}  Header-Dashboard-UserName-Mob`}>
+              {windowWidth < 768 && location.pathname === '/dashboard' ? (
+                <span className={styles.calendarSign}>
+                  <CalendarButtonMobile />
+                </span>
+              ) : (
+                ''
+              )}
               <Icon icon="Info" onClick={openModal} className={styles.informSign} />
             </div>
           </div>
         )}
-      </div>
+        {/* =====================DASHBOARD */}
+      </>
     );
   }
 }

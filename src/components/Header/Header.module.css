@@ -1,32 +1,38 @@
 .wrapperForLogin {
   width: 100%;
   background-color: var(--dark-grey-blue);
-  background-image: url(../../assets/bg-header.jpg);
+  background: url(../../assets/bg-header.jpg) no-repeat top center fixed; 
 }
 
 .wrapperForDashboard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: baseline;
   justify-content: space-between;
   width: 100%;
   background-color: var(--dark-grey-blue);
 }
 
-.LoginRegisterLogoMob {
+.LoginRegisterLogo {
   margin: 0;
   padding-top: 18px;
-  padding-left: 5%;
 }
 
-.LoginRegisterTaglineMob {
+.LoginRegisterTagline {
   margin: 0;
+}
+
+.DashboardLogo {
+  padding: 0 15px;
+  position: relative;
 }
 
 .informBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
   width: 100%;
-  text-align: center;
   height: 40px;
   box-shadow: 0px 2px 2px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--light-blue-grey);
@@ -37,30 +43,83 @@
 .informSign {
   fill: var(--pale-grey);
   cursor: pointer;
+  padding: 0 15px;
+  line-height: 1;
+}
+
+.calendarSign {
+  position: relative;
+  fill: var(--pale-grey);
+  cursor: pointer;
+  padding: 0 15px;
+  line-height: 1;
+}
+
+.calendarSign::after {
+  position: absolute;
+  height: 30px;
+  transform: translateY(-11%);
+  right: 0;
+  border-right:  2px solid var(--pale-grey);
+  content: "";
+}
+
+.exitWord {
+  display: none;
+  cursor: pointer;
 }
 
 .UserNameLetter {
-  border-width: 1px;
-  border-color: var(--light-blue-grey);
+  border-width: 2px;
+  border-color: var(--pale-grey);
   border-style: solid;
   border-radius: 50%;
   line-height: 21px;
   width: 21px;
   height: 21px;
   vertical-align: middle;
+  margin: 0 15px;
 }
 
 .UserName {
   display: none;
+  padding: 0 15px;
+  position: relative;
+}
+
+.UserName::before {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 30px;
+  border-left:  2px solid var(--pale-grey);
+  content: "";
+}
+
+.exitWordWrapper {
+  position: relative;
+  padding-left: 15px;
+  outline: 5  px solid violet;
+}
+
+.exitWordWrapper::before {
+  position: absolute;
+  height: 30px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-left:  2px solid var(--pale-grey);
+  color: blue;
+  content: "";
 }
 
 .exitBtn {
   width: 18px;
   height: 18px;
-  fill: var(--light-blue-grey);
-  padding-left: 15px;
-  padding-bottom: 2px;
-  padding-right: 5px;
+  fill: var(--pale-grey);
+  padding-top: 3px;
+  padding-right: 30px;
   cursor: pointer;
 }
 
@@ -70,16 +129,19 @@
   align-items: center;
 }
 
-.UserName {
-  display: none;
-}
-
 @media (min-width: 768px) {
   .wrapperForDashboard {
     flex-wrap: nowrap;
   }
 
+  .exitWord {
+    display: inline;
+    padding-right: 15px;
+  }
+
   .informBtn {
+    display: flex;
+    justify-content: left;
     margin: 0;
     padding: 0;
     width: auto;
@@ -97,4 +159,33 @@
   .UserName {
     display: inline;
   }
+
+  .informBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    box-shadow: none;
+    background-color: none;
+    border: 0;
+    padding-top: 0;
+  }
+
+  .DashboardLogo::after {
+    position: absolute;
+    height: 30px;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 0;
+    border-right:  2px solid var(--pale-grey);
+    content: "";
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapperForLogin {
+   background-size: contain;
+  }
+
 }

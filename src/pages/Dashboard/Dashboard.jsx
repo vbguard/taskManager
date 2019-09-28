@@ -11,7 +11,7 @@ import Loader from 'react-loader-spinner';
 // import Components
 import Calendar from '../../components/Calendar/Calendar';
 import TaskContainer from '../../components/Task/TaskContainer';
-import AddForm from '../../components/AddForm/AddForm';
+import AddTask from '../../components/AddTask/AddTask';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Header match={this.props.match} />
+        <Header match={this.props.match} location={this.props.location} />
         {loader ? (
           <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
         ) : (
@@ -61,14 +61,14 @@ class Dashboard extends Component {
                 <Switch>
                   <Route path="/dashboard" exact component={TaskContainer} />
                   <Route path="/dashboard/calendar" component={CalendarPage} />
-                  <Route path="/dashboard/add" component={AddForm} />
+                  <Route path="/dashboard/add" component={AddTask} />
                 </Switch>
               </>
             )}
             {windowWidth >= 1024 && (
               <>
                 {/* // router => /dashboard @DashboardContainer
-                    // router => /dashboard/add @AddForm */}
+                    // router => /dashboard/add @AddTask */}
                 <div className={styles.dashboardWrap}>
                   <div className={styles.tasksWrapper}>
                     <TaskContainer />
@@ -77,7 +77,7 @@ class Dashboard extends Component {
                     <Calendar />
                   </div>
                 </div>
-                <Route path="/dashboard/add" component={AddForm} />
+                <Route path="/dashboard/add" component={AddTask} />
               </>
             )}
           </>
