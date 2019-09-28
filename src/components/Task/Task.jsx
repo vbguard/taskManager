@@ -34,7 +34,7 @@ class Task extends Component {
     return (
       <>
         <div className={styles.task}>
-          <div className={loopDates[0].isC ? styles.taskHeaderInactive : styles.taskHeader}>
+          <div className={loopDates[0].isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
             <div className={styles.numberContainer}>
               <p className={styles.headerNumber}>{taskNumber}. </p>
             </div>
