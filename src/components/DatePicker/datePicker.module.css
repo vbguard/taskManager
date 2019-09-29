@@ -1,0 +1,11 @@
+.pickerWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+.pickerBtn {
+    width: 20px;
+    height: 20px;
+}

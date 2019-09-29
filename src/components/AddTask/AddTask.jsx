@@ -5,13 +5,13 @@ import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
 import DatePicker from '../DatePicker/DatePicker';
+import Modal from '../Modal/Modal';
+import { openPickerModal } from '../../redux/actions/modalAction.js';
 
 class AddForm extends Component {
   state = {
     title: '',
     description: '',
-    isToggleOn: false,
-    // dates: [{ date: '09-26-2019' }]
     dates: []
   };
 
@@ -24,29 +24,16 @@ class AddForm extends Component {
   };
 
   handleOpenDatePicker = dates => {
-    const { isToggleOn } = this.state;
-    if (isToggleOn) {
+    const { openModal, modal } = this.props;
+
+    if (modal) {
       const convertedDates = dates.map(date => ({ date }));
-      //make dates  "dates: [{ date: '09-26-2019' }]" from array of dates
-      console.log(convertedDates);
       this.setState(state => ({
-        isToggleOn: !state.isToggleOn,
         dates: convertedDates
       }));
     }
-    if (!isToggleOn) {
-      this.setState(state => ({
-        isToggleOn: !state.isToggleOn
-      }));
-    }
-  };
-
-  handleDates = () => {
-    const { dates } = this.state;
-    if (dates.length === 0) {
-      return dates;
-    } else {
-      return dates.map(el => el.date);
+    if (!modal) {
+      openModal();
     }
   };
 
@@ -69,13 +56,23 @@ class AddForm extends Component {
     }
   };
 
+  handleDates = () => {
+    const { dates } = this.state;
+    if (dates.length === 0) {
+      return dates;
+    } else {
+      return dates.map(el => el.date);
+    }
+  };
+
   handleReset = () => {
     this.props.history.push('/dashboard');
     this.setState({ title: '', description: '' });
   };
 
   render() {
-    const { title, description, isToggleOn } = this.state;
+    const { title, description } = this.state;
+    const { modal } = this.props;
 
     return (
       <div className={style.bodybg}>
@@ -94,15 +91,12 @@ class AddForm extends Component {
             <p className={style.dataPickerTitle}>Выберете дату</p>
             <Icon icon="ArrowRight" className={style.formIcon} />
           </div>
-          {this.state.isToggleOn ? (
-            <DatePicker
-              isToggleOn={isToggleOn}
-              handleOpenDatePicker={this.handleOpenDatePicker}
-              dates={this.handleDates()}
-            />
-          ) : (
-            ''
+          {modal && (
+            <Modal>
+              <DatePicker modal={modal} handleOpenDatePicker={this.handleOpenDatePicker} dates={this.handleDates()} />
+            </Modal>
           )}
+
           <label htmlFor="description" className={style.labelDescription}>
             Краткое описание:
           </label>
@@ -116,12 +110,12 @@ class AddForm extends Component {
           ></textarea>
           {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
           <div className={style.battonContainer}>
-          <button type="submit" className={style.saveBtn}>
-            Сохранить
-          </button>
-          <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
-            Отмена
-          </button>
+            <button type="submit" className={style.saveBtn}>
+              Сохранить
+            </button>
+            <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
+              Отмена
+            </button>
           </div>
         </form>
       </div>
@@ -129,9 +123,12 @@ class AddForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ error: state.form.error });
+const mapStateToProps = state => ({ error: state.form.error, modal: state.modal.modalPicker });
 const mapDispatchToProps = dispatch => ({
-  addForm: data => dispatch(addTask(data))
+  addForm: data => dispatch(addTask(data)),
+  openModal: () => {
+    dispatch(openPickerModal());
+  }
 });
 
 export default connect(
