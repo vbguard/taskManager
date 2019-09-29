@@ -13,15 +13,16 @@
   background-color: var(--white);
   padding-top: 10px;
   border-radius: 5px;
-  padding-top: 20px;
-  display: flex;
-  align-items: center;
+  padding: 20px;
   margin: 0 auto;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.contenctContainer {
-  margin-left: 20px;
+.battonContainer {
+  display: flex;
 }
 
 .title {
@@ -112,10 +113,7 @@
   background-color: var(--dark-grey-blue);
   border-radius: 50%;
   border: none;
-  margin-left:115px;
-  margin-top: 12px;
-  margin-bottom: 12px;
- 
+  margin-top: 10px;
 }
 
 
@@ -164,15 +162,19 @@
 
 @media (min-width:768px) and (max-width:1023px) {
   .bodybg {
-    width: 768px;
-    height: 966px;
+    height: calc(100vh - 80px - 2px);
+    width: 100vw;
   }
 
   .formBg {
-    width: 710px;
-    height: 500px;
-    /* padding-top: 72px; */
+    width: 700px;
+    height: 400px;
     position: relative;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .title {
@@ -204,10 +206,8 @@
   }
 
   .deleteBtn {
-    position: absolute;
-    right:46%
+    margin-left: 280px
   }
-
 
   .saveBtn {
     position: absolute;
@@ -232,13 +232,13 @@
   .formBg {
     width: 915px;
     height: 500px;
-    /* padding-top: 92px; */
     position: relative;
   }
 
   .title {
     width: 730px;
-    margin-left: 93px
+    margin-left: 93px;
+    height: 40px;
   }
 
   .title::placeholder {
@@ -253,20 +253,11 @@
     margin-left: 93px
   }
 
-  .labelDescription {
-    display: block;
-    margin-left: 93px
-  }
 
   .textArea {
     width: 730px;
     height: 99px;
     margin-left: 93px
-  }
-
-  .deleteBtn {
-    position: absolute;
-    left: 35%
   }
 
 

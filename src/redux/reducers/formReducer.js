@@ -1,6 +1,6 @@
 import { formTypes } from '../actions/formAction';
 
-const initialState = { title: '', description: '', error: null, loader: false };
+const initialState = { title: '', description: '', dates: [], error: null, loader: false };
 
 export const formReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -10,7 +10,8 @@ export const formReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         title: payload.title,
-        description: payload.description
+        description: payload.description,
+        dates: [...payload.dates]
       };
     case formTypes.ADD_TASK_FORM_ERROR:
       return { ...state, error: payload.error };
