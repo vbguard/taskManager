@@ -56,4 +56,7 @@ li:last-child{
   .list {
     height: calc(100vh - 80px - 84px - 2px);
   }
+  li {
+    padding-right: 15px;
+}
 }

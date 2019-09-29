@@ -20,3 +20,17 @@
         margin-top: 50px;
     }
   }
+  @media (min-width: 1200px) {
+    .taskInnerContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 75px;
+    }
+    .taskContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+  }
