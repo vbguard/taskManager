@@ -83,7 +83,7 @@ class Task extends Component {
                 type="button"
                 disabled={dates[0].isComplete ? true : false}
                 className={dates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                onClick={() => onComplete(id, token, { dates: [] })}
+                onClick={() => onComplete({sectionDate: this.props.date, taskDates: this.task.dates}, taskId)}
               >
                 <Icon icon="Done" />
               </button>
