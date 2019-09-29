@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -81,6 +81,7 @@ class Dashboard extends Component {
                     <Route path="/dashboard" exact component={WrapDesktop} />
                     <Route path="/dashboard/add" component={AddTask} />
                     <Route path="/dashboard/edit" component={EditTask} />
+                    <Redirect to="/dashboard"/>
                   </Switch>
                 </>
               )}
