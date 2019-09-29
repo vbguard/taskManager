@@ -18,6 +18,8 @@
 
 @media (min-width: 768px) {
 	.btnAdd {
-		margin-left: 10px;
+		margin-left: 20px;
+		position: static;
+		transform: none;
 	}
 }
