@@ -3,12 +3,12 @@
     list-style: none;
     overflow-y: auto;
     margin: 0;
-    padding: 0;
+    padding-right: 10px;
     flex-grow: 2;
 }
 
   .list::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
     background-color: #e0e4ec;
     opacity: 0.102;
   }
@@ -22,8 +22,8 @@
   }
 
   .list::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border-radius: 30%;
+  background-color: rgba(	40,	64,	96, 0.75);
+  border-radius: 10px;
   }
 
 
