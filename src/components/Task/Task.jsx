@@ -12,13 +12,32 @@ import { requestDoneTask } from '../../redux/actions/tasksActions.js';
 import { getToken, getTaskId } from '../../redux/selectors/selectors';
 
 const refactoringProps = props => {
+
+//   console.log('props in task=', props);
+//   console.log('props.task in task=', props.task);
+
   const { dates, title, description, taskNumber, isRepeat, _id } = props.task;
 
   const refactoringProps = {
-    loopDates: dates,
+    // loopDates: dates,
     taskHeader: !title ? 'назва_таски' : title,
     taskDescription: !description ? 'опис_таски' : description,
-    isRepeat,
+    isLoop: isRepeat,
+    loopDates: dates.reduce((acc,elem)=>{
+                // console.log('elem=', elem);
+                // console.log('typeof elem=', typeof elem);
+                // console.log('elem=', elem.date);
+                // console.log('typeof elem=', typeof elem.date);
+                // console.log('new Date(elem.date)=', new Date(elem.date));
+                // console.log('typeof new Date(elem.date)=', typeof new Date(elem.date));
+                // console.log('new Date(elem.date)=', new Date(elem.date).getDate());
+                // console.log('typeof new Date(elem.date)=', typeof new Date(elem.date).getDate());
+                acc.push(new Date(elem.date).getDate());
+                // console.log('acc=', acc);
+                // console.log('typeof acc=', typeof acc);
+                return acc}, []).join(','),
+    dates: dates,
+
     taskNumber: !taskNumber ? 'номер_таски' : taskNumber,
     taskId: _id
   };
@@ -27,14 +46,17 @@ const refactoringProps = props => {
 
 class Task extends Component {
   render() {
-    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId } = refactoringProps(this.props);
+    const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
     const { onEdit, token, id, onComplete } = this.props;
+    // console.log('loopDates=', loopDates);
+    // console.log('typeof loopDates=', typeof loopDates);
+    
 
     return (
       <>
         <div className={styles.task}>
-          <div className={loopDates[0].isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
+          <div className={dates[0].isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
             <div className={styles.numberContainer}>
               <p className={styles.headerNumber}>{taskNumber}. </p>
             </div>
@@ -51,16 +73,16 @@ class Task extends Component {
                 <>
                   <button
                     type="button"
-                    disabled={loopDates[0].isComplete ? true : false}
+                    disabled={dates[0].isComplete ? true : false}
                     className={
-                      loopDates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
+                        dates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
                     }
                   >
                     <Icon icon="Loop" />
                   </button>
-                  {/* <p className={isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
-                                {loopDates}
-                            </p> */}
+                  <p className={dates[0].isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                    {loopDates}
+                  </p>
                 </>
               )}
             </div>

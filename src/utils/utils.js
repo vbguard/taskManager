@@ -1,6 +1,6 @@
 // Тут пишем функции хелперы, это файл для экспорта тут ничего не должно исполняться
 
-const datesFromTasks = (tasks) => {
+export const datesFromTasks = (tasks) => {
     let result = {};
     result.isCompleted=[];
     result.isDisabled=[];
@@ -19,4 +19,5 @@ const datesFromTasks = (tasks) => {
     // console.log('result=', result);
     return result;
 }
+
 export default datesFromTasks;
