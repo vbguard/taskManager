@@ -16,3 +16,9 @@
     right: 40%; /* Расстояние от правого края окна браузера */
     bottom: 20px;
 }
+
+@media (min-width: 768px) {
+	.btnAdd {
+		margin-left: 10px;
+	}
+}

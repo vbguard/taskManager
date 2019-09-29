@@ -5,8 +5,8 @@ p {
 
 .task {
 	/* set fixed width to test */
-	width: 296px;
-	margin: 0 auto;
+	/* width: 296px; */
+	/* margin: 0 auto;             !!!!!!!!!!!!!!! */
 	box-shadow: 0px 2px 2px 0px rgba(1, 1, 0, 0.15);
 	border-radius: 5px;
 	background-color: var(--white);
@@ -156,7 +156,7 @@ p {
 @media (min-width: 768px) {
 	.task {
 		/* set fixed width to test */
-		width: 580px;
+		/* width: 580px; */
 	}
 	.taskHeader {
 		font-size: var(--tabletFontSize);
