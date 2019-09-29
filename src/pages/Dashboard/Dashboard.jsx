@@ -30,6 +30,10 @@ import { getLoader, getTaskId } from '../../redux/selectors/selectors';
 // add styles
 import styles from './Dashboard.module.css';
 
+import { deleteTaskFromCalendar } from '../../utils/deleteTaskFromCalendar';
+
+deleteTaskFromCalendar('5d8f7da7dfaac2437dd45d3d');
+
 class Dashboard extends Component {
   state = {};
 

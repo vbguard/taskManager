@@ -16,15 +16,14 @@
 }
 
 .contenctContainer {
-  margin-left: 11px
+  margin-left: 20px
 }
 
 .title {
   width: 264px;
-  height: 40px;
+  height: 50px;
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
-
 }
 
 .title::placeholder {
@@ -32,7 +31,6 @@
   font-family: 'Gotham Pro Bold';
   font-size: 14px;
   font-weight: 900;
-  line-height: 4.36;
   letter-spacing: 0.84px;
   text-align: left;
   color: var(--light-blue-grey);

@@ -119,7 +119,7 @@ class EditTask extends Component {
 const mapStateToProps = state => ({
   id: state.id,
   error: state.form.error,
-  tasks: getTasks(state,''),
+  tasks: getTasks(state, ''),
   token: state.session.token
 });
 
