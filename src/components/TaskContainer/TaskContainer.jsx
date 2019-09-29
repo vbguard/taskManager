@@ -12,7 +12,7 @@ const TaskContainer = props => {
         <TaskList />
         <AddButton />
       </div>
-      {props.windowWidth >= 768 && props.windowWidth < 1280 ? <CalendarButtonTablet /> : ''}
+      {props.windowWidth >= 768 && props.windowWidth < 1024 ? <CalendarButtonTablet /> : ''}
     </div>
   );
 };
