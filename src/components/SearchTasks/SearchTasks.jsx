@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { searchTasks } from '../../redux/actions/tasksActions';
 import styles from './SearchTasks.module.css';
 
-
 class SearchTasks extends Component {
   state = { search: '' };
 
@@ -19,13 +18,16 @@ class SearchTasks extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={styles.form}>
+        <i class="fa fa-search" aria-hidden="true"></i>
         <input
           type="text"
           value={this.state.search}
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
           name="search"
+          className={styles.searchInput}
+          placeholder="Поиск"
         />
       </form>
     );

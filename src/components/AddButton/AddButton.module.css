@@ -1,6 +1,6 @@
 .btnAdd {
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 	border: none;
 	border-radius: 50%;
 	background-color: var(--dusty-orange);
@@ -8,4 +8,11 @@
 	cursor: pointer;
 	font-weight:800;
 	text-align: center;
+	font-size: 20px;
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75); 
+
+
+	position: fixed; /* Фиксированное положение */
+    right: 40%; /* Расстояние от правого края окна браузера */
+    bottom: 20px;
 }
