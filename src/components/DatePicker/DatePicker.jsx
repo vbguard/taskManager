@@ -32,7 +32,7 @@ class DatePicker extends Component {
   };
 
   render() {
-    const { handleOpenDatePicker, isToggleOn } = this.props;
+    const { isToggleOn } = this.props;
     const { selected } = this.state;
     const today = new Date();
     const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
