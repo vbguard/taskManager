@@ -30,6 +30,7 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.EDIT_TASK_START:
       return { ...state, loader: true };
     case tasksTypes.EDIT_TASK_SUCCESS:
+      console.log(payload)
       return {
         ...state,
         loader: false,

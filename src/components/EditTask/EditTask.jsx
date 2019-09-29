@@ -19,14 +19,14 @@ class EditTask extends Component {
 
   componentDidMount() {
     const { id, tasks } = this.props;
-    console.log(tasks);
+   // console.log(tasks);
     if (!tasks) {
       this.props.history.push('/dashboard');
       return;
     }
 
     const newState = tasks.find(el => el._id === id);
-    console.log(newState);
+    //console.log(newState);
     this.setState({ ...newState });
   }
 
