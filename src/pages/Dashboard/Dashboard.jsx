@@ -18,6 +18,7 @@ import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
 import InfoPop from '../../components/InfoPop/InfoPop';
 import WrapDesktop from '../../components/WrapDesktop/WrapDesktop';
+import SortTask from '../../components/sort/sortTask';
 // import pages
 
 import CalendarPage from '../CalendarPage/CalendarPage';
@@ -28,6 +29,10 @@ import { getLoader, getTaskId } from '../../redux/selectors/selectors';
 
 // add styles
 import styles from './Dashboard.module.css';
+
+import { deleteTaskFromCalendar } from '../../utils/deleteTaskFromCalendar';
+
+deleteTaskFromCalendar('5d8f7da7dfaac2437dd45d3d');
 
 class Dashboard extends Component {
   state = {};

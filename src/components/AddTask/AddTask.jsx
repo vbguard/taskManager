@@ -4,12 +4,15 @@ import { addTask } from '../../redux/actions/formAction';
 import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
+import DatePicker from '../DatePicker/DatePicker';
 
-class AddForm extends Component {
+class AddTask extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{ date: '09-26-2019' }]
+    isToggleOn: false,
+    // dates: [{ date: '09-26-2019' }]
+    dates: []
   };
 
   handleChange = event => {
@@ -18,6 +21,23 @@ class AddForm extends Component {
       return;
     }
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleOpenDatePicker = dates => {
+    const { isToggleOn } = this.state;
+    if (isToggleOn) {
+      const convertedDates = dates.map(date => ({ date }));
+      //make dates  "dates: [{ date: '09-26-2019' }]" from array of dates
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn,
+        dates: convertedDates
+      }));
+    }
+    if (!isToggleOn) {
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn
+      }));
+    }
   };
 
   handleSubmit = event => {
@@ -45,43 +65,48 @@ class AddForm extends Component {
   };
 
   render() {
-    const { title, description } = this.state;
+    console.log(this.state.dates);
+    const { title, description, isToggleOn, dates } = this.state;
 
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
-          <input
-            name="title"
-            type="text"
-            value={title}
-            onChange={this.handleChange}
-            placeholder="#1 Введите название задачи"
-            className={style.title}
-          ></input>
-          {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
-          <div className={style.dataPickerContainer}>
-            <Icon icon="Calendar" className={style.formIcon} />
-            <p className={style.dataPickerTitle}>Выберете дату</p>
-            <Icon icon="ArrowRight" className={style.formIcon} />
+          <div className={style.contenctContainer}>
+            <input
+              name="title"
+              type="text"
+              value={title}
+              onChange={this.handleChange}
+              placeholder="#1 Введите название задачи"
+              className={style.title}
+            ></input>
+            {title.length > 50 && (
+              <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>
+            )}
+            <div className={style.dataPickerContainer}>
+              <Icon icon="Calendar" className={style.formIcon} />
+              <p className={style.dataPickerTitle}>Выберете дату</p>
+              <Icon icon="ArrowRight" className={style.formIcon} />
+            </div>
+            <label htmlFor="description" className={style.labelDescription}>
+              Краткое описание:
+            </label>
+            <textarea
+              name="description"
+              wrap="virtual"
+              className={style.textArea}
+              onChange={this.handleChange}
+              value={description}
+              placeholder="Введите описание задачи"
+            ></textarea>
+            {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
+            <button type="submit" className={style.saveBtn}>
+              Сохранить
+            </button>
+            <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
+              Отмена
+            </button>
           </div>
-          <label htmlFor="description" className={style.labelDescription}>
-            Краткое описание:
-          </label>
-          <textarea
-            name="description"
-            wrap="virtual"
-            className={style.textArea}
-            onChange={this.handleChange}
-            value={description}
-            placeholder="Введите описание задачи"
-          ></textarea>
-          {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
-          <button type="submit" className={style.saveBtn}>
-            Сохранить
-          </button>
-          <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
-            Отмена
-          </button>
         </form>
       </div>
     );
@@ -96,4 +121,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddForm);
+)(AddTask);

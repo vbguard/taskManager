@@ -13,8 +13,9 @@ body {
 }
 
 .Calendar {
-  width: 290px;
-  height: 340px;
+  padding: 0 10%;
+  /* width: 290px;
+  height: 340px; */
   margin: 25px auto 0;
 }
 
@@ -84,27 +85,41 @@ body {
 
 .Calendar-tasksWrapper {
  display: flex;
+ position: relative;
  width: 34px;
- justify-content:space-between;
+ height: 15px;
+ /* justify-content:space-between; */
 }
 
-.Calendar-oneDayTaskBtn, .Calendar-repitedTasksBtn {
+.Calendar-oneDayTaskBtn {
+  position: absolute; 
+  top: 0;
+  left: 0;
   font-size: 10px;
   width: 16px;
   height: 14px;
 	border: 1px solid var(--dusty-orange);
   border-radius: 5px;
   text-align: center;
+
 }
 
 .Calendar-repitedTasksBtn {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  width: 16px;
+  height: 14px;
   border: 1px solid var(--green);
+  border-radius: 5px;
+  text-align: center;
 }
 
 @media(min-width: 768px) {
   .Calendar {
-    width: 394px;
-    height: 340px;
+    /* width: 394px;
+    height: 340px; */
     margin: 44px auto 0;
   }
 

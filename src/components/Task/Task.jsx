@@ -9,7 +9,7 @@ import styles from './Task.module.css';
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
 import { requestDoneTask } from '../../redux/actions/tasksActions.js';
-import { getToken, getTaskId } from '../../redux/selectors/selectors';
+import { getToken, getTaskId, getDate } from '../../redux/selectors/selectors';
 
 const refactoringProps = props => {
 
@@ -45,6 +45,7 @@ const refactoringProps = props => {
 };
 
 class Task extends Component {
+  
   render() {
     const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
@@ -137,7 +138,8 @@ Task.defaultProps = {
 
 const mSTP = state => ({
   token: getToken(state),
-  id: getTaskId(state)
+  id: getTaskId(state),
+ 
 });
 
 const mDTP = dispatch => ({

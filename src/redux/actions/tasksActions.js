@@ -13,12 +13,16 @@ export const tasksTypes = {
   EDIT_TASK_START: 'EDIT_TASK_START',
   EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
   EDIT_TASK_ERROR: 'EDIT_TASK_ERROR',
-  SEARCH_TASKS: 'SEARCH_TASKS'
+  SEARCH_TASKS: 'SEARCH_TASKS',
+  CLEAR_SEARCH: 'CLEAR_SEARCH'
 };
 
-export const fetchTasksSuccess = tasks => ({
+export const fetchTasksSuccess = ({ tasks, calendar }) => ({
   type: tasksTypes.FETCH_TASKS_SUCCESS,
-  payload: tasks
+  payload: {
+    tasks,
+    calendar
+  }
 });
 
 export const fetchTasksError = error => ({
@@ -36,7 +40,7 @@ export const getUserTasks = () => ({
 
     options: {
       onSuccess({ dispatch, response }) {
-        dispatch(fetchTasksSuccess(response.data.tasks));
+        dispatch(fetchTasksSuccess(response.data));
       },
       onError({ dispatch, error }) {
         dispatch(fetchTasksError(error));
@@ -146,4 +150,9 @@ export const doneTaskError = error => ({
 export const searchTasks = search => ({
   type: tasksTypes.SEARCH_TASKS,
   payload: search
+});
+
+export const clearSearch = () => ({
+  type: tasksTypes.CLEAR_SEARCH,
+  payload: ''
 });

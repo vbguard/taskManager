@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTasks } from '../../redux/selectors/selectors';
-
 import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
@@ -57,12 +56,13 @@ const TaskList = ({ tasks }) => {
             </li>
           );
         })}
-    </ul>): (<div>
+    </ul>
+  ) : (<div>
         <p className={styles.intro}>Нет запланированных задач...</p>
         <p className={styles.intro}>Время начать управлять своей жизнью!</p>
-      </div>)
-  );
-  };
+      </div>
+  ))
+};
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(Object)
@@ -71,7 +71,8 @@ TaskList.propTypes = {
 const mapStateToProps = state => ({
   // tasks: getTasks(state)
   // tasks: refactoredTaskList(getTasks(state))
-  tasks: refactoredTaskList(tasks)
+  tasks: refactoredTaskList(tasks),
+  // tasks: getTasks(state, state.userTasks.search)
 });
 
 const mapDispatchToProps = {};
