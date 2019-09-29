@@ -16,7 +16,7 @@ const refactoringProps = props => {
 //   console.log('props in task=', props);
 //   console.log('props.task in task=', props.task);
 
-  const { dates, title, description, taskNumber, isRepeat, _id } = props.task;
+  const { dates, title, description, isRepeat, _id } = props.task;
 
   const refactoringProps = {
     // loopDates: dates,
@@ -38,7 +38,7 @@ const refactoringProps = props => {
                 return acc}, []).join(','),
     dates: dates,
 
-    taskNumber: !taskNumber ? 'номер_таски' : taskNumber,
+    taskNumber: !props.taskNumber ? 'номер_таски' : props.taskNumber,
     taskId: _id
   };
   return refactoringProps;
