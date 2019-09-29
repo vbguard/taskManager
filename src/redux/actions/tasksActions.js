@@ -84,16 +84,20 @@ export const deleteTaskError = error => ({
   payload: error.message
 });
 
-export const editTask = (data, taskId) => ({
+export const editTask = (data, taskId) => dispatch => {
+  console.log(data)
+  return ({
   type: tasksTypes.EDIT_TASK_START,
   payload: {
     request: {
       method: 'PATCH',
-      url: `/task/${taskId}`
+      url: `/task/${taskId}`,
+      data
     },
 
     options: {
       onSuccess({ dispatch, response }) {
+        console.log(response)
         dispatch(editTaskSuccess(data, response.data.taskId));
       },
       onError({ dispatch, error }) {
@@ -101,7 +105,7 @@ export const editTask = (data, taskId) => ({
       }
     }
   }
-});
+})};
 
 export const editTaskStart = () => ({
   type: tasksTypes.EDIT_TASK_START,

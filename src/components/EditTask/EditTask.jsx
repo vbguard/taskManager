@@ -69,7 +69,7 @@ class EditTask extends Component {
       description !== editTask.description ||
       dates.length !== editTask.dates.length
     ) {
-      this.props.editTask({ title, description, dates }, id);
+      this.props.editTask({ title, description, dates},id);
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
     }
@@ -154,7 +154,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  editTask: (data, id) => dispatch(editTask({ data, id })),
+  editTask: (data, id) => dispatch(editTask(data,id)),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());
