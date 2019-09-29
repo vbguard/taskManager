@@ -1,33 +1,27 @@
 .bodybg {
-  height: 100vh;
-  width: 100vw;
+    height: calc(100vh - 80px - 2px);
+    width: 100vw;
   background-color: var(--pale-grey);
-  display: flex;
-  align-items: top;
- }
+  margin: 0 auto;
+}
 
 .formBg {
-  max-width: 95%;
-  max-height: 80%;
+  width: 295px;
+  height: 391px;
   box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--white);
   margin: 0 auto;
-  padding-top: 10px;
+  padding-top: 55px;
   margin-top: 20px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
 }
-
-.contenctContainer {
-  margin-left: 20px;
- }
 
 .title {
   width: 264px;
-  height: 45px;
+  height: 40px;
+
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
+  margin-left: 11px
 }
 
 .title::placeholder {
@@ -35,7 +29,7 @@
   font-family: 'Gotham Pro Bold';
   font-size: 14px;
   font-weight: 900;
-  line-height: 3.5;
+  line-height: 4.36;
   letter-spacing: 0.84px;
   text-align: left;
   color: var(--light-blue-grey);
@@ -43,23 +37,22 @@
 
 .formIcon {
   width: 20px;
-  height: 20px;
+  height: 18px;
   fill: var(--dusty-orange);
-  vertical-align: middle;
-  margin-right: 4px;
+  align-items: center;
 }
 
 .formIconDelete {
   width: 20px;
-  height: 20px;
+  height: 18px;
   fill: var(--white);
 }
 
 .dataPickerContainer {
-  display: inline-block;
   width: 264px;
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
+  margin-left: 11px
 }
 
 .dataPickerTitle {
@@ -70,7 +63,6 @@
   line-height: 5.08;
   letter-spacing: 0.72px;
   text-decoration: none;
-  align-items: center;
   color: var(--dark-navy-blue);
 }
 
@@ -82,6 +74,7 @@
   letter-spacing: 0.72px;
   text-align: left;
   color: var(--black);
+  margin-left: 11px
 }
 
 .textArea {
@@ -90,36 +83,51 @@
   height: 177px;
   border-radius: 5px;
   border: solid 1px var(--light-periwinkle);
+  margin-left: 11px
 }
 
 .textArea::placeholder {
   font-family: 'GothamPro';
   font-size: 13px;
   font-weight: 300;
-  padding-top: 10px;
   line-height: 1;
   letter-spacing: 0.78px;
   color: var(--greyish-brown);
   padding-left: 5px;
+
+}
+
+.deleteBtn {
+  display: block;
+  width: 33px;
+  height: 33px;
+  background-color: var(--dark-grey-blue);
+  border-radius: 50%;
+  border: none;
+  margin: 0 auto;
+  margin-top: 12px;
+  margin-bottom: 14px
 }
 
 
 .resetBtn,
 .saveBtn {
-  width: 135px;
+  width: 145px;
   height: 35px;
   border-radius: 5px;
   border: solid 1px var(--dark-grey-blue);
   background-color: transparent;
   margin-bottom: 10px;
+  margin-left: 2px;
   margin-top: 3px;
   font-family: Verdana;
   font-size: 13px;
   font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
   letter-spacing: 0.78px;
   text-align: center;
   color: var(--dark-grey-blue);
-  margin-top: 20px
 }
 
 .resetBtn:hover,
@@ -136,17 +144,6 @@
   font-size: 11px;
 }
 
-@media (min-width:321px) and (max-width:767px) {
-  .contenctContainer {
-    margin-left: 45px
-  }
-
-  .resetBtn,
-  .saveBtn {
-    margin-right: 3px
-  }
-}
-
 @media (min-width:768px) and (max-width:1279px) {
   .bodybg {
     height: calc(100vh - 80px - 2px);
@@ -155,8 +152,8 @@
 
   .formBg {
     width: 710px;
-    height: 400px;
-    /* padding-top: 72px; */
+    height: 607px;
+    padding-top: 72px;
     position: relative;
   }
 
@@ -217,9 +214,7 @@
 
   .formBg {
     width: 915px;
-    height: 500px;
     position: relative;
-    /* padding-top: 62px; */
   }
 
   .title {
@@ -248,6 +243,11 @@
     width: 730px;
     height: 99px;
     margin-left: 93px
+  }
+
+  .deleteBtn {
+    position: absolute;
+    left: 10%
   }
 
 

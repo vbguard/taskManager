@@ -18,7 +18,6 @@ import Modal from '../../components/Modal/Modal';
 import PopUpConfirmDelete from '../../components/PopUpConfirmDelete/PopUpConfirmDelete';
 import InfoPop from '../../components/InfoPop/InfoPop';
 import WrapDesktop from '../../components/WrapDesktop/WrapDesktop';
-import SortTask from '../../components/sort/sortTask';
 // import pages
 
 import CalendarPage from '../CalendarPage/CalendarPage';
