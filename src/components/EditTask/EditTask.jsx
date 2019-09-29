@@ -83,8 +83,7 @@ class EditTask extends Component {
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
-        <div className={style.contenctContainer}>
-          <input
+                <input
             name="title"
             type="text"
             value={title}
@@ -114,17 +113,19 @@ class EditTask extends Component {
             value={description}
             placeholder="Введите описание задачи"
           ></textarea>
-          {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
+          {description.length > 200 && <span className={style.errorSpan}>Описание не должно быть больше 200-ти символов</span>}
+         
           <button type="button" className={style.deleteBtn}>
             <Icon icon="Delete" className={style.formIconDelete} onClick={confirmDelete} />
           </button>
+          <div className={style.battonContainer}>
           <button type="submit" className={style.saveBtn}>
             Сохранить
           </button>
           <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
             Отмена
           </button>
-          </div>
+         </div>
         </form>
       </div>
     );

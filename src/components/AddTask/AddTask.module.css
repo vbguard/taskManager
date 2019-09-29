@@ -1,27 +1,23 @@
 .bodybg {
-  height: 100vh;
+  height: calc(100vh - 180px);
   width: 100vw;
   background-color: var(--pale-grey);
-  display: flex;
-  align-items: top;
- }
+  margin: 0 auto;
+}
 
 .formBg {
-  max-width: 95%;
-  max-height: 80%;
+  max-width: 400px;
   box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--white);
   margin: 0 auto;
-  padding-top: 10px;
+  padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
-
-.contenctContainer {
-  margin-left: 20px;
- }
 
 .title {
   width: 264px;
@@ -90,6 +86,7 @@
   height: 177px;
   border-radius: 5px;
   border: solid 1px var(--light-periwinkle);
+  padding: 5px;
 }
 
 .textArea::placeholder {
@@ -122,6 +119,10 @@
   margin-top: 20px
 }
 
+.battonContainer {
+  display: flex;
+}
+
 .resetBtn:hover,
 .saveBtn:hover {
   box-shadow: 0px 6px 10px 0 var(--dusty-orange-33);
@@ -136,34 +137,28 @@
   font-size: 11px;
 }
 
-@media (min-width:321px) and (max-width:767px) {
-  .contenctContainer {
-    margin-left: 45px
-  }
-
-  .resetBtn,
-  .saveBtn {
-    margin-right: 3px
-  }
-}
 
 @media (min-width:768px) and (max-width:1279px) {
   .bodybg {
-    height: calc(100vh - 80px - 2px);
+    height: calc(100vh - 87px);
     width: 100vw;
+    display: flex;
   }
 
   .formBg {
-    width: 710px;
+    min-width: 700px;
     height: 400px;
-    /* padding-top: 72px; */
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .title {
     width: 600px;
     height: 40px;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .title::placeholder {
@@ -175,27 +170,21 @@
 
   .dataPickerContainer {
     width: 600px;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .labelDescription {
     display: block;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .textArea {
     width: 600px;
     height: 99px;
-    margin-left: 55px
+    margin-left: 45px
   }
 
-  .deleteBtn {
-    position: absolute;
-    left: 10%
-  }
-
-
-  .saveBtn {
+ .saveBtn {
     position: absolute;
     bottom: 2%;
     left: 26%;
@@ -211,20 +200,20 @@
 
 @media (min-width:1280px) {
   .bodybg {
-    height: calc(100vh - 80px - 2px);
-    width: 100vw;
+    height: calc(100vh - 87px);
+    display: flex;
   }
 
   .formBg {
-    width: 915px;
-    height: 500px;
+    min-width: 850px;
+    height: 400px;
     position: relative;
-    /* padding-top: 62px; */
+    justify-content: center;
   }
 
   .title {
     width: 730px;
-    margin-left: 93px
+    margin-left: 80px
   }
 
   .title::placeholder {
@@ -236,20 +225,19 @@
 
   .dataPickerContainer {
     width: 730px;
-    margin-left: 93px
+    margin-left: 80px
   }
 
   .labelDescription {
     display: block;
-    margin-left: 93px
+    margin-left: 80px
   }
 
   .textArea {
     width: 730px;
     height: 99px;
-    margin-left: 93px
+    margin-left: 80px
   }
-
 
   .saveBtn {
     position: absolute;

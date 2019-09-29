@@ -40,12 +40,13 @@ const TaskList = ({ tasks }) => {
         tasks.map(taska => {
           return (
             <li key={taska.date + Math.random()}>
-              <p>{ifToday(taska.date)}</p>
+              <p className={styles.today}>{ifToday(taska.date)}</p>
               {taska.tasks &&
                 taska.tasks.map((task, index) => {
+                  console.log('task=', task);
                   return (
-                    <ul key={Math.random()}>
-                      <li key={task._id + Math.random()}>
+                    <ul className={styles.subList} key={Math.random()}>
+                      <li className={styles.subListItem} key={task._id + Math.random()}>
                         <Task task={task} taskNumber={index + 1} date={taska.date} />
                       </li>
                     </ul>
