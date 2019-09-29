@@ -4,12 +4,15 @@ import { addTask } from '../../redux/actions/formAction';
 import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
+import DatePicker from '../DatePicker/DatePicker';
 
 class AddTask extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{ date: '09-26-2019' }]
+    isToggleOn: false,
+    // dates: [{ date: '09-26-2019' }]
+    dates: []
   };
 
   handleChange = event => {
@@ -18,6 +21,23 @@ class AddTask extends Component {
       return;
     }
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleOpenDatePicker = dates => {
+    const { isToggleOn } = this.state;
+    if (isToggleOn) {
+      const convertedDates = dates.map(date => ({ date }));
+      //make dates  "dates: [{ date: '09-26-2019' }]" from array of dates
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn,
+        dates: convertedDates
+      }));
+    }
+    if (!isToggleOn) {
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn
+      }));
+    }
   };
 
   handleSubmit = event => {
@@ -45,7 +65,8 @@ class AddTask extends Component {
   };
 
   render() {
-    const { title, description } = this.state;
+    console.log(this.state.dates);
+    const { title, description, isToggleOn, dates } = this.state;
 
     return (
       <div className={style.bodybg}>
