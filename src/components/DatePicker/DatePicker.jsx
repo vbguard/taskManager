@@ -4,9 +4,12 @@ import InfiniteCalendar, {
   defaultMultipleDateInterpolation,
   withMultipleDates
 } from 'react-infinite-calendar';
-import { format } from 'date-fns';
 import 'react-infinite-calendar/styles.css';
 import Icon from '../Icon/Icon';
+import { format } from 'date-fns';
+import { connect } from 'react-redux';
+import { closePickerModal, closeModal } from '../../redux/actions/modalAction.js';
+import styles from './datePicker.module.css';
 
 class DatePicker extends Component {
   constructor(props) {
@@ -17,22 +20,26 @@ class DatePicker extends Component {
   }
 
   handlerOnSelect = event => {
-    const dateString = format(event, 'YYYY-MM-DD');
-    if (this.state.selected.includes(dateString)) {
-      const filtered = this.state.selected.filter(el => el !== dateString);
-      return this.setState({ selected: filtered });
-    }
+    const dateString = format(event, 'DD-MM-YYYY');
+    const selectedString = this.state.selected.map(date => format(date, 'DD-MM-YYYY'));
 
-    return this.setState({ selected: [...this.state.selected, dateString] });
+    if (selectedString.includes(dateString)) {
+      const filtered = selectedString.filter(el => el !== dateString);
+
+      const filteredOnDateFormat = filtered.map(date => new Date(date));
+      return this.setState({ selected: filteredOnDateFormat });
+    }
+    return this.setState({ selected: [...this.state.selected, event] });
   };
 
   handleCloseDatePicker = e => {
     e.preventDefault();
+    const { closeModal } = this.props;
     this.props.handleOpenDatePicker(this.state.selected);
+    closeModal();
   };
 
   render() {
-    const { isToggleOn } = this.props;
     const { selected } = this.state;
     const today = new Date();
     const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
@@ -40,26 +47,42 @@ class DatePicker extends Component {
 
     return (
       <>
-        {isToggleOn && (
-          <div>
-            <button type="button" onClick={this.handleCloseDatePicker}>
-              <Icon icon="Clear" />
-            </button>
-            <InfiniteCalendar
-              width={400}
-              height={300}
-              Component={MultipleDatesCalendar}
-              interpolateSelection={defaultMultipleDateInterpolation}
-              selected={selected}
-              onSelect={this.handlerOnSelect}
-              disabledDays={[0, 6]}
-              minDate={lastWeek}
-            />
-          </div>
-        )}
+        <div className={styles.pickerWrapper}>
+          <InfiniteCalendar
+            width={400}
+            height={300}
+            Component={MultipleDatesCalendar}
+            interpolateSelection={defaultMultipleDateInterpolation}
+            selected={selected}
+            onSelect={this.handlerOnSelect}
+            minDate={lastWeek}
+            displayOptions={{
+              showHeader: false
+            }}
+            theme={{
+              weekdayColor: '#284060'
+            }}
+            locale={{
+              weekStartsOn: 1
+            }}
+          />
+          <button className={styles.pickerBtn} type="button" onClick={this.handleCloseDatePicker}>
+            <Icon icon="Clear" />
+          </button>
+        </div>
       </>
     );
   }
 }
 
-export default DatePicker;
+const mapDispatchToProps = dispatch => ({
+  closeModal: () => {
+    dispatch(closeModal());
+    dispatch(closePickerModal());
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DatePicker);

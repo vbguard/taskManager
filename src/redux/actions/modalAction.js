@@ -6,7 +6,9 @@ export const modalActionTypes = {
   MODAL_CALENDAR_OPEN: 'MODAL_CALENDAR_OPEN',
   MODAL_CALENDAR_CLOSE: 'MODAL_CALENDAR_CLOSE',
   MODAL_DELETE_OPEN: 'MODAL_DELETE_OPEN',
-  MODAL_DELETE_CLOSE: 'MODAL_DELETE_CLOSE'
+  MODAL_DELETE_CLOSE: 'MODAL_DELETE_CLOSE',
+  MODAL_PICKER_OPEN: 'MODAL_PICKER_OPEN',
+  MODAL_PICKER_CLOSE: 'MODAL_PICKER_CLOSE',
 };
 
 export const openModal = () => ({
@@ -46,5 +48,15 @@ export const openDeleteModal = () => ({
 
 export const closeDeleteModal = () => ({
   type: modalActionTypes.MODAL_DELETE_CLOSE,
+  payload: false
+});
+
+export const openPickerModal = () => ({
+  type: modalActionTypes.MODAL_PICKER_OPEN,
+  payload: true
+});
+
+export const closePickerModal = () => ({
+  type: modalActionTypes.MODAL_PICKER_CLOSE,
   payload: false
 });
