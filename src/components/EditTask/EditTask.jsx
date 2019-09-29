@@ -6,11 +6,13 @@ import { getTasks } from '../../redux/selectors/selectors';
 import { editTask } from '../../redux/actions/tasksActions';
 import { warn } from '../../utils/notification';
 import { openModal, openDeleteModal } from '../../redux/actions/modalAction';
+import DatePicker from '../DatePicker/DatePicker';
 
 class EditTask extends Component {
   state = {
     title: '',
     description: '',
+    isToggleOn: false,
     dates: [{ date: '09-28-2019' }]
   };
 
@@ -31,6 +33,12 @@ class EditTask extends Component {
       return;
     }
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleOpenDatePicker = () => {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
   };
 
   handleSubmit = event => {
@@ -70,7 +78,7 @@ class EditTask extends Component {
   };
 
   render() {
-    const { title, description } = this.state;
+    const { title, description, isToggleOn } = this.state;
     const { confirmDelete } = this.props;
     return (
       <div className={style.bodybg}>
@@ -84,11 +92,16 @@ class EditTask extends Component {
             className={style.title}
           ></input>
           {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
-          <div className={style.dataPickerContainer}>
+          <div className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
             <Icon icon="Calendar" className={style.formIcon} />
             <p className={style.dataPickerTitle}>Выберете дату</p>
             <Icon icon="ArrowRight" className={style.formIcon} />
           </div>
+          {this.state.isToggleOn ? (
+            <DatePicker isToggleOn={isToggleOn} handleOpenDatePicker={this.handleOpenDatePicker} />
+          ) : (
+            ''
+          )}
           <label htmlFor="description" className={style.labelDescription}>
             Краткое описание:
           </label>
@@ -119,7 +132,7 @@ class EditTask extends Component {
 const mapStateToProps = state => ({
   id: state.id,
   error: state.form.error,
-  tasks: getTasks(state),
+  tasks: getTasks(state, ''),
   token: state.session.token
 });
 

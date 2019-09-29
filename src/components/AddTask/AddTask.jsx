@@ -4,12 +4,15 @@ import { addTask } from '../../redux/actions/formAction';
 import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
+import DatePicker from '../DatePicker/DatePicker';
 
 class AddForm extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{ date: '09-26-2019' }]
+    isToggleOn: false,
+    // dates: [{ date: '09-26-2019' }]
+    dates: []
   };
 
   handleChange = event => {
@@ -18,6 +21,23 @@ class AddForm extends Component {
       return;
     }
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleOpenDatePicker = dates => {
+    const { isToggleOn } = this.state;
+    if (isToggleOn) {
+      const convertedDates = dates.map(date => ({ date }));
+      //make dates  "dates: [{ date: '09-26-2019' }]" from array of dates
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn,
+        dates: convertedDates
+      }));
+    }
+    if (!isToggleOn) {
+      this.setState(state => ({
+        isToggleOn: !state.isToggleOn
+      }));
+    }
   };
 
   handleSubmit = event => {
@@ -45,7 +65,8 @@ class AddForm extends Component {
   };
 
   render() {
-    const { title, description } = this.state;
+    console.log(this.state.dates);
+    const { title, description, isToggleOn, dates } = this.state;
 
     return (
       <div className={style.bodybg}>
@@ -59,11 +80,16 @@ class AddForm extends Component {
             className={style.title}
           ></input>
           {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
-          <div className={style.dataPickerContainer}>
+          <div className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
             <Icon icon="Calendar" className={style.formIcon} />
             <p className={style.dataPickerTitle}>Выберете дату</p>
             <Icon icon="ArrowRight" className={style.formIcon} />
           </div>
+          {this.state.isToggleOn ? (
+            <DatePicker isToggleOn={isToggleOn} handleOpenDatePicker={this.handleOpenDatePicker} dates={dates} />
+          ) : (
+            ''
+          )}
           <label htmlFor="description" className={style.labelDescription}>
             Краткое описание:
           </label>
