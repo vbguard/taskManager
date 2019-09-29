@@ -36,7 +36,7 @@ class Task extends Component {
   render() {
     const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
-    const { onEdit, onComplete, date } = this.props;
+    const { onEdit, onComplete } = this.props;
 
     return (
       <>
