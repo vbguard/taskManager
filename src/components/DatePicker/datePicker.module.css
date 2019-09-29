@@ -2,10 +2,11 @@
     position: relative;
     display: flex;
     justify-content: center;
-    width: 90%;
 }
 
 .pickerBtn {
-    width: 20px;
-    height: 20px;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
 }
