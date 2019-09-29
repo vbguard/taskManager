@@ -64,6 +64,8 @@
   letter-spacing: 0.72px;
   text-decoration: none;
   color: var(--dark-navy-blue);
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
 .labelDescription {
@@ -206,7 +208,16 @@
 
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
+  .formIcon {
+    fill: var(--dusty-orange);
+    align-items: center;
+    margin-top: 10px;
+  }
+  .dataPickerTitle {
+    margin-right: 5px;
+    margin-left: 10px;
+  }
   .bodybg {
     height: calc(100vh - 80px - 2px);
     width: 100vw;

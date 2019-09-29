@@ -191,10 +191,7 @@ p {
 		color: var(--grey);
 	}
 }
-@media (min-width: 1280px) {
-	.task {
-		/* width: 580px; */
-	}
+@media (min-width: 1200px) {
 	.taskHeader {
 		font-size: var(--tabletFontSize);
 		padding-top: 10px;
