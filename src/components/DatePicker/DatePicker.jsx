@@ -20,8 +20,8 @@ class DatePicker extends Component {
   }
 
   handlerOnSelect = event => {
-    const dateString = format(event, 'DD-MM-YYYY');
-    const selectedString = this.state.selected.map(date => format(date, 'DD-MM-YYYY'));
+    const dateString = format(event, 'YYYY-MM-DD');
+    const selectedString = this.state.selected.map(date => format(date, 'YYYY-MM-DD'));
 
     if (selectedString.includes(dateString)) {
       const filtered = selectedString.filter(el => el !== dateString);
