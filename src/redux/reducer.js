@@ -19,5 +19,5 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   id: idEditReducer
 });
-console.log(rootReducer.userTasks);
+
 export default rootReducer;
