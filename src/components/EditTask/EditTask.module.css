@@ -1,5 +1,5 @@
 .bodybg {
-  height: 100vh;
+  height: calc(100vh - 5px);
   width: 100vw;
   background-color: var(--pale-grey);
   margin: 0 auto;
@@ -7,13 +7,12 @@
 
 .formBg {
   max-width: 420px;
-  /* max-height: 80%; */
   box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--white);
-  padding-top: 10px;
-  border-radius: 5px;
-  padding: 20px;
   margin: 0 auto;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,6 +91,7 @@
   height: 177px;
   border-radius: 5px;
   border: solid 1px var(--light-periwinkle);
+  padding:5px;
 }
 
 .textArea::placeholder {
@@ -152,9 +152,9 @@
 
 @media (min-width:768px) and (max-width:1023px) {
   .bodybg {
-    height: calc(100vh - 80px - 2px);
+    height: calc(100vh - 5px);
     width: 100vw;
-     display: flex;
+    display: flex;
   }
 
   .formBg {
@@ -170,7 +170,7 @@
   .title {
     width: 600px;
     height: 40px;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .title::placeholder {
@@ -182,18 +182,18 @@
 
   .dataPickerContainer {
     width: 600px;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .labelDescription {
     display: block;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .textArea {
     width: 600px;
     height: 99px;
-    margin-left: 55px
+    margin-left: 45px
   }
 
   .deleteBtn {
@@ -216,20 +216,20 @@
 
 @media (min-width:1024px) {
   .bodybg {
-    width: 100vw;
+    height: calc(100vh - 5px);
     display: flex;
     align-items: center;
   }
 
   .formBg {
-    min-width: 915px;
-    height: 500px;
+    min-width: 900px;
+    height: 450px;
     position: relative;
-  }
+     }
 
   .title {
     width: 730px;
-    margin-left: 93px;
+    margin-left: 80px;
     height: 40px;
   }
 
@@ -242,14 +242,14 @@
 
   .dataPickerContainer {
     width: 730px;
-    margin-left: 93px
+    margin-left: 80px
   }
 
 
   .textArea {
     width: 730px;
     height: 99px;
-    margin-left: 93px
+    margin-left: 80px
   }
 
 
