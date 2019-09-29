@@ -7,12 +7,13 @@ import { editTask } from '../../redux/actions/tasksActions';
 import { warn } from '../../utils/notification';
 import { openModal, openDeleteModal } from '../../redux/actions/modalAction';
 import DatePicker from '../DatePicker/DatePicker';
+import { openPickerModal } from '../../redux/actions/modalAction.js';
+import Modal from '../Modal/Modal';
 
 class EditTask extends Component {
   state = {
     title: '',
     description: '',
-    isToggleOn: false,
     dates: [{ date: '09-28-2019' }]
   };
 
@@ -35,10 +36,18 @@ class EditTask extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleOpenDatePicker = () => {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
+  handleOpenDatePicker = dates => {
+    const { openModal, modal } = this.props;
+
+    if (modal) {
+      const convertedDates = dates.map(date => ({ date }));
+      this.setState(state => ({
+        dates: convertedDates
+      }));
+    }
+    if (!modal) {
+      openModal();
+    }
   };
 
   handleSubmit = event => {
@@ -78,12 +87,12 @@ class EditTask extends Component {
   };
 
   render() {
-    const { title, description, isToggleOn } = this.state;
-    const { confirmDelete } = this.props;
+    const { title, description } = this.state;
+    const { confirmDelete, modal } = this.props;
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
-                <input
+          <input
             name="title"
             type="text"
             value={title}
@@ -97,8 +106,10 @@ class EditTask extends Component {
             <p className={style.dataPickerTitle}>Выберете дату</p>
             <Icon icon="ArrowRight" className={style.formIcon} />
           </div>
-          {this.state.isToggleOn ? (
-            <DatePicker isToggleOn={isToggleOn} handleOpenDatePicker={this.handleOpenDatePicker} />
+          {modal ? (
+            <Modal>
+              <DatePicker modal={modal} handleOpenDatePicker={this.handleOpenDatePicker} />
+            </Modal>
           ) : (
             ''
           )}
@@ -113,19 +124,20 @@ class EditTask extends Component {
             value={description}
             placeholder="Введите описание задачи"
           ></textarea>
-          {description.length > 200 && <span className={style.errorSpan}>Описание не должно быть больше 200-ти символов</span>}
-         
+          {description.length > 200 && (
+            <span className={style.errorSpan}>Описание не должно быть больше 200-ти символов</span>
+          )}
           <button type="button" className={style.deleteBtn}>
             <Icon icon="Delete" className={style.formIconDelete} onClick={confirmDelete} />
           </button>
           <div className={style.battonContainer}>
-          <button type="submit" className={style.saveBtn}>
-            Сохранить
-          </button>
-          <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
-            Отмена
-          </button>
-         </div>
+            <button type="submit" className={style.saveBtn}>
+              Сохранить
+            </button>
+            <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
+              Отмена
+            </button>
+          </div>
         </form>
       </div>
     );
@@ -136,7 +148,7 @@ const mapStateToProps = state => ({
   id: state.id,
   error: state.form.error,
   tasks: getTasks(state, ''),
-  token: state.session.token
+  modal: state.modal.modalPicker
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -144,6 +156,9 @@ const mapDispatchToProps = dispatch => ({
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());
+  },
+  openModal: () => {
+    dispatch(openPickerModal());
   }
 });
 

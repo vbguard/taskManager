@@ -1,7 +1,13 @@
 import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import styles from './Modal.module.css';
-import { closeModal, closeInfoModal, closeCalendarModal, closeDeleteModal } from '../../redux/actions/modalAction';
+import {
+  closeModal,
+  closeInfoModal,
+  closeCalendarModal,
+  closeDeleteModal,
+  closePickerModal
+} from '../../redux/actions/modalAction';
 
 class Modal extends Component {
   state = {};
@@ -45,6 +51,7 @@ const mDTP = dispatch => ({
     dispatch(closeInfoModal());
     dispatch(closeCalendarModal());
     dispatch(closeDeleteModal());
+    dispatch(closePickerModal());
   }
 });
 
