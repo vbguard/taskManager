@@ -10,6 +10,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const client = axios.create({
   baseURL: 'https://task-manager.goit.co.ua/api/',
+  // baseURL: 'http://192.168.89.246:5000/api/',
+
   responseType: 'json'
 });
 
