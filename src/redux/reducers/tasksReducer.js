@@ -28,7 +28,7 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.DELETE_TASK_ERROR:
       return { ...state, error: payload, loader: false };
     case tasksTypes.EDIT_TASK_START:
-      return { ...state, loader: payload };
+      return { ...state, loader: true };
     case tasksTypes.EDIT_TASK_SUCCESS:
       return {
         ...state,
@@ -44,6 +44,28 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, search: payload };
     case tasksTypes.CLEAR_SEARCH:
       return { ...state, search: payload };
+    case tasksTypes.COMPLETE_TASK_SUCCESS:
+      console.log(payload);
+
+      return {
+        ...state,
+        loader: false,
+        tasks: state.tasks.map(el => {
+          if (el._id === payload.id.taskId) {
+            return {
+              ...el,
+              dates: el.dates.map(dat => {
+                if (dat._id === payload.id.taskDayId) {
+                  return { ...dat, isComplete: true };
+                }
+                return dat;
+              })
+            };
+          }
+          return el;
+        })
+      };
+
     default:
       return state;
   }
