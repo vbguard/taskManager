@@ -9,15 +9,15 @@ const datesFromTasks = tasks => {
       if (Array.isArray(task.dates)) {
         task.dates.map(date => {
           if (date.isComplete) {
-            result.isDisabled.push(new Date(date.date));
+            result.isDisabled.push(new Date(date.date).toLocaleDateString());
           } else {
-            result.isCompleted.push(new Date(date.date));
+            result.isCompleted.push(new Date(date.date).toLocaleDateString());
           }
         });
       }
     });
   }
-  // console.log('result=', result);
   return result;
 };
+
 export default datesFromTasks;
