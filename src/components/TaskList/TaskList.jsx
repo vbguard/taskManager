@@ -18,51 +18,49 @@ import stateForTest from '../../assets/stateForTest.js';
 const tasks = stateForTest.userTasks.tasks;
 // console.log('stateForTest.userTasks.tasks=', stateForTest.userTasks.tasks);
 refactoredTaskList(tasks);
-const ifToday = (number) =>{
+const ifToday = number => {
   const now = new Date();
   const date = new Date(number);
   // console.log(date);
-  if (date.getFullYear()===now.getFullYear() && date.getMonth()===now.getMonth() && date.getDate()===now.getDate()) {return 'Сегодня'} else {
-    return date.toLocaleDateString()
+  if (
+    date.getFullYear() === now.getFullYear() &&
+    date.getMonth() === now.getMonth() &&
+    date.getDate() === now.getDate()
+  ) {
+    return 'Сегодня';
+  } else {
+    return date.toLocaleDateString();
   }
-}
+};
 
 const TaskList = ({ tasks }) => {
-  // console.log('tasks in task list props=', tasks);
-  // console.log('props=', props);
-  return ((tasks && tasks.length) ? (<ul className={styles.list}>
-    {/* <li key={new Date().toLocaleDateString()}>{new Date().toLocaleDateString()}</li> */}
+  return tasks && tasks.length ? (
+    <ul className={styles.list}>
       {tasks &&
-        tasks.map(task => {
-          // console.log('task=', task);
-          // console.log('task.tasks=', task.tasks);
-          // console.log('task.tasks.length=', task.tasks.length);
-          // console.log('typeof task.tasks.length=', typeof task.tasks.length);
+        tasks.map(taska => {
           return (
-            <li key={task.date+Math.random()}>
-              <p>{
-                ifToday(task.date)
-              }</p>
-              {task.tasks && task.tasks.map((task,index) =>{
-                // console.log('task=', task);
-                return(
-                  <ul key={Math.random()}>
-                    <li key={task._id+Math.random()}>
-                      <Task task={task} taskNumber={index+1}/>
-                    </li>
-                  </ul>
-                  
-                );
-              })}
+            <li key={taska.date + Math.random()}>
+              <p>{ifToday(taska.date)}</p>
+              {taska.tasks &&
+                taska.tasks.map((task, index) => {
+                  return (
+                    <ul key={Math.random()}>
+                      <li key={task._id + Math.random()}>
+                        <Task task={task} taskNumber={index + 1} date={taska.date} />
+                      </li>
+                    </ul>
+                  );
+                })}
             </li>
           );
         })}
     </ul>
-  ) : (<div>
-        <p className={styles.intro}>Нет запланированных задач...</p>
-        <p className={styles.intro}>Время начать управлять своей жизнью!</p>
-      </div>
-  ))
+  ) : (
+    <div>
+      <p className={styles.intro}>Нет запланированных задач...</p>
+      <p className={styles.intro}>Время начать управлять своей жизнью!</p>
+    </div>
+  );
 };
 
 TaskList.propTypes = {
