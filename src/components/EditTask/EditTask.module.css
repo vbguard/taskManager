@@ -218,7 +218,7 @@
   .bodybg {
     height: calc(100vh - 87px);
     display: flex;
-    align-items: center;
+   
   }
 
   .formBg {
