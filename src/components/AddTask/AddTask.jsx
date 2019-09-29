@@ -41,6 +41,15 @@ class AddForm extends Component {
     }
   };
 
+  handleDates = () => {
+    const { dates } = this.state;
+    if (dates.length === 0) {
+      return dates;
+    } else {
+      return dates.map(el => el.date);
+    }
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const { title, description, dates } = this.state;
@@ -66,8 +75,8 @@ class AddForm extends Component {
   };
 
   render() {
-    const { title, description, isToggleOn, dates } = this.state;
-console.log(this.state);
+    const { title, description, isToggleOn } = this.state;
+
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
@@ -89,7 +98,11 @@ console.log(this.state);
               <Icon icon="ArrowRight" className={style.formIcon} />
             </div>
             {this.state.isToggleOn ? (
-              <DatePicker isToggleOn={isToggleOn} handleOpenDatePicker={this.handleOpenDatePicker} dates={dates} />
+              <DatePicker
+                isToggleOn={isToggleOn}
+                handleOpenDatePicker={this.handleOpenDatePicker}
+                dates={this.handleDates()}
+              />
             ) : (
               ''
             )}

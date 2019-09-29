@@ -48,7 +48,7 @@ li:last-child{
     font-size: var(--tabletFontSize);
   }
   .list {
-    height: calc(100vh - 80px - 84px - 60px - 34px - 2px - 4px);
+    height: calc(100vh - 238px);  
   }
 }
 @media (min-width: 1280px) {
