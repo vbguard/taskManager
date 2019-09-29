@@ -13,8 +13,9 @@ body {
 }
 
 .Calendar {
-  width: 290px;
-  height: 340px;
+  padding: 0 10%;
+  /* width: 290px;
+  height: 340px; */
   margin: 25px auto 0;
 }
 
@@ -117,8 +118,8 @@ body {
 
 @media(min-width: 768px) {
   .Calendar {
-    width: 394px;
-    height: 340px;
+    /* width: 394px;
+    height: 340px; */
     margin: 44px auto 0;
   }
 
