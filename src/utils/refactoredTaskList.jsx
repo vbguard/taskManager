@@ -42,7 +42,7 @@ export const refactoredTaskList = (tasks) => {
         let resultofDates = [];
         let result = [];
         for (let date of arrOfDates) {
-          if (now<=date) {
+          if (now>date) {
             if (!resultofDates.includes(date)) {
               resultofDates.push(date);
               result.push({date: date, tasks: arrOfDatesWithIds.reduce(
