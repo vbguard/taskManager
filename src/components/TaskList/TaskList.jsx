@@ -30,7 +30,7 @@ const TaskList = ({ tasks }) => {
   // console.log('tasks in task list props=', tasks);
   // console.log('props=', props);
   return ((tasks && tasks.length) ? (<ul className={styles.list}>
-    <li key={new Date().toLocaleDateString()}>{new Date().toLocaleDateString()}</li>
+    {/* <li key={new Date().toLocaleDateString()}>{new Date().toLocaleDateString()}</li> */}
       {tasks &&
         tasks.map(task => {
           // console.log('task=', task);
@@ -42,12 +42,12 @@ const TaskList = ({ tasks }) => {
               <p>{
                 ifToday(task.date)
               }</p>
-              {task.tasks && task.tasks.map(task =>{
+              {task.tasks && task.tasks.map((task,index) =>{
                 // console.log('task=', task);
                 return(
                   <ul key={Math.random()}>
                     <li key={task._id+Math.random()}>
-                      <Task task={task}/>
+                      <Task task={task} taskNumber={index+1}/>
                     </li>
                   </ul>
                   
@@ -71,8 +71,8 @@ TaskList.propTypes = {
 const mapStateToProps = state => ({
   // tasks: getTasks(state)
   // tasks: refactoredTaskList(getTasks(state))
-  tasks: refactoredTaskList(tasks),
-  // tasks: getTasks(state, state.userTasks.search)
+  // tasks: refactoredTaskList(tasks),
+  tasks: refactoredTaskList(getTasks(state, state.userTasks.search))
 });
 
 const mapDispatchToProps = {};
