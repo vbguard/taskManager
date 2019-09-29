@@ -18,12 +18,14 @@ class EditTask extends Component {
 
   componentDidMount() {
     const { id, tasks } = this.props;
+    console.log(tasks);
     if (!tasks) {
       this.props.history.push('/dashboard');
       return;
     }
 
     const newState = tasks.find(el => el._id === id);
+    console.log(newState);
     this.setState({ ...newState });
   }
 
@@ -58,7 +60,7 @@ class EditTask extends Component {
       description !== editTask.description ||
       dates.length !== editTask.dates.length
     ) {
-      this.props.editTask({ title, description, dates }, token, id);
+      this.props.editTask({ title, description, dates }, id);
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
     }
