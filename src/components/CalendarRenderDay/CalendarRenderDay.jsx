@@ -8,7 +8,7 @@ import 'moment/locale/uk';
 const CalendarRenderDay = ({ day, classNames, onPickDate, calendar }) => {
   const addTask = day => {
     if (calendar) {
-      const calendarDay = calendar.find(el => el._id === day.format('YYYY-MM-DD'));
+      const calendarDay = calendar.find(el => el.date === day.format('DD-MM-YYYY'));
 
       if (!!calendarDay) {
         return (

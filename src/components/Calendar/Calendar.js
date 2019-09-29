@@ -8,8 +8,6 @@ import CalendarRenderDay from '../CalendarRenderDay/CalendarRenderDay';
 class TaskCalendar extends Component {
   state = {
     date: moment()
-    // oneDayTaskBtn: 2,
-    // repitedTasksBtn: 3
   };
 
   render() {
