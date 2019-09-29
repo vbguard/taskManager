@@ -177,6 +177,7 @@
 
   .title {
     width: 600px;
+  
     margin-left: 55px
   }
 
@@ -238,7 +239,8 @@
 
   .title {
     width: 730px;
-    margin-left: 93px
+    margin-left: 93px;
+    height: 40px;
   }
 
   .title::placeholder {

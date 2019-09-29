@@ -28,6 +28,7 @@ class AddForm extends Component {
     if (isToggleOn) {
       const convertedDates = dates.map(date => ({ date }));
       //make dates  "dates: [{ date: '09-26-2019' }]" from array of dates
+      console.log(convertedDates);
       this.setState(state => ({
         isToggleOn: !state.isToggleOn,
         dates: convertedDates
@@ -65,50 +66,51 @@ class AddForm extends Component {
   };
 
   render() {
-    console.log(this.state.dates);
     const { title, description, isToggleOn, dates } = this.state;
-
+console.log(this.state);
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
-        <div className={style.contenctContainer}>
-          <input
-            name="title"
-            type="text"
-            value={title}
-            onChange={this.handleChange}
-            placeholder="#1 Введите название задачи"
-            className={style.title}
-          ></input>
-          {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
-          <div className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
-            <Icon icon="Calendar" className={style.formIcon} />
-            <p className={style.dataPickerTitle}>Выберете дату</p>
-            <Icon icon="ArrowRight" className={style.formIcon} />
-          </div>
-          {this.state.isToggleOn ? (
-            <DatePicker isToggleOn={isToggleOn} handleOpenDatePicker={this.handleOpenDatePicker} dates={dates} />
-          ) : (
-            ''
-          )}
-          <label htmlFor="description" className={style.labelDescription}>
-            Краткое описание:
-          </label>
-          <textarea
-            name="description"
-            wrap="virtual"
-            className={style.textArea}
-            onChange={this.handleChange}
-            value={description}
-            placeholder="Введите описание задачи"
-          ></textarea>
-          {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
-          <button type="submit" className={style.saveBtn}>
-            Сохранить
-          </button>
-          <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
-            Отмена
-          </button>
+          <div className={style.contenctContainer}>
+            <input
+              name="title"
+              type="text"
+              value={title}
+              onChange={this.handleChange}
+              placeholder="#1 Введите название задачи"
+              className={style.title}
+            ></input>
+            {title.length > 50 && (
+              <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>
+            )}
+            <div className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
+              <Icon icon="Calendar" className={style.formIcon} />
+              <p className={style.dataPickerTitle}>Выберете дату</p>
+              <Icon icon="ArrowRight" className={style.formIcon} />
+            </div>
+            {this.state.isToggleOn ? (
+              <DatePicker isToggleOn={isToggleOn} handleOpenDatePicker={this.handleOpenDatePicker} dates={dates} />
+            ) : (
+              ''
+            )}
+            <label htmlFor="description" className={style.labelDescription}>
+              Краткое описание:
+            </label>
+            <textarea
+              name="description"
+              wrap="virtual"
+              className={style.textArea}
+              onChange={this.handleChange}
+              value={description}
+              placeholder="Введите описание задачи"
+            ></textarea>
+            {description.length > 200 && <span>Описание не должно быть больше 200-ти символов</span>}
+            <button type="submit" className={style.saveBtn}>
+              Сохранить
+            </button>
+            <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
+              Отмена
+            </button>
           </div>
         </form>
       </div>
