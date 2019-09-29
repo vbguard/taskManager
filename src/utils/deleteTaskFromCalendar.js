@@ -162,5 +162,5 @@ export const calendar = [
 ];
 
 export const deleteTaskFromCalendar = id => {
-  console.log(calendar);
+  // console.log(calendar);
 };
