@@ -96,8 +96,8 @@ class Task extends Component {
               {windowWidth > 768 ? <p>Редактировать</p> : null}
               <button
                 type="button"
-                disabled={loopDates[0].isComplete ? true : false}
-                className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                disabled={dates[0].isComplete ? true : false}
+                className={dates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
                 onClick={() => onComplete(id, token, { dates: [] })}
               >
                 <Icon icon="Done" />
