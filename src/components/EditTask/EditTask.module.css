@@ -1,5 +1,5 @@
 .bodybg {
-  height: calc(100vh - 5px);
+  height: calc(100vh - 170px);
   width: 100vw;
   background-color: var(--pale-grey);
   margin: 0 auto;
@@ -152,7 +152,7 @@
 
 @media (min-width:768px) and (max-width:1023px) {
   .bodybg {
-    height: calc(100vh - 5px);
+    height: calc(100vh - 87px);
     width: 100vw;
     display: flex;
   }
@@ -216,7 +216,7 @@
 
 @media (min-width:1024px) {
   .bodybg {
-    height: calc(100vh - 5px);
+    height: calc(100vh - 87px);
     display: flex;
     align-items: center;
   }
