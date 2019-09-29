@@ -14,7 +14,8 @@ export const tasksTypes = {
   EDIT_TASK_SUCCESS: 'EDIT_TASK_SUCCESS',
   EDIT_TASK_ERROR: 'EDIT_TASK_ERROR',
   SEARCH_TASKS: 'SEARCH_TASKS',
-  CLEAR_SEARCH: 'CLEAR_SEARCH'
+  CLEAR_SEARCH: 'CLEAR_SEARCH',
+  COMPLETE_TASK_SUCCESS: 'COMPLETE_TASK_SUCCESS'
 };
 
 export const fetchTasksSuccess = ({ tasks, calendar }) => ({
@@ -101,6 +102,7 @@ export const editTask = (data, taskId) => dispatch => {
         dispatch(editTaskSuccess(data, response.data.taskId));
       },
       onError({ dispatch, error }) {
+        console.log(data);
         dispatch(editTaskError(error));
       }
     }
@@ -122,35 +124,6 @@ export const editTaskError = error => ({
   payload: error.message
 });
 
-export const requestDoneTask = (data, taskId) => ({
-  type: tasksTypes.TASK_DONE_START,
-  payload: {
-    request: {
-      method: 'PATCH',
-      url: `/task/${taskId}`
-    },
-
-    options: {
-      onSuccess({ dispatch, response }) {
-        dispatch(doneTaskSuccess(data, response.data.taskId));
-      },
-      onError({ dispatch, error }) {
-        dispatch(doneTaskError(error));
-      }
-    }
-  }
-});
-
-export const doneTaskSuccess = id => ({
-  type: tasksTypes.TASK_DONE_SUCCESS,
-  payload: id
-});
-
-export const doneTaskError = error => ({
-  type: tasksTypes.TASK_DONE_ERROR,
-  payload: error.message
-});
-
 export const searchTasks = search => ({
   type: tasksTypes.SEARCH_TASKS,
   payload: search
@@ -159,4 +132,43 @@ export const searchTasks = search => ({
 export const clearSearch = () => ({
   type: tasksTypes.CLEAR_SEARCH,
   payload: ''
+});
+
+export const completeTask = (data, taskId) => dispatch => {
+  const { sectionDate, taskDates } = data;
+
+  const sectionDateString = new Date(sectionDate).toISOString();
+  const getDay = taskDates.find(el => el.date === sectionDateString);
+
+  console.log(getDay);
+
+  const dataUpdate = {
+    isComplete: true,
+    taskDayId: getDay._id
+  };
+
+  dispatch({
+    type: tasksTypes.EDIT_TASK_START,
+    payload: {
+      request: {
+        method: 'PATCH',
+        url: `/task/${taskId}`,
+        data: dataUpdate
+      },
+
+      options: {
+        onSuccess({ dispatch, response }) {
+          dispatch(completeTaskSuccess(data, response.data));
+        },
+        onError({ dispatch, error }) {
+          dispatch(editTaskError(error));
+        }
+      }
+    }
+  });
+};
+
+export const completeTaskSuccess = (data, id) => ({
+  type: tasksTypes.COMPLETE_TASK_SUCCESS,
+  payload: { data, id }
 });

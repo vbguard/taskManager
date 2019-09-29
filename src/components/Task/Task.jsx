@@ -1,41 +1,29 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import { editTaskSuccess, editTask } from '../../redux/actions/tasksActions';
 import { getIdSuccess } from '../../redux/actions/getIdAction';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Task.module.css';
 import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
-import { requestDoneTask } from '../../redux/actions/tasksActions.js';
+import { completeTask } from '../../redux/actions/tasksActions.js';
 import { getToken, getTaskId } from '../../redux/selectors/selectors';
 
 const refactoringProps = props => {
-
-//   console.log('props in task=', props);
-//   console.log('props.task in task=', props.task);
-
   const { dates, title, description, isRepeat, _id } = props.task;
 
   const refactoringProps = {
-    // loopDates: dates,
     taskHeader: !title ? 'назва_таски' : title,
     taskDescription: !description ? 'опис_таски' : description,
     isLoop: isRepeat,
-    loopDates: dates.reduce((acc,elem)=>{
-                // console.log('elem=', elem);
-                // console.log('typeof elem=', typeof elem);
-                // console.log('elem=', elem.date);
-                // console.log('typeof elem=', typeof elem.date);
-                // console.log('new Date(elem.date)=', new Date(elem.date));
-                // console.log('typeof new Date(elem.date)=', typeof new Date(elem.date));
-                // console.log('new Date(elem.date)=', new Date(elem.date).getDate());
-                // console.log('typeof new Date(elem.date)=', typeof new Date(elem.date).getDate());
-                acc.push(new Date(elem.date).getDate());
-                // console.log('acc=', acc);
-                // console.log('typeof acc=', typeof acc);
-                return acc}, []).join(','),
+    loopDates: dates
+      .reduce((acc, elem) => {
+        acc.push(new Date(elem.date).getDate());
+
+        return acc;
+      }, [])
+      .join(','),
     dates: dates,
 
     taskNumber: !props.taskNumber ? 'номер_таски' : props.taskNumber,
@@ -48,10 +36,7 @@ class Task extends Component {
   render() {
     const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
-    const { onEdit, token, id, onComplete } = this.props;
-    // console.log('loopDates=', loopDates);
-    // console.log('typeof loopDates=', typeof loopDates);
-    
+    const { onEdit, onComplete, date } = this.props;
 
     return (
       <>
@@ -75,7 +60,7 @@ class Task extends Component {
                     type="button"
                     disabled={dates[0].isComplete ? true : false}
                     className={
-                        dates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
+                      dates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
                     }
                   >
                     <Icon icon="Loop" />
@@ -96,8 +81,8 @@ class Task extends Component {
               {windowWidth > 768 ? <p>Редактировать</p> : null}
               <button
                 type="button"
-                disabled={loopDates[0].isComplete ? true : false}
-                className={loopDates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                disabled={dates[0].isComplete ? true : false}
+                className={dates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
                 onClick={() => onComplete(id, token, { dates: [] })}
               >
                 <Icon icon="Done" />
@@ -141,7 +126,7 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-  onComplete: (id, token, data) => dispatch(requestDoneTask({ id, token, data })),
+  onComplete: (data, taskId) => dispatch(completeTask(data, taskId)),
   onEdit: taskId => dispatch(getIdSuccess(taskId))
 });
 

@@ -21,7 +21,6 @@ export const getTasks = (state, search) => {
       return title.includes(request);
     });
   }
-  console.log(state.userTasks.tasks, search);
 };
 
 export const getInfoModal = state => state.modal.modalInfo;

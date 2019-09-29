@@ -44,6 +44,28 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, search: payload };
     case tasksTypes.CLEAR_SEARCH:
       return { ...state, search: payload };
+    case tasksTypes.COMPLETE_TASK_SUCCESS:
+      console.log(payload);
+
+      return {
+        ...state,
+        loader: false,
+        tasks: state.tasks.map(el => {
+          if (el._id === payload.id.taskId) {
+            return {
+              ...el,
+              dates: el.dates.map(dat => {
+                if (dat._id === payload.id.taskDayId) {
+                  return { ...dat, isComplete: true };
+                }
+                return dat;
+              })
+            };
+          }
+          return el;
+        })
+      };
+
     default:
       return state;
   }
