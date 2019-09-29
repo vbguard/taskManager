@@ -25,7 +25,7 @@ class Header extends Component {
       <>
         {match.path.includes('/login') && (
           <div className={styles.wrapperForLogin}>
-            <h1 className={`${styles.LoginRegisterLogo} Header-LoginRegister-Logo-Mob`}>TaskTraker</h1>
+            <h1 className={`${styles.LoginRegisterLogo} Header-LoginRegister-Logo-Mob`}>TaskManager</h1>
             <h2 className={`${styles.LoginRegisterTagline} Header-LoginRegister-Tagline-Mob`}>Организуй свои дела</h2>
           </div>
         )}
@@ -34,7 +34,7 @@ class Header extends Component {
         {match.path.includes('dashboard') && (
           <div className={styles.wrapperForDashboard}>
             <Link to="/dashboard" onClick={this.props.onMainPage}>
-              <h1 className={`${styles.DashboardLogo} Header-Dashboard-Logo-Mob`}>TaskTraker</h1>
+              <h1 className={`${styles.DashboardLogo} Header-Dashboard-Logo-Mob`}>TaskManager</h1>
             </Link>
             <nav className={`${styles.nav} Header-Dashboard-UserName-Mob`}>
               <div className={styles.UserNameLetter}>{nickname[0].toUpperCase()}</div>
