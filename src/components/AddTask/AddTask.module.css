@@ -1,13 +1,13 @@
 .bodybg {
-  height: calc(100vh - 80px - 2px);
+  height: 100vh;
   width: 100vw;
   background-color: var(--pale-grey);
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .formBg {
-  width: 295px;
-  height: 391px;
+  max-width: 95%;
+  max-height: 100%;
   box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--white);
   margin: 0 auto;
@@ -15,12 +15,16 @@
   margin-top: 20px;
 }
 
+.contenctContainer {
+  margin-left: 11px
+}
+
 .title {
   width: 264px;
   height: 40px;
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
-  margin-left: 11px
+
 }
 
 .title::placeholder {
@@ -36,14 +40,14 @@
 
 .formIcon {
   width: 20px;
-  height: 18px;
+  height: 20px;
   fill: var(--dusty-orange);
   align-items: center;
 }
 
 .formIconDelete {
   width: 20px;
-  height: 18px;
+  height: 20px;
   fill: var(--white);
 }
 
@@ -51,7 +55,6 @@
   width: 264px;
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
-  margin-left: 11px
 }
 
 .dataPickerTitle {
@@ -73,7 +76,6 @@
   letter-spacing: 0.72px;
   text-align: left;
   color: var(--black);
-  margin-left: 11px
 }
 
 .textArea {
@@ -82,7 +84,6 @@
   height: 177px;
   border-radius: 5px;
   border: solid 1px var(--light-periwinkle);
-  margin-left: 11px
 }
 
 .textArea::placeholder {
@@ -93,7 +94,6 @@
   letter-spacing: 0.78px;
   color: var(--greyish-brown);
   padding-left: 5px;
-
 }
 
 .deleteBtn {

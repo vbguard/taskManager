@@ -33,9 +33,3 @@ export const getDeleteModal = state => state.modal.modalDelete;
 export const getNickname = state => state.session.nickname;
 
 export const getTaskId = state => state.id;
-
-export const getDate = state => {
-  const date = state.userTasks.tasks.forEach(el => el.dates);
-  console.log(date);
-  return date;
-};

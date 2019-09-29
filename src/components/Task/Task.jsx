@@ -26,10 +26,7 @@ const refactoringProps = props => {
 };
 
 class Task extends Component {
-  componentDidMount() {
-    const { dates } = this.props;
-    console.log(dates);
-  }
+  
   render() {
     const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
@@ -120,7 +117,7 @@ Task.defaultProps = {
 const mSTP = state => ({
   token: getToken(state),
   id: getTaskId(state),
-  dates:getDate(state)
+ 
 });
 
 const mDTP = dispatch => ({
