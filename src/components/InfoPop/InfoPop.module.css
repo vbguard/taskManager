@@ -21,7 +21,7 @@
 
 .titleInfo {
   font-family: var(--primaryFontFamily);
-  font-size: 13px;
+  font-size: var(--mobileFontSize);
   text-align: center;
   color: var(--pale-grey);
   margin: 10px;
@@ -64,8 +64,8 @@
 .text {
   width: 160px;
   font-family: GothamPro;
-  font-size: 13px;
-  font-weight: 300;
+  font-size: var(--mobileFontSize);
+  font-weight: 300; 
   color: var(--greyish-brown);
 }
 

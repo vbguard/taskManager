@@ -60,14 +60,14 @@
   line-height: 1;
 }
 
-.searchWrapper::before {
+/* .searchWrapper::before {
   position: absolute;
   height: 30px;
   transform: translateY(-18%);
   left: 0;
   border-right:  2px solid var(--pale-grey);
   content: "";
-}
+} */
 
 .calendarSign {
   position: relative;

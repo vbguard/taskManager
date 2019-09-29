@@ -1,8 +1,6 @@
 
 .wrapper {
-	/* position: relative; */
-	/* height: 100vh; */
-	padding-top: 48px;
+	padding-top: 20px;
 	background-color: var(--pale-grey);
 }
 
