@@ -184,9 +184,7 @@
     margin-left: 45px
   }
 
-
-
-  .saveBtn {
+ .saveBtn {
     position: absolute;
     bottom: 2%;
     left: 26%;
@@ -204,7 +202,6 @@
   .bodybg {
     height: calc(100vh - 87px);
     display: flex;
-    align-items: center;
   }
 
   .formBg {
