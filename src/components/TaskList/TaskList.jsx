@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTasks } from '../../redux/selectors/selectors';
-
 import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';

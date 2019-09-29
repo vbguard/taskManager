@@ -83,7 +83,7 @@ class EditTask extends Component {
     return (
       <div className={style.bodybg}>
         <form onSubmit={this.handleSubmit} className={style.formBg}>
-          <input
+          <div className={style.contenctContainer}>         <input
             name="title"
             type="text"
             value={title}
@@ -123,7 +123,9 @@ class EditTask extends Component {
           <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
             Отмена
           </button>
+          </div> 
         </form>
+
       </div>
     );
   }
