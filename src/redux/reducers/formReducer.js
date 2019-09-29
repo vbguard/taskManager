@@ -11,7 +11,7 @@ export const formReducer = (state = initialState, { type, payload }) => {
         ...state,
         title: payload.title,
         description: payload.description,
-        dates: [...payload.dates]
+        dates: payload.dates
       };
     case formTypes.ADD_TASK_FORM_ERROR:
       return { ...state, error: payload.error };
