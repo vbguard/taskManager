@@ -1,17 +1,27 @@
 .bodybg {
-  width: 320px;
-  height: 469px;
+  height: 100vh;
+  width: 100vw;
   background-color: var(--pale-grey);
-  margin: 0 auto;
+  display: flex;
+  align-items: top;
 }
 
 .formBg {
-  width: 295px;
-  height: 391px;
+  max-width: 95%;
+  max-height: 80%;
   box-shadow: 0px 3px 3px 0 rgba(1, 1, 0, 0.15);
   background-color: var(--white);
-  margin: 0 auto;
+  padding-top: 10px;
+  border-radius: 5px;
   padding-top: 20px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  
+}
+
+.contenctContainer {
+  margin-left: 20px;
 }
 
 .title {
@@ -19,7 +29,6 @@
   height: 20px;
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
-  margin-left: 11px
 }
 
 .title::placeholder {
@@ -37,7 +46,8 @@
   width: 20px;
   height: 18px;
   fill: var(--dusty-orange);
-  align-items: center;
+  vertical-align: middle;
+  margin-right: 4px;
 }
 
 .formIconDelete {
@@ -47,10 +57,11 @@
 }
 
 .dataPickerContainer {
+  display: inline-block;
   width: 264px;
   border: none;
   border-bottom: solid 1px var(--light-periwinkle);
-  margin-left: 11px
+
 }
 
 .dataPickerTitle {
@@ -72,7 +83,7 @@
   letter-spacing: 0.72px;
   text-align: left;
   color: var(--black);
-  margin-left: 11px
+
 }
 
 .textArea {
@@ -81,18 +92,17 @@
   height: 177px;
   border-radius: 5px;
   border: solid 1px var(--light-periwinkle);
-  margin-left: 11px
 }
 
 .textArea::placeholder {
   font-family: 'GothamPro';
   font-size: 13px;
   font-weight: 300;
-  line-height: 1.54;
+  line-height: 1;
   letter-spacing: 0.78px;
   color: var(--greyish-brown);
   padding-left: 5px;
-
+  padding-top: 10px;
 }
 
 .deleteBtn {
@@ -102,27 +112,25 @@
   background-color: var(--dark-grey-blue);
   border-radius: 50%;
   border: none;
-  margin: 0 auto;
+  margin-left:115px;
   margin-top: 12px;
-  margin-bottom: 14px
+  margin-bottom: 12px;
+ 
 }
 
 
 .resetBtn,
 .saveBtn {
-  width: 145px;
+  width: 135px;
   height: 35px;
   border-radius: 5px;
   border: solid 1px var(--dark-grey-blue);
   background-color: transparent;
   margin-bottom: 10px;
-  margin-left: 2px;
   margin-top: 3px;
   font-family: Verdana;
   font-size: 13px;
   font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
   letter-spacing: 0.78px;
   text-align: center;
   color: var(--dark-grey-blue);
@@ -140,6 +148,18 @@
   color: var(--red);
   font-family: Verdana;
   font-size: 11px;
+
+}
+
+@media (min-width:321px) and (max-width:767px) {
+  .contenctContainer {
+    margin-left: 45px
+  }
+
+  .resetBtn,
+  .saveBtn {
+    margin-right: 3px
+  }
 }
 
 @media (min-width:768px) and (max-width:1023px) {
@@ -150,8 +170,8 @@
 
   .formBg {
     width: 710px;
-    height: 607px;
-    padding-top: 72px;
+    height: 500px;
+    /* padding-top: 72px; */
     position: relative;
   }
 
@@ -185,7 +205,7 @@
 
   .deleteBtn {
     position: absolute;
-    left: 10%
+    right:46%
   }
 
 
@@ -211,8 +231,8 @@
 
   .formBg {
     width: 915px;
-    height: 607px;
-    padding-top: 92px;
+    height: 500px;
+    /* padding-top: 92px; */
     position: relative;
   }
 
@@ -246,7 +266,7 @@
 
   .deleteBtn {
     position: absolute;
-    left: 10%
+    left: 35%
   }
 
 
