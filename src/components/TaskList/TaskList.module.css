@@ -5,6 +5,7 @@
     margin: 0;
     padding-right: 10px;
     flex-grow: 2;
+    width: 100%;
 }
 
   .list::-webkit-scrollbar {
