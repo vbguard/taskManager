@@ -25,6 +25,8 @@ module.exports = options => ({
         use: {
           loader: 'babel-loader',
           options: options.babelQuery,
+          babelrc: true,
+          cacheDirectory: true,
         },
       },
       {
