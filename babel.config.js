@@ -7,12 +7,13 @@ module.exports = {
       },
     ],
     '@babel/preset-react',
+    // "@babel/preset-stage-0"
   ],
   plugins: [
     'styled-components',
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    '@babel/plugin-proposal-class-properties',
     '@babel/plugin-syntax-dynamic-import',
-    'babel-plugin-transform-react-class-to-function',
+    // 'babel-plugin-transform-react-class-to-function',
   ],
   env: {
     production: {

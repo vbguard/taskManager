@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getToken } from "../redux/selectors/selectors";
+import { getToken } from "redux/selectors/selectors";
 
 const ProtectedComponent = ({ component: Component, token, ...rest }) => {
 	return (

@@ -9,7 +9,7 @@ const WrapperDesktop = () => (
       <TaskContainer />
     </div>
     <div className={styles.calendarWrapper}>
-      <Calendar />
+      {/* <Calendar /> */}
     </div>
   </div>
 );

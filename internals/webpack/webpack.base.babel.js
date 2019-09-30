@@ -21,13 +21,17 @@ module.exports = options => ({
     rules: [
       {
         test: /\.(jsx|js)?$/, // Transform all .js and .jsx files required somewhere with Babel
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!(react-intl|intl-messageformat|intl-messageformat-parser)\/).*/,
+        // include: [path.resolve(__dirname, 'app')],
         use: {
           loader: 'babel-loader',
           options: options.babelQuery,
-          babelrc: true,
-          cacheDirectory: true,
+          // query: {
+          //   cacheDirectory: true,
+          //   presets: ['react', 'env']
+          // }
         },
+
       },
       {
         // Preprocess our own .css files

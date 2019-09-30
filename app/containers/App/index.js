@@ -27,7 +27,8 @@ const AppWrapper = styled.div`
 
 export default function App() {
   return (
-    <AppWrapper>
+    // <AppWrapper>
+    <>
       <Helmet titleTemplate="%s - Task Manager" defaultTitle="Task Manager">
         <meta name="description" content="Manager your's tasks" />
       </Helmet>
@@ -38,6 +39,7 @@ export default function App() {
       </Switch>
       <GlobalStyle />
       <ToastContainer />
-    </AppWrapper>
+      </>
+    // </AppWrapper>
   );
 }

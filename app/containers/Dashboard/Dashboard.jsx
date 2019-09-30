@@ -67,6 +67,7 @@ class Dashboard extends Component {
 
     return (
       <>
+        <h1>Dash Work</h1>
         <Header match={this.props.match} location={this.props.location} />
         <div className={styles.wrapper}>
           {loader ? (
@@ -83,10 +84,10 @@ class Dashboard extends Component {
                 <>
                   <Switch>
                     <Route path="/dashboard" exact component={TaskContainer} />
-                    <Route
+                    {/* <Route
                       path="/dashboard/calendar"
                       component={CalendarPage}
-                    />
+                    /> */}
                     <Route path="/dashboard/add" component={AddTask} />
                     <Route path="/dashboard/edit" component={EditTask} />
                   </Switch>
@@ -108,7 +109,7 @@ class Dashboard extends Component {
         {modal && (
           <Modal>
             {modalInfo && <InfoPop />}
-            {modalCalendar && <Calendar />}
+            {/* {modalCalendar && <Calendar />} */}
             {modalDelete && (
               <PopUpConfirmDelete
                 history={history}
