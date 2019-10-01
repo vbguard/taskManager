@@ -133,7 +133,7 @@ class EditTask extends Component {
             <Icon icon="Delete" className={style.formIconDelete} onClick={confirmDelete} />
           </button>
           <div className={style.battonContainer}>
-            <button type="submit" className={style.saveBtn}>
+            <button type="submit" className={style.saveBtn} >
               Сохранить
             </button>
             <button type="reset" className={style.resetBtn} onClick={this.handleReset}>

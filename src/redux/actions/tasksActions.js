@@ -88,7 +88,7 @@ export const deleteTaskError = error => ({
 export const editTask = (data, taskId) => dispatch => {
  console.log(data) 
  console.log(taskId)
-  return ({
+ dispatch ({
   type: tasksTypes.EDIT_TASK_START,
   payload: {
     request: {
@@ -100,7 +100,7 @@ export const editTask = (data, taskId) => dispatch => {
     options: {
       onSuccess({ dispatch, response }) {
         console.log(response)
-        dispatch(editTaskSuccess(data, response.data));
+        dispatch(editTaskSuccess(data, response.data.tasks));
       },
       onError({ dispatch, error }) {
         console.log(data);
