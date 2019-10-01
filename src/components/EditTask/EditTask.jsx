@@ -14,19 +14,17 @@ class EditTask extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{ date: '09-28-2019' }]
+    dates: []
   };
 
   componentDidMount() {
     const { id, tasks } = this.props;
-   // console.log(tasks);
+    // console.log(tasks);
     if (!tasks) {
       this.props.history.push('/dashboard');
       return;
     }
-
     const newState = tasks.find(el => el._id === id);
-    //console.log(newState);
     this.setState({ ...newState });
   }
 
@@ -55,7 +53,7 @@ class EditTask extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { title, description, dates } = this.state;
-    const { token, id, tasks } = this.props;
+    const { id, tasks } = this.props;
     const editTask = tasks.find(el => el._id === id);
 
     if (title === '' || description === '') {
@@ -69,7 +67,7 @@ class EditTask extends Component {
       description !== editTask.description ||
       dates.length !== editTask.dates.length
     ) {
-      this.props.editTask({ title, description, dates},id);
+      this.props.editTask({ title, description, dates }, id);
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
     }
@@ -133,7 +131,7 @@ class EditTask extends Component {
             <Icon icon="Delete" className={style.formIconDelete} onClick={confirmDelete} />
           </button>
           <div className={style.battonContainer}>
-            <button type="submit" className={style.saveBtn} >
+            <button type="submit" className={style.saveBtn}>
               Сохранить
             </button>
             <button type="reset" className={style.resetBtn} onClick={this.handleReset}>
@@ -154,7 +152,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  editTask: (data, id) => dispatch(editTask(data,id)),
+  editTask: (data, id) => dispatch(editTask(data, id)),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());

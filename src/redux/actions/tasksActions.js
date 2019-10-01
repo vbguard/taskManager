@@ -86,29 +86,27 @@ export const deleteTaskError = error => ({
 });
 
 export const editTask = (data, taskId) => dispatch => {
- console.log(data) 
- console.log(taskId)
- dispatch ({
-  type: tasksTypes.EDIT_TASK_START,
-  payload: {
-    request: {
-      method: 'PATCH',
-      url: `/task/${taskId}`,
-      data
-    },
-
-    options: {
-      onSuccess({ dispatch, response }) {
-        console.log(response)
-        dispatch(editTaskSuccess(data, response.data.tasks));
+  dispatch({
+    type: tasksTypes.EDIT_TASK_START,
+    payload: {
+      request: {
+        method: 'PATCH',
+        url: `/task/${taskId}`,
+        data
       },
-      onError({ dispatch, error }) {
-        console.log(data);
-        dispatch(editTaskError(error));
+
+      options: {
+        onSuccess({ dispatch, response }) {
+          dispatch(editTaskSuccess(data, response.data.tasks));
+          dispatch(getUserTasks());
+        },
+        onError({ dispatch, error }) {
+          dispatch(editTaskError(error));
+        }
       }
     }
-  }
-})};
+  });
+};
 
 export const editTaskStart = () => ({
   type: tasksTypes.EDIT_TASK_START,
