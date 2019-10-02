@@ -126,6 +126,10 @@ p {
 	margin-left: 1em;
 }
 
+.taskControlsDone:hover {
+	border: 1px solid var(--green)
+}
+
 .taskControlsDone svg {
 	width: 14px;
 	height: 14px;
@@ -145,6 +149,10 @@ p {
 
 .taskControlsEdit {
 	margin-right: 1em;
+}
+
+.taskControlsEdit:hover {
+		border: 1px solid var(--dusty-orange)
 }
 
 .taskControlsEdit svg {
