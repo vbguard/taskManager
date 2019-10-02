@@ -1,4 +1,6 @@
 
+import { format } from 'date-fns';
+
 export const refactoredTaskList = (tasks) => {
     let allDates = [];
     let allDatesWithIds = [];
@@ -10,21 +12,23 @@ export const refactoredTaskList = (tasks) => {
             // console.log('task.dates=', task.dates);
             task.dates.map(date =>{
                 // console.log('date=', date);
-                allDatesWithIds.push({date: new Date(date.date).getTime(), taskId: task._id});
-                allDates.push(new Date(date.date).getTime());
+                allDatesWithIds.push({date: format(new Date(date.date), 'yyyy-MM-dd'), taskId: task._id});
+                allDates.push(format(new Date(date.date), 'yyyy-MM-dd'));
             })
         }
     })
     }
     // console.log('allDates=', allDates);
     // console.log('allDatesWithIds=', allDatesWithIds);
-    const sortedAllDates = allDates.sort((a, b) => a - b);
-    // console.log('sortedAllDates=', sortedAllDates);
-    const sortedallDatesWithIds = allDatesWithIds.sort((a, b) => a.date - b.date);
-    // console.log('sortedallDatesWithIds=', sortedallDatesWithIds);
+    // const sortedAllDates = allDates.sort((a, b) => a - b);
+    const sortedAllDates = allDates.sort((a, b) => b - a);
+    // const sortedallDatesWithIds = allDatesWithIds.sort((a, b) => a.date - b.date);
+    const sortedallDatesWithIds = allDatesWithIds.sort((a, b) => b.date - a.date);
+    console.log('sortedAllDates=', sortedAllDates);
+    console.log('sortedallDatesWithIds=', sortedallDatesWithIds);
     // let datesForTasksList=[];
-    const now = new Date(Date.now()).getTime();
-    // console.log('now=', now);
+    const now = format(new Date(), 'yyyy-MM-dd');
+    console.log('now=', now);
     function unique(arrOfDates) {
         let result = [];
         for (let str of arrOfDates) {
@@ -77,9 +81,9 @@ export const refactoredTaskList = (tasks) => {
     const uniqDates = unique(sortedAllDates);
     const datesWithIds = uniqueDatesWithIds(sortedAllDates, sortedallDatesWithIds);
 
-    // console.log('uniqDates=', uniqDates);
+    console.log('uniqDates=', uniqDates);
     // console.log('typeof uniqDates=', typeof uniqDates);  
-    // console.log('datesWithIds=', datesWithIds);
+    console.log('datesWithIds=', datesWithIds);
     // console.log('typeof datesWithIds=', typeof datesWithIds); 
     // console.log('now=', now);
     // console.log('typeof now=', typeof now);
