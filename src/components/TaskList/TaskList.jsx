@@ -43,7 +43,7 @@ const TaskList = ({ tasks }) => {
               <p className={styles.today}>{ifToday(taska.date)}</p>
               {taska.tasks &&
                 taska.tasks.map((task, index) => {
-                  console.log('task=', task);
+                  // console.log('task=', task);
                   return (
                     <ul className={styles.subList} key={Math.random()}>
                       <li className={styles.subListItem} key={task._id + Math.random()}>
