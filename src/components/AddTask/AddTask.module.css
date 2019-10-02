@@ -21,7 +21,6 @@
 
 .title {
   width: 264px;
-  height: 45px;
   border: none;
   padding-left: 10px;
   border-bottom: solid 1px var(--light-periwinkle);
@@ -38,7 +37,6 @@
   font-weight: 900;
   line-height: 3.5;
   letter-spacing: 0.84px;
-  text-align: left;
   color: var(--light-blue-grey);
 }
 
@@ -196,7 +194,7 @@
     margin-left: 45px
   }
 
- .saveBtn {
+  .saveBtn {
     position: absolute;
     bottom: 2%;
     left: 26%;
