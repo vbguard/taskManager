@@ -9,13 +9,8 @@
 }
 
 .title {
-  font-family: var(--primaryFontFamily);
-  font-size: var(--mobileFontSize);
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.22;
-  letter-spacing: 0.72px;
+  font-family: 'GothamPro';
+  font-size: 13px;
   text-align: center;
   color: #010101;
 }
@@ -28,24 +23,32 @@
 }
 
 .button {
-  width: 100px;
+  width: 135px;
   height: 35px;
-  box-shadow: 0px 6px 10px 0 rgba(255, 0, 0, 0.33);
-  font-family: var(--primaryFontFamily);
-  font-size: var(--mobileFontSize);
+  border-radius: 5px;
+  border: solid 1px var(--dark-grey-blue);
+  background-color: transparent;
+  margin-bottom: 10px;
+  margin-top: 3px;
+  font-family: Verdana;
+  font-size: 13px;
   font-weight: bold;
-  border: none;
-  border-radius: 5%;
-  cursor: pointer;
+  letter-spacing: 0.78px;
+  text-align: center;
+  color: var(--dark-grey-blue);
+  margin-top: 20px
 }
 
 .btnDelete {
   background-color: var(--red);
+  border: 0;
   color: var(--white);
 }
 
 .btnDelete:hover {
-  box-shadow: 0px 0px 5px 5px rgba(255, 0, 0, 0.5);
+    background-color: var(--white);
+    color: var(--red);
+    border: 1px solid var(--red);
 }
 
 .btnCancel {
@@ -55,25 +58,18 @@
 }
 
 .btnCancel:hover {
-  background-color: var(--green);
-  color: var(--white);
   border: 1px solid var(--green);
-  box-shadow: 0px 0px 5px 5px rgba(0, 255, 0, 0.5);
+  color: var(--green);
 }
 
 @media (min-width: 768px) {
   .container {
-    width: 400px;
-    height: 200px;
+    width: 350px;
+    height: 150px;
 }
 
 .title {
-  font-size: 16px;
+  font-size: 14px;
 }
 
-.button {
-  font-size: 16px;
-  width: 150px;
-  height: 50px;
-}
 }

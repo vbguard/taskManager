@@ -36,7 +36,7 @@ class Task extends Component {
   render() {
     const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
-    const { onEdit, onComplete, date } = this.props;
+    const { onEdit, onComplete } = this.props;
 
     return (
       <>
@@ -83,7 +83,7 @@ class Task extends Component {
                 type="button"
                 disabled={dates[0].isComplete ? true : false}
                 className={dates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                onClick={() => onComplete({sectionDate: this.props.date, taskDates: this.task.dates}, taskId)}
+                onClick={() => onComplete({sectionDate: this.props.date, taskDates: this.props.task.dates}, taskId)}
               >
                 <Icon icon="Done" />
               </button>

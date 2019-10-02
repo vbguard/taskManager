@@ -3,7 +3,7 @@ import cx from 'classnames';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { getCalendar } from './calendarSelectors';
-import 'moment/locale/uk';
+import 'moment/locale/ru';
 
 const CalendarRenderDay = ({ day, classNames, onPickDate, calendar }) => {
   const addTask = day => {

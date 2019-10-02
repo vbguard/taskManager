@@ -1,3 +1,11 @@
+button {
+  outline: 0;
+}
+
+button:hover {
+  /* border: 1px solid var(--dusty-orange); */
+}
+
 .list {
     height: calc(100vh - 165px);  
     list-style: none;
@@ -25,6 +33,12 @@
   .list::-webkit-scrollbar-thumb {
   background-color: rgba(	40,	64,	96, 0.75);
   border-radius: 10px;
+  }
+
+  .emptyTaskMessage {
+    display: block;
+    height: 100vh;
+    margin: 20px auto;
   }
 
 

@@ -14,16 +14,16 @@ class EditTask extends Component {
   state = {
     title: '',
     description: '',
-    dates: [{ date: '09-28-2019' }]
+    dates: []
   };
 
   componentDidMount() {
     const { id, tasks } = this.props;
+    // console.log(tasks);
     if (!tasks) {
       this.props.history.push('/dashboard');
       return;
     }
-
     const newState = tasks.find(el => el._id === id);
     this.setState({ ...newState });
   }
@@ -53,7 +53,7 @@ class EditTask extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { title, description, dates } = this.state;
-    const { token, id, tasks } = this.props;
+    const { id, tasks } = this.props;
     const editTask = tasks.find(el => el._id === id);
 
     if (title === '' || description === '') {
@@ -67,7 +67,7 @@ class EditTask extends Component {
       description !== editTask.description ||
       dates.length !== editTask.dates.length
     ) {
-      this.props.editTask({ title, description, dates }, token, id);
+      this.props.editTask({ title, description, dates }, id);
       this.props.history.push('/dashboard');
       this.setState({ title: '', description: '' });
     }
@@ -152,7 +152,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  editTask: (data, id) => dispatch(editTask({ data, id })),
+  editTask: (data, id) => dispatch(editTask(data, id)),
   confirmDelete: () => {
     dispatch(openModal());
     dispatch(openDeleteModal());
