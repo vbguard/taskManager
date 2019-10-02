@@ -15,7 +15,7 @@ class TaskCalendar extends Component {
       <Calendar
         onChangeMonth={date => this.setState({ date })}
         date={this.state.date}
-        onPickDate={date => console.log(date)}
+        // onPickDate={date => console.log(date)}
         renderDay={props => <CalendarRenderDay {...props} />}
         renderHeader={({ date, onPrevMonth, onNextMonth }) => (
           <div className="Calendar-header">

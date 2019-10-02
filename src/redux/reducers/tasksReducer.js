@@ -1,5 +1,6 @@
 import { tasksTypes } from '../actions/tasksActions';
 import { formTypes } from '../actions/formAction';
+import { addTaskToCalendar } from '../../utils/utils';
 
 const initialState = {
   tasks: null,
@@ -39,6 +40,7 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, error: payload, loader: false };
     case formTypes.ADD_TASK_FORM_SUCCESS:
       const newTask = payload.task;
+      addTaskToCalendar(payload.task, state.calendar);
       return { ...state, tasks: [newTask, ...state.tasks] };
     case tasksTypes.SEARCH_TASKS:
       return { ...state, search: payload };
