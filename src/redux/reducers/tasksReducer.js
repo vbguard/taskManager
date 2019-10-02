@@ -45,8 +45,6 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
     case tasksTypes.CLEAR_SEARCH:
       return { ...state, search: payload };
     case tasksTypes.COMPLETE_TASK_SUCCESS:
-      console.log(payload);
-
       return {
         ...state,
         loader: false,
