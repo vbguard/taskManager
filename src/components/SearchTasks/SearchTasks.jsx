@@ -19,7 +19,7 @@ class SearchTasks extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={styles.form}>
-        <i class="fa fa-search" aria-hidden="true"></i>
+        <i className="fa fa-search" aria-hidden="true"></i>
         <input
           type="text"
           value={this.state.search}

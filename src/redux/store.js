@@ -19,6 +19,7 @@ const client = axios.create({
 client.interceptors.request.use(function(config) {
   const token = store.getState().session.token;
   config.headers.Authorization = `Bearer ${token}`;
+  // config.headers.Authorization = token;
 
   return config;
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route,Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
@@ -41,9 +41,7 @@ class Dashboard extends Component {
     modal: PropTypes.bool.isRequired,
     token: PropTypes.string.isRequired,
     windowWidth: PropTypes.number.isRequired,
-    loginSuccess: PropTypes.func.isRequired,
-    getUserTasks: PropTypes.func.isRequired,
-    openModal: PropTypes.func.isRequired
+    getUserTasks: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -62,7 +60,9 @@ class Dashboard extends Component {
         <Header match={this.props.match} location={this.props.location} />
         <div className={styles.wrapper}>
           {loader ? (
-            <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
+            <div className={styles.loader}>
+              <Loader type="Oval" color="#284060" height={35} width={35} timeout={3000} />
+            </div>
           ) : (
             <>
               {windowWidth < 1024 && (
@@ -81,7 +81,7 @@ class Dashboard extends Component {
                     <Route path="/dashboard" exact component={WrapDesktop} />
                     <Route path="/dashboard/add" component={AddTask} />
                     <Route path="/dashboard/edit" component={EditTask} />
-                    <Redirect to="/dashboard"/>
+                    <Redirect to="/dashboard" />
                   </Switch>
                 </>
               )}
