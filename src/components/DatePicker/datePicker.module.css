@@ -1,12 +1,43 @@
 .pickerWrapper {
-    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
+.pickerBtns {
+    display: flex;
+    justify-content: center;
+    background-color: var(--white);
+}
+
 .pickerBtn {
-    background: none;
-    border: none;
-    width: 30px;
-    height: 30px;
+  width: 135px;
+  height: 35px;
+  border-radius: 5px;
+  border: solid 1px var(--dark-grey-blue);
+  background-color: transparent;
+  margin-bottom: 10px;
+  margin-top: 3px;
+  font-family: Verdana;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.78px;
+  text-align: center;
+  color: var(--dark-grey-blue);
+  margin-top: 20px
+
+}
+
+.pickerBtn:first-child {
+    margin-right: 10px;
+}
+
+.pickerBtn:hover{
+  box-shadow: 0px 6px 10px 0 var(--dusty-orange-33);
+  background-color: var(--dusty-orange);
+  border: none;
+  color: var(--white);
+}
+.resetBtn:focus-visible {
+  outline: 0;
 }
