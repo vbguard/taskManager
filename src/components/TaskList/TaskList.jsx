@@ -70,8 +70,8 @@ TaskList.propTypes = {
 const mapStateToProps = state => ({
   // tasks: getTasks(state)
   // tasks: refactoredTaskList(getTasks(state))
-  tasks: refactoredTaskList(tasks),
-  // tasks: refactoredTaskList(getTasks(state, state.userTasks.search))
+  // tasks: refactoredTaskList(tasks),
+  tasks: refactoredTaskList(getTasks(state, state.userTasks.search))
 });
 
 const mapDispatchToProps = {};
