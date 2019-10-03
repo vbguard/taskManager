@@ -22,9 +22,6 @@ export const datesFromTasks = tasks => {
 };
 
 export const addTaskToCalendar = (task, calendar) => {
-  // console.log('task', task);
-  // console.log('calendar', calendar);
-  // console.log(format(new Date(task.dates[0].date), 'dd-MM-yyyy'));
   const { _id, title } = task;
   const isRepeat = task.dates.length > 1;
 
@@ -34,28 +31,43 @@ export const addTaskToCalendar = (task, calendar) => {
 
       calendar.map(el => {
         if (el.date === taskDate) {
-          return el.repeatTasks.tasks.push({ _id, title, isRepeat });
+          el.repeatTasks.tasks.push({ _id, title, isRepeat });
+          el.repeatTasks.count = el.repeatTasks.tasks.length;
+          return el;
         }
         return el;
       });
+
+      if (!calendar.some(el => el.date === taskDate)) {
+        calendar.push({
+          date: taskDate,
+          repeatTasks: { tasks: [{ _id, title, isRepeat }], count: 1 },
+          oneTasks: { tasks: [], count: 0 }
+        });
+      }
     }
-  } else {
   }
 
-  console.log(calendar);
-  // for (let i = 0; i < task.dates.length; i++) {
-  //   const newTask = {
-  //     date: format(new Date(task.dates[i].date), 'dd-MM-yyyy'),
-  //     oneTasks: { tasks: [], count: this.tasks.length },
-  //     repeatTasks: { tasks: [], count: this.tasks.length }
-  //   };
+  if (!isRepeat) {
+    const taskDate = format(new Date(task.dates[0].date), 'dd-MM-yyyy');
 
-  //   if (task.dates.length === 1) {
-  //     newTask.oneTasks.tasks.push({_id: task._id, title: task.title, isRepeat: false});
-  //   }
+    calendar.map(el => {
+      if (el.date === taskDate) {
+        el.oneTasks.tasks.push({ _id, title, isRepeat });
+        el.oneTasks.count = el.oneTasks.tasks.length;
+        return el;
+      }
+      return el;
+    });
 
-  //   if(task.dates.length > 1) {
-  //     newTask.repeatTasks.tasks.push({_id: task._id, title: task.title, isRepeat: false});
-  //   }
-  // }
+    if (!calendar.some(el => el.date === taskDate)) {
+      calendar.push({
+        date: taskDate,
+        oneTasks: { tasks: [{ _id, title, isRepeat }], count: 1 },
+        repeatTasks: { tasks: [], count: 0 }
+      });
+    }
+  }
+
+  return calendar;
 };

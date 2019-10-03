@@ -40,8 +40,8 @@ export const tasksReducer = (state = initialState, { type, payload }) => {
       return { ...state, error: payload, loader: false };
     case formTypes.ADD_TASK_FORM_SUCCESS:
       const newTask = payload.task;
-      addTaskToCalendar(payload.task, state.calendar);
-      return { ...state, tasks: [newTask, ...state.tasks] };
+      const newCalendar = addTaskToCalendar(newTask, state.calendar);
+      return { ...state, tasks: [newTask, ...state.tasks], calendar: [...newCalendar] };
     case tasksTypes.SEARCH_TASKS:
       return { ...state, search: payload };
     case tasksTypes.CLEAR_SEARCH:
