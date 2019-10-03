@@ -39,6 +39,13 @@ class DatePicker extends Component {
     closeModal();
   };
 
+  handleCancelCloseDatePicker = e => {
+    e.preventDefault();
+    const { closeModal } = this.props;
+    this.props.handleOpenDatePicker([]);
+    closeModal();
+  };
+
   render() {
     const { selected } = this.state;
     const today = new Date();
@@ -66,9 +73,14 @@ class DatePicker extends Component {
               weekStartsOn: 1
             }}
           />
-          <button className={styles.pickerBtn} type="button" onClick={this.handleCloseDatePicker}>
-            <Icon icon="Clear" />
-          </button>
+          <div className={styles.pickerBtns}>
+            <button className={styles.pickerBtn} type="button" onClick={this.handleCloseDatePicker}>
+              Подтвердить
+            </button>
+            <button className={styles.pickerBtn} type="button" onClick={this.handleCancelCloseDatePicker}>
+              Отменить
+            </button>
+          </div>
         </div>
       </>
     );
