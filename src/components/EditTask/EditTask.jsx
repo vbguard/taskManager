@@ -19,7 +19,6 @@ class EditTask extends Component {
 
   componentDidMount() {
     const { id, tasks } = this.props;
-    // console.log(tasks);
     if (!tasks) {
       this.props.history.push('/dashboard');
       return;
@@ -56,7 +55,7 @@ class EditTask extends Component {
     const { id, tasks } = this.props;
     const editTask = tasks.find(el => el._id === id);
 
-    if (title === '' || description === '') {
+    if (title === '' || description === '' || dates.length === 0) {
       warn('Все поля должны быть заполнены');
       return;
     }
@@ -99,13 +98,14 @@ class EditTask extends Component {
             onChange={this.handleChange}
             placeholder="#1 Введите название задачи"
             className={style.title}
+            maxLength="50"
           ></input>
-          {title.length > 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
-          <div className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
+          {title.length >= 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
+          <span className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
             <Icon icon="Calendar" className={style.formIcon} />
-            <p className={style.dataPickerTitle}>Выберете дату</p>
+            <p className={style.dataPickerTitle}>Выберите дату</p>
             <Icon icon="ArrowRight" className={style.formIcon} />
-          </div>
+          </span>
           {modal ? (
             <Modal>
               <DatePicker modal={modal} handleOpenDatePicker={this.handleOpenDatePicker} />
@@ -113,9 +113,9 @@ class EditTask extends Component {
           ) : (
             ''
           )}
-          <label htmlFor="description" className={style.labelDescription}>
+          <p className={style.labelDescription}>
             Краткое описание:
-          </label>
+          </p>
           <textarea
             name="description"
             wrap="virtual"
@@ -123,8 +123,9 @@ class EditTask extends Component {
             onChange={this.handleChange}
             value={description}
             placeholder="Введите описание задачи"
+            maxLength="200"
           ></textarea>
-          {description.length > 200 && (
+          {description.length >= 200 && (
             <span className={style.errorSpan}>Описание не должно быть больше 200-ти символов</span>
           )}
           <button type="button" className={style.deleteBtn}>
