@@ -19,8 +19,8 @@ class DatePicker extends Component {
     };
   }
 
-  handlerOnSelect = event => {
-    const dateString = format(event, 'yyyy-MM-dd');
+  handlerOnSelect = pickedDate => {
+    const dateString = format(new Date(pickedDate), 'yyyy-MM-dd');
     const selectedString = this.state.selected.map(date => format(date, 'yyyy-MM-dd'));
 
     if (selectedString.includes(dateString)) {
@@ -29,7 +29,7 @@ class DatePicker extends Component {
       const filteredOnDateFormat = filtered.map(date => new Date(date));
       return this.setState({ selected: filteredOnDateFormat });
     }
-    return this.setState({ selected: [...this.state.selected, event] });
+    return this.setState({ selected: [...this.state.selected, pickedDate] });
   };
 
   handleCloseDatePicker = e => {
@@ -61,7 +61,7 @@ class DatePicker extends Component {
             Component={MultipleDatesCalendar}
             interpolateSelection={defaultMultipleDateInterpolation}
             selected={selected}
-            onSelect={this.handlerOnSelect}
+            onSelect={doo => this.handlerOnSelect(doo)}
             minDate={lastWeek}
             displayOptions={{
               showHeader: false
