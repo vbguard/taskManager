@@ -7,7 +7,7 @@ class SearchTasks extends Component {
   state = { search: '' };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, () => this.props.onSubmit(this.state.search));
   };
 
   handleSubmit = e => {

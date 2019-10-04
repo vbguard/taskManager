@@ -6,10 +6,14 @@ export const getSession = state => state.session;
 
 export const getTasks = (state, search) => {
   if (state.userTasks.tasks) {
-    if (search === '') {
+    if (!search) {
       return state.userTasks.tasks;
     }
     return state.userTasks.tasks.filter(el => {
+      const descript = el.description
+        .split(' ')
+        .join('')
+        .toLowerCase();
       const title = el.title
         .split(' ')
         .join('')
@@ -18,7 +22,7 @@ export const getTasks = (state, search) => {
         .split(' ')
         .join('')
         .toLowerCase();
-      return title.includes(request);
+      return title.includes(request) || descript.includes(request);
     });
   }
 };
