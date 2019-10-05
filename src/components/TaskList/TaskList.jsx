@@ -7,17 +7,11 @@ import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
 
-// import tasks from '../../../src/assets/tasksForTest.json';
-// import datesFromTasks from '../../utils/utils';
-// import tasks from '../../assets/tasksForTest.json';
-// console.log(tasks.tasks);
-// import datesFromTasks from '../../../src/utils/utils.js'
-// import datesFromTasks from '../../utils/utils';
 import refactoredTaskList from '../../utils/refactoredTaskList';
-import stateForTest from '../../assets/stateForTest.js';
-const tasks = stateForTest.userTasks.tasks;
-// console.log('stateForTest.userTasks.tasks=', stateForTest.userTasks.tasks);
-refactoredTaskList(tasks);
+// import stateForTest from '../../assets/stateForTest.js';
+// const tasks = stateForTest.userTasks.tasks;
+// // console.log('stateForTest.userTasks.tasks=', stateForTest.userTasks.tasks);
+// refactoredTaskList(tasks);
 const ifToday = number => {
   const now = new Date();
   const date = new Date(number);
@@ -32,6 +26,11 @@ const ifToday = number => {
     return date.toLocaleDateString();
   }
 };
+
+const sortedByCompleted = tasks =>{
+  console.log('tasks=', tasks);
+  
+}
 
 const TaskList = ({ tasks }) => {
   return tasks && tasks.length ? (
