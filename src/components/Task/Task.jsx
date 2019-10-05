@@ -9,6 +9,7 @@ import windowSize from 'react-window-size';
 import Icon from '../../components/Icon/Icon';
 import { completeTask } from '../../redux/actions/tasksActions.js';
 import { getToken, getTaskId } from '../../redux/selectors/selectors';
+import { format } from 'date-fns';
 
 const refactoringProps = props => {
   const { dates, title, description, isRepeat, _id } = props.task;
@@ -32,16 +33,21 @@ const refactoringProps = props => {
   return refactoringProps;
 };
 
+const findTaskDate = (dates, date) => {
+  return dates.find(el => format(new Date(el.date), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'));
+};
+
 class Task extends Component {
   render() {
     const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(this.props);
     const windowWidth = this.props.windowWidth ? this.props.windowWidth : null;
-    const { onEdit, onComplete } = this.props;
+    const { onEdit, onComplete, date } = this.props;
+    const completeTaskDate = findTaskDate(dates, date);
 
     return (
       <>
         <div className={styles.task}>
-          <div className={dates[0].isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
+          <div className={completeTaskDate.isComplete ? styles.taskHeaderInactive : styles.taskHeader}>
             <div className={styles.numberContainer}>
               <p className={styles.headerNumber}>{taskNumber}. </p>
             </div>
@@ -58,14 +64,18 @@ class Task extends Component {
                 <>
                   <button
                     type="button"
-                    disabled={dates[0].isComplete ? true : false}
+                    disabled={completeTaskDate.isComplete ? true : false}
                     className={
-                      dates[0].isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
+                      completeTaskDate.isComplete ? styles.taskControlsRepeatBtnInactive : styles.taskControlsRepeatBtn
                     }
                   >
                     <Icon icon="Loop" />
                   </button>
-                  <p className={dates[0].isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}>
+                  <p
+                    className={
+                      completeTaskDate.isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates
+                    }
+                  >
                     {loopDates}
                   </p>
                 </>
@@ -81,9 +91,9 @@ class Task extends Component {
               {windowWidth > 768 ? <p>Редактировать</p> : null}
               <button
                 type="button"
-                disabled={dates[0].isComplete ? true : false}
-                className={dates[0].isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
-                onClick={() => onComplete({sectionDate: this.props.date, taskDates: this.props.task.dates}, taskId)}
+                disabled={completeTaskDate.isComplete ? true : false}
+                className={completeTaskDate.isComplete ? styles.taskControlsDoneInactive : styles.taskControlsDone}
+                onClick={() => onComplete({ sectionDate: this.props.date, taskDates: this.props.task.dates }, taskId)}
               >
                 <Icon icon="Done" />
               </button>
