@@ -139,8 +139,6 @@ export const completeTask = (data, taskId) => dispatch => {
   const sectionDateString = new Date(sectionDate).toISOString();
   const getDay = taskDates.find(el => el.date === sectionDateString);
 
-  console.log(getDay);
-
   const dataUpdate = {
     isComplete: true,
     taskDayId: getDay._id

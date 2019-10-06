@@ -65,14 +65,14 @@ class InfoPop extends Component {
                 <p className={numberStyleOrange.join(' ')}>1</p>
               </div>
               <p className={hyphen}>-</p>
-              <p className={text}>Количество повторяющихся задач</p>
+              <p className={text}>Количество не повторяющихся задач</p>
             </li>
             <li className={listItem}>
               <div className={iconContainer}>
                 <p className={numberStyleGreen.join(' ')}>2</p>
               </div>
               <p className={hyphen}>-</p>
-              <p className={text}>Количество неповторяющихся задач</p>
+              <p className={text}>Количество повторяющихся задач</p>
             </li>
           </ul>
         </div>
