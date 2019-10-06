@@ -71,3 +71,10 @@ export const addTaskToCalendar = (task, calendar) => {
 
   return calendar;
 };
+
+// convert daye from format RFC2822 (Fri Apr 05 2019 16:59:00 GMT-0700 (Pacific Daylight Time)) into 2019-04-05
+export const convertDateFromRFC2822 = dateRFC2822 => {
+  let date = JSON.stringify(dateRFC2822);
+  let result = date.slice(1, 11);
+  return result;
+};
