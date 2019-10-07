@@ -7,17 +7,8 @@ import Task from '../../components/Task/Task.jsx';
 
 import styles from './TaskList.module.css';
 
-// import tasks from '../../../src/assets/tasksForTest.json';
-// import datesFromTasks from '../../utils/utils';
-// import tasks from '../../assets/tasksForTest.json';
-// console.log(tasks.tasks);
-// import datesFromTasks from '../../../src/utils/utils.js'
-// import datesFromTasks from '../../utils/utils';
 import refactoredTaskList from '../../utils/refactoredTaskList';
-import stateForTest from '../../assets/stateForTest.js';
-const tasks = stateForTest.userTasks.tasks;
-// console.log('stateForTest.userTasks.tasks=', stateForTest.userTasks.tasks);
-refactoredTaskList(tasks);
+
 const ifToday = number => {
   const now = new Date();
   const date = new Date(number);
@@ -33,6 +24,37 @@ const ifToday = number => {
   }
 };
 
+const sortedByCompleted = (tasks, date) =>{
+  // console.log('tasks=', tasks);
+  // console.log('typeof tasks=', typeof tasks);
+  date = new Date(date).toISOString();
+  // console.log('date=', date);
+  // console.log('typeof date=', typeof date);
+  const result ={};
+
+  result.completedTasks = [];
+  result.unCompletedTasks = tasks;
+  
+  tasks.map(task =>{
+    // console.log('task.dates=', task.dates);
+    // console.log('typeof task.dates=', typeof task.dates);
+    task.dates.map(taskDate =>{
+      // console.log('taskDate=', taskDate);
+      // console.log('typeof taskDate=', typeof taskDate);
+      // console.log('taskDate.date=', taskDate.date);
+      // console.log('taskDate.taskDate===date=', taskDate.date===date);
+      // console.log('taskDate.isComplete=', taskDate.isComplete);
+      if (taskDate.date===date && taskDate.isComplete) {result.completedTasks.push(task); result.unCompletedTasks=result.unCompletedTasks.filter(item => item._id!==task._id)};
+    })
+
+  // console.log('completedTasks=', result.completedTasks);
+  // console.log('unCompletedTasks=', result.unCompletedTasks);
+  })
+  // console.log('result=', result);
+  return result;
+
+}
+
 const TaskList = ({ tasks }) => {
   return tasks && tasks.length ? (
     <ul className={styles.list}>
@@ -41,16 +63,33 @@ const TaskList = ({ tasks }) => {
           return (
             <li key={taska.date + Math.random()}>
               <p className={styles.today}>{ifToday(taska.date)}</p>
-              {taska.tasks &&
-                taska.tasks.map((task, index) => {
+              <ul className={styles.subList} key={Math.random()}>
+              {/* <p className={styles.today}>Выполненные задачи</p>   */}
+              {sortedByCompleted(taska.tasks, taska.date) && (
+                sortedByCompleted(taska.tasks, taska.date).unCompletedTasks.map((task, index) => {
                   return (
-                    <ul className={styles.subList} key={Math.random()}>
+                    
                       <li className={styles.subListItem} key={task._id + Math.random()}>
                         <Task task={task} taskNumber={index + 1} date={taska.date} />
                       </li>
-                    </ul>
+                    
+                  );
+                }))}
+              {sortedByCompleted(taska.tasks, taska.date).completedTasks.length>0 &&(
+                <li><p className={styles.today}>Выполненные задачи</p>
+                {sortedByCompleted(taska.tasks, taska.date).completedTasks.map((task, index) => {
+                  return (
+                    
+                      <li className={styles.subListItem} key={task._id + Math.random()}>
+                        <Task task={task} taskNumber={index + 1} date={taska.date} />
+                      </li>
+                    
                   );
                 })}
+                </li>
+                
+              )}
+                </ul>
             </li>
           );
         })}
