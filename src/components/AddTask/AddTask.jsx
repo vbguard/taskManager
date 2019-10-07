@@ -4,6 +4,7 @@ import { addTask } from '../../redux/actions/formAction';
 import style from './AddTask.module.css';
 import Icon from '../Icon/Icon';
 import { warn } from '../../utils/notification';
+import { convertDateFromRFC2822 } from '../../utils/utils';
 import DatePicker from '../DatePicker/DatePicker';
 import Modal from '../Modal/Modal';
 import { openPickerModal } from '../../redux/actions/modalAction.js';
@@ -71,7 +72,7 @@ class AddForm extends Component {
   };
 
   render() {
-    const { title, description } = this.state;
+    const { title, description, dates } = this.state;
     const { modal } = this.props;
 
     return (
@@ -88,9 +89,17 @@ class AddForm extends Component {
           ></input>
           {title.length >= 50 && <span className={style.errorSpan}>Описание не должно быть больше 50-ти символов</span>}
           <span className={style.dataPickerContainer} onClick={this.handleOpenDatePicker}>
-            <Icon icon="Calendar" className={style.formIcon} />
-            <p className={style.dataPickerTitle}>Выберите дату</p>
-            <Icon icon="ArrowRight" className={style.formIcon} />
+            <div>
+              <Icon icon="Calendar" className={style.formIcon} />
+            </div>
+            {dates.length > 0 ? (
+              <p className={style.dataPickerTitle}>{dates.map(el => `${convertDateFromRFC2822(el.date)}; `)}</p>
+            ) : (
+              <p className={style.dataPickerTitle}>Выберите дату</p>
+            )}
+            <div>
+              <Icon icon="ArrowRight" className={style.formIcon} />
+            </div>
           </span>
           {modal && (
             <Modal>
