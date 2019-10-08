@@ -29,7 +29,6 @@ const CalendarRenderDay = ({ day, classNames, onPickDate, calendar }) => {
     <div
       key={day.format()}
       className={cx('Calendar-grid-item', day.isSame(moment(), 'day') && 'Calendar-grid-item--current', classNames)}
-      onClick={e => onPickDate(day)}
     >
       {day.format('D')}
       {addTask(day)}

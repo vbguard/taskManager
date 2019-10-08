@@ -71,6 +71,10 @@ body {
   font-weight: 900;
 }
 
+.Calendar-grid-item:hover {
+  background-color: var(--light-blue-grey);
+}
+
 .Calendar-grid-item.nextMonth,
 .Calendar-grid-item.prevMonth {
   color: #999;
