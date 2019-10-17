@@ -37,6 +37,33 @@
   color: var(--light-blue-grey);
 }
 
+/* SUBTASK */
+.subtask {
+  width: 264px;
+  /* font-size: 13px; */
+  border-radius: 5px;
+  border: solid 1px var(--light-periwinkle);
+  padding: 10px;
+  outline: 0;
+  font-family: 'Gotham Pro Bold';
+}
+
+.subtask:focus {
+  border: solid 1px var(--dark-navy-blue);
+  border-radius: 5px;
+}
+
+.subtask::placeholder {
+  font-family: 'GothamPro';
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.78px;
+  color: var(--greyish-brown);
+}
+
+/* SUBTASK */
+
 .formIcon {
   width: 20px;
   height: 20px;
@@ -176,6 +203,20 @@
     line-height: 2.3;
   }
 
+  /* SUBTASK */
+  .subtask {
+    width: 600px;
+    margin-left: 35px
+  }
+
+  .subtask::placeholder {
+    width: 220px;
+    font-size: 16px;
+    line-height: 2.3;
+  }
+  /* SUBTASK */
+
+
   .dataPickerContainer {
     width: 600px;
     margin-left: 35px
@@ -233,6 +274,19 @@
     font-size: 16px;
     line-height: 2.54;
   }
+
+  /* SUBTASK */
+  .subtask {
+    width: 730px;
+    margin-left: 70px;
+  }
+
+  .subtask::placeholder {
+    width: 220px;
+    font-size: 16px;
+    line-height: 2.54;
+  }
+  /* SUBTASK */
 
   .dataPickerContainer {
     width: 730px;

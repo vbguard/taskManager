@@ -111,6 +111,36 @@ class AddForm extends Component {
           {description.length >= 200 && (
             <span className={style.errorSpan}>Описание не должно быть больше 200-ти символов</span>
           )}
+          {/* CHECKLIST============================ */}
+          <p className={style.labelDescription}>Разбейте на подзадачи:</p>
+          <input
+            name="subtask1"
+            type="text"
+            value={title}
+            onChange={this.handleChange}
+            placeholder="#1 Введите название подзадачи"
+            className={style.subtask}
+            maxLength="50"
+          ></input>
+          <input
+            name="subtask2"
+            type="text"
+            value={title}
+            onChange={this.handleChange}
+            placeholder="#1 Введите название подзадачи"
+            className={style.subtask}
+            maxLength="50"
+          ></input>
+          <input
+            name="subtask3"
+            type="text"
+            value={title}
+            onChange={this.handleChange}
+            placeholder="#1 Введите название подзадачи"
+            className={style.subtask}
+            maxLength="50"
+          ></input>
+          {/* CHECKLIST============================ */}
           <div className={style.battonContainer}>
             <button type="submit" className={style.saveBtn}>
               Сохранить
