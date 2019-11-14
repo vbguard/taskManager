@@ -5,8 +5,9 @@ import InfiniteCalendar, {
   withMultipleDates
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
-import Icon from '../Icon/Icon';
-import { format } from 'date-fns';
+// import Icon from '../Icon/Icon';
+// import { format } from 'date-fns';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { closePickerModal, closeModal } from '../../redux/actions/modalAction.js';
 import styles from './datePicker.module.css';
@@ -20,8 +21,8 @@ class DatePicker extends Component {
   }
 
   handlerOnSelect = pickedDate => {
-    const dateString = format(new Date(pickedDate), 'yyyy-MM-dd');
-    const selectedString = this.state.selected.map(date => format(date, 'yyyy-MM-dd'));
+    const dateString = moment(pickedDate).format('yyyy-MM-dd');
+    const selectedString = this.state.selected.map(date => moment(date).format('yyyy-MM-dd'));
 
     if (selectedString.includes(dateString)) {
       const filtered = selectedString.filter(el => el !== dateString);
@@ -94,7 +95,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(DatePicker);
+export default connect(null, mapDispatchToProps)(DatePicker);
