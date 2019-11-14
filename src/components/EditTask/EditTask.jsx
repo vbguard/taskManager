@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import style from './EditTask.module.css';
 import Icon from '../Icon/Icon';
 import { getTasks } from '../../redux/selectors/selectors';
 import { editTask } from '../../redux/actions/tasksActions';
 import { warn } from '../../utils/notification';
-import { convertDateFromRFC2822 } from '../../utils/utils';
+// import { convertDateFromRFC2822 } from '../../utils/utils';
 import { openModal, openDeleteModal } from '../../redux/actions/modalAction';
 import DatePicker from '../DatePicker/DatePicker';
 import { openPickerModal } from '../../redux/actions/modalAction.js';
@@ -107,7 +108,11 @@ class EditTask extends Component {
               <Icon icon="Calendar" className={style.formIcon} />
             </div>
             {dates.length > 0 ? (
-              <p className={style.dataPickerTitle}>{dates.map(el => `${convertDateFromRFC2822(el.date)}; `)}</p>
+              <p className={style.dataPickerTitle}>
+                {dates.map(el => (
+                  <span key={el._id}>{moment(el.date).format('DD-MM-YYYY')}; &ensp;</span>
+                ))}
+              </p>
             ) : (
               <p className={style.dataPickerTitle}>Выберите дату</p>
             )}
@@ -117,7 +122,11 @@ class EditTask extends Component {
           </span>
           {modal ? (
             <Modal>
-              <DatePicker modal={modal} handleOpenDatePicker={this.handleOpenDatePicker} />
+              <DatePicker
+                dates={dates.map(el => el.date)}
+                modal={modal}
+                handleOpenDatePicker={this.handleOpenDatePicker}
+              />
             </Modal>
           ) : (
             ''
@@ -170,7 +179,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditTask);
+export default connect(mapStateToProps, mapDispatchToProps)(EditTask);
