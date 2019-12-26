@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import Icon from '../Icon/Icon';
 import CalendarRenderDay from '../CalendarRenderDay/CalendarRenderDay';
+import uuid from 'uuid/v4';
 
 class TaskCalendar extends Component {
   state = {
@@ -11,12 +12,14 @@ class TaskCalendar extends Component {
   };
 
   render() {
+    // console.log('this.state.date', this.state.date);
+    // console.log('this.props', this.props);
     return (
-      <Calendar
+      <Calendar 
         onChangeMonth={date => this.setState({ date })}
         date={this.state.date}
         // onPickDate={date => console.log(date)}
-        renderDay={props => <CalendarRenderDay {...props} />}
+        renderDay={props => <CalendarRenderDay {...props} key={uuid()}/>}
         renderHeader={({ date, onPrevMonth, onNextMonth }) => (
           <div className="Calendar-header">
             <button onClick={onPrevMonth}>
