@@ -78,6 +78,10 @@ p {
 	cursor: default;
 }
 
+.taskControlsRepeatBtn:hover{
+	cursor: default;
+}
+
 .taskControlsRepeat{
   /* width:25%; */
   display:flex;
