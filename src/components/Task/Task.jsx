@@ -23,9 +23,11 @@ const refactoringProps = props => {
     taskDescription: !description ? 'опис_таски' : description,
     isLoop: isRepeat,
     loopDates: dates
-      .reduce((acc, elem) => {
-        acc.push(new Date(elem.date).getDate());
-
+      .reduce((acc, elem, index) => {
+        // console.log('elem', elem);
+        // console.log('typeof elem', typeof elem);
+        // if (index % 5 === 0) acc.push('</n>');
+        acc.push(!index || index % 4 === 0 ? '\n'+new Date(elem.date).getDate()  : new Date(elem.date).getDate());
         return acc;
       }, [])
       .join(','),
@@ -41,16 +43,13 @@ const findTaskDate = (dates, date) => {
   return dates.find(el => format(new Date(el.date), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'));
 };
 
-// class Task extends Component {
-//   render() {
-
 const Task = props => {
   const { taskNumber, taskHeader, taskDescription, isLoop, loopDates, taskId, dates } = refactoringProps(props);
-  // const windowWidth = props.windowWidth ? props.windowWidth : null;
   const windowWidth = useScreenWidth();
   const { onEdit, onComplete, date } = props;
   const completeTaskDate = findTaskDate(dates, date);
-
+  // console.log('loopDates', loopDates);
+  // console.log('typeof loopDates', typeof loopDates);
   return (
     <>
       <div className={styles.task}>
@@ -64,6 +63,7 @@ const Task = props => {
         </div>
         <div className={styles.taskBody}>
           <p>{taskDescription}</p>
+          <hr/>
         </div>
         <div className={styles.taskControls}>
           <div className={styles.taskControlsRepeat}>
@@ -78,11 +78,11 @@ const Task = props => {
                 >
                   <Icon icon="Loop" />
                 </button>
-                <p
+                <span
                   className={completeTaskDate.isComplete ? styles.taskControlsDatesInactive : styles.taskControlsDates}
                 >
                   {loopDates}
-                </p>
+                </span>
               </>
             )}
           </div>
@@ -109,7 +109,6 @@ const Task = props => {
     </>
   );
 };
-// }
 
 Task.propTypes = {
   task: PropTypes.shape({

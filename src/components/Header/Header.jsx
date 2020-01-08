@@ -18,12 +18,7 @@ import { logout } from '../../redux/actions/authActions';
 import { getInfoModal, getNickname } from '../../redux/selectors/selectors';
 import { clearSearch } from '../../redux/actions/tasksActions';
 
-// class Header extends Component {
-//   state = {};
-//   render() {
-
 const Header = props => {
-  // const { match, location, openModal, logout, nickname, windowWidth } =  props;
   const windowWidth = useScreenWidth();
   const { match, location, openModal, logout, nickname } = props;
 

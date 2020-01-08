@@ -6,9 +6,6 @@ import { getCalendar } from './calendarSelectors';
 import 'moment/locale/ru';
 
 const CalendarRenderDay = ({ day, classNames, onPickDate, calendar }) => {
-  // console.log('day', day);
-  // const now = moment(new Date());
-  // console.log('now', now);
   const addTask = day => {
     if (calendar) {
       const calendarDay = calendar.find(el => el.date === day.format('DD-MM-YYYY'));
