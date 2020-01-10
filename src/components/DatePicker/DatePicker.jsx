@@ -5,12 +5,11 @@ import InfiniteCalendar, {
   withMultipleDates
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
-// import Icon from '../Icon/Icon';
-// import { format } from 'date-fns';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { closePickerModal, closeModal } from '../../redux/actions/modalAction.js';
 import styles from './datePicker.module.css';
+ import { getLastWeekDay } from '../../utils/utils'
 
 class DatePicker extends Component {
   constructor(props) {
@@ -50,7 +49,8 @@ class DatePicker extends Component {
   render() {
     const { selected } = this.state;
     const today = new Date();
-    const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+    // const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+    const lastWeek = getLastWeekDay();
     const MultipleDatesCalendar = withMultipleDates(Calendar);
 
     return (

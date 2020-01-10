@@ -1,5 +1,4 @@
 import React from 'react';
-// import windowSize from 'react-window-size';
 import AddButton from '../AddButton/AddButon';
 import TaskList from '../TaskList/TaskList';
 import s from './TaskContainer.module.css';
@@ -16,10 +15,8 @@ const TaskContainer = props => {
         <AddButton />
       </div>
       {windowWidth >= 768 && windowWidth < 1024 ? <CalendarButtonTablet /> : ''}
-      {/* {props.windowWidth >= 768 && props.windowWidth < 1024 ? <CalendarButtonTablet /> : ''} */}
     </div>
   );
 };
 
-// export default windowSize(TaskContainer);
 export default TaskContainer;

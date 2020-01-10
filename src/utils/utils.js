@@ -102,3 +102,14 @@ export const getLastMonthDay = params => {
   lastMonthDay.setTime(today.getTime() - 4 * 7 * 24 * 60 * 60 * 1000);
   return lastMonthDay;
 };
+
+export const getLastWeekDay = params => {
+  let today = new Date();
+  const todayYear = today.getFullYear();
+  const todayMonth = today.getMonth();
+  const todayDate = today.getDate();
+  today = new Date(todayYear, todayMonth, todayDate);
+  let lastWeekDay = new Date();
+  lastWeekDay.setTime(today.getTime() -  7 * 24 * 60 * 60 * 1000);
+  return lastWeekDay;
+};

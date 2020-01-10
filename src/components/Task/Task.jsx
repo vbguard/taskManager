@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -12,8 +11,11 @@ import { completeTask } from '../../redux/actions/tasksActions.js';
 import { getToken, getTaskId } from '../../redux/selectors/selectors';
 import { format } from 'date-fns';
 
-// import windowSize from 'react-window-size';
 import useScreenWidth from '../../utils/useScreenWidth';
+
+import { getLastMonthDay } from '../../utils/utils';
+
+const lastMonthDay = getLastMonthDay();
 
 const refactoringProps = props => {
   const { dates, title, description, isRepeat, _id } = props.task;
@@ -23,11 +25,16 @@ const refactoringProps = props => {
     taskDescription: !description ? 'опис_таски' : description,
     isLoop: isRepeat,
     loopDates: dates
+      .reduce((uniqueDates, date) => {
+        if (uniqueDates.includes(date)) return uniqueDates;
+        uniqueDates.push(date);
+        return uniqueDates;
+      }, [])
+      .filter(date => {
+        if (Date.parse(date.date) >= lastMonthDay.getTime()) return date;
+      })
       .reduce((acc, elem, index) => {
-        // console.log('elem', elem);
-        // console.log('typeof elem', typeof elem);
-        // if (index % 5 === 0) acc.push('</n>');
-        acc.push(!index || index % 4 === 0 ? '\n'+new Date(elem.date).getDate()  : new Date(elem.date).getDate());
+        acc.push(!index || index % 4 === 0 ? '\n' + new Date(elem.date).getDate() : new Date(elem.date).getDate());
         return acc;
       }, [])
       .join(','),
@@ -48,8 +55,6 @@ const Task = props => {
   const windowWidth = useScreenWidth();
   const { onEdit, onComplete, date } = props;
   const completeTaskDate = findTaskDate(dates, date);
-  // console.log('loopDates', loopDates);
-  // console.log('typeof loopDates', typeof loopDates);
   return (
     <>
       <div className={styles.task}>
@@ -63,7 +68,7 @@ const Task = props => {
         </div>
         <div className={styles.taskBody}>
           <p>{taskDescription}</p>
-          <hr/>
+          <hr />
         </div>
         <div className={styles.taskControls}>
           <div className={styles.taskControlsRepeat}>
@@ -144,5 +149,4 @@ const mDTP = dispatch => ({
   onEdit: taskId => dispatch(getIdSuccess(taskId))
 });
 
-// export default compose(connect(mSTP, mDTP), windowSize)(Task);
 export default compose(connect(mSTP, mDTP))(Task);

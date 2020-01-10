@@ -1,9 +1,7 @@
-// import React, { Component } from 'react';
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import windowSize from 'react-window-size';
 
 import useScreenWidth from '../../utils/useScreenWidth';
 
@@ -88,7 +86,5 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   onMainPage: () => dispatch(clearSearch())
 });
-
-// export default compose(connect(mapStateToProps, mapDispatchToProps), windowSize)(Header);
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(Header);
